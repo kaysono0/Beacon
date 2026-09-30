@@ -8,6 +8,12 @@ Beacon 是基于 Python 的设备 SDK 自动化测试框架（SDK testing / test
 
 ## Mac Console App演示成果
 
+点击[观看产品演示](https://github.com/user-attachments/assets/f5a58ba7-ff44-4d4c-ad91-fdda0f8b6b92)。视频展示了：
+
+- **接口与回调验证**：在 Console 中运行 Agora 加入房间用例，查看执行记录和实际回调。
+- **多路视频场景**：运行四宫格、九宫格视频用例，直接看到渲染画面。
+- **从执行到结果**：在同一个界面选择用例、发起运行并查看结果。
+
 Mac Console App演示图：
 
 <img src="https://raw.githubusercontent.com/kaysono0/MyPicList/main/image-20260930095958850.png" alt="image-20260930095958850" style="zoom:50%;" />
@@ -18,11 +24,6 @@ Agora Join and Leave测试用例演示：
 Agora多实例测试运行演示：
 ![image-20260930100154258](https://raw.githubusercontent.com/kaysono0/MyPicList/main/image-20260930100154258.png)
 
-点击[观看约 53 秒的产品演示](https://github.com/user-attachments/assets/f5a58ba7-ff44-4d4c-ad91-fdda0f8b6b92)，保留原录音和中英字幕。视频展示了：
-
-- **接口与回调验证**：在 Console 中运行 Agora 加入房间用例，查看执行记录和实际回调。
-- **多路视频场景**：运行四宫格、九宫格视频用例，直接看到渲染画面。
-- **从执行到结果**：在同一个界面选择用例、发起运行并查看结果。
 
 ## Beacon 的亮点
 
