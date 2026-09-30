@@ -6,11 +6,19 @@ Beacon is a Python framework for device SDK testing and test automation. It brin
 
 [中文说明](README.zh-CN.md)
 
-## See the results
+## Mac Console App demos
 
-[![Beacon product demo: join callback, four-way video, and nine-way video](docs/assets/beacon-demo/beacon-product-demo-poster.jpg)](docs/assets/beacon-demo/beacon-product-demo.mp4)
+Mac Console App overview:
 
-[Watch the 53-second product demo](https://github.com/user-attachments/assets/bc1f40c0-0c34-48fa-861d-ca6bee3e56c1), with the original recording audio and bilingual captions. The video shows:
+<img src="https://raw.githubusercontent.com/kaysono0/MyPicList/main/image-20260930095958850.png" alt="Beacon Mac Console App overview" style="zoom:50%;" />
+
+Agora Join and Leave test case demo:
+![Agora Join and Leave test case demo](https://raw.githubusercontent.com/kaysono0/MyPicList/main/image-20260930100126344.png)
+
+Agora multi-instance test run:
+![Agora multi-instance test run](https://raw.githubusercontent.com/kaysono0/MyPicList/main/image-20260930100154258.png)
+
+Click to [watch the 53-second product demo](https://github.com/user-attachments/assets/bc1f40c0-0c34-48fa-861d-ca6bee3e56c1), with the original audio and Chinese and English subtitles. The video shows:
 
 - **API and callback validation**: run an Agora room-join case in the Console and inspect execution records and actual callbacks.
 - **Multiple video streams**: run four-way and nine-way video cases and see the rendered output.
