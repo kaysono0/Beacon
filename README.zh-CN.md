@@ -10,7 +10,7 @@ Beacon 是基于 Python 的设备 SDK 自动化测试框架（SDK testing / test
 
 [![Beacon 产品演示：加入房间回调、四宫格与九宫格](https://raw.githubusercontent.com/kaysono0/MyPicList/main/beacon-product-demo-poster.jpg)](docs/assets/beacon-demo/beacon-product-demo.mp4)
 
-[观看约 53 秒的产品演示](docs/assets/beacon-demo/beacon-product-demo.mp4)，保留原录音和中英字幕。视频展示了：
+[观看约 53 秒的产品演示](https://github.com/user-attachments/assets/bc1f40c0-0c34-48fa-861d-ca6bee3e56c1)，保留原录音和中英字幕。视频展示了：
 
 - **接口与回调验证**：在 Console 中运行 Agora 加入房间用例，查看执行记录和实际回调。
 - **多路视频场景**：运行四宫格、九宫格视频用例，直接看到渲染画面。

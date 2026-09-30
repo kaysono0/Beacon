@@ -10,7 +10,7 @@ Beacon is a Python framework for device SDK testing and test automation. It brin
 
 [![Beacon product demo: join callback, four-way video, and nine-way video](docs/assets/beacon-demo/beacon-product-demo-poster.jpg)](docs/assets/beacon-demo/beacon-product-demo.mp4)
 
-[Watch the 53-second product demo](docs/assets/beacon-demo/beacon-product-demo.mp4), with the original recording audio and bilingual captions. The video shows:
+[Watch the 53-second product demo](https://github.com/user-attachments/assets/bc1f40c0-0c34-48fa-861d-ca6bee3e56c1), with the original recording audio and bilingual captions. The video shows:
 
 - **API and callback validation**: run an Agora room-join case in the Console and inspect execution records and actual callbacks.
 - **Multiple video streams**: run four-way and nine-way video cases and see the rendered output.
