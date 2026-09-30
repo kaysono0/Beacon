@@ -1,0 +1,20 @@
+sdk: zego_express
+capabilities:
+  - id: engine_lifecycle
+    name: ZEGO 引擎生命周期
+  - id: room_login
+    name: ZEGO 登录房间
+  - id: room_logout
+    name: ZEGO 登出房间
+  - id: room_state_observability
+    name: ZEGO 房间状态可观测性
+  - id: stream_publish
+    name: ZEGO 流发布
+  - id: stream_play
+    name: ZEGO 流订阅与渲染
+  - id: local_video_preview
+    name: ZEGO 本地预览渲染
+  - id: synthetic_video_source
+    name: ZEGO 合成视频源
+  - id: visual_snapshot_observability
+    name: ZEGO 渲染视图快照证据

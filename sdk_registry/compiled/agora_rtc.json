@@ -1,0 +1,3360 @@
+{
+  "capabilities": [
+    {
+      "id": "connection_state",
+      "name": "查询连接状态"
+    },
+    {
+      "id": "error_event_observability",
+      "name": "错误事件可观测性"
+    },
+    {
+      "id": "join_channel",
+      "name": "加入频道"
+    },
+    {
+      "id": "joined_state",
+      "name": "查询是否已加入频道"
+    },
+    {
+      "id": "leave_channel",
+      "name": "离开频道"
+    },
+    {
+      "id": "local_audio_control",
+      "name": "本地音频控制"
+    },
+    {
+      "id": "local_video_stats_observability",
+      "name": "本地视频统计可观测性"
+    },
+    {
+      "id": "media_player_source",
+      "name": "MediaPlayer 文件媒体源"
+    },
+    {
+      "id": "media_player_state_observability",
+      "name": "MediaPlayer 状态可观测性"
+    },
+    {
+      "id": "preview_control",
+      "name": "预览控制"
+    },
+    {
+      "id": "preview_state",
+      "name": "查询是否正在预览"
+    },
+    {
+      "id": "remote_audio_stats_observability",
+      "name": "远端音频统计可观测性"
+    },
+    {
+      "id": "remote_video_layer_selection",
+      "name": "Simulcast 远端视频层选择"
+    },
+    {
+      "id": "remote_video_rendering",
+      "name": "远端视频渲染"
+    },
+    {
+      "id": "remote_video_stats_observability",
+      "name": "远端视频统计可观测性"
+    },
+    {
+      "id": "rtc_stats_observability",
+      "name": "RTC 统计可观测性"
+    },
+    {
+      "id": "sdk_lifecycle",
+      "name": "SDK 生命周期"
+    },
+    {
+      "id": "simulcast_dual_stream",
+      "name": "Simulcast 双流发布配置"
+    },
+    {
+      "id": "simulcast_layer_observability",
+      "name": "Simulcast 实际接收层可观测性"
+    },
+    {
+      "id": "synthetic_video_source",
+      "name": "合成视频源"
+    },
+    {
+      "id": "token_renewal",
+      "name": "Token 续期"
+    },
+    {
+      "id": "visual_probe",
+      "name": "视觉探针"
+    },
+    {
+      "id": "visual_snapshot_observability",
+      "name": "视觉快照可观测性"
+    }
+  ],
+  "contract_matrix": [
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.getConnectionState",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.get_connection_state"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "connection_state",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "_extra": {
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "getConnectionState",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.joinChannel",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.join_channel"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "join_channel",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "_extra": {
+              "type": "object"
+            },
+            "auto_subscribe_audio": {
+              "type": "boolean"
+            },
+            "auto_subscribe_video": {
+              "type": "boolean"
+            },
+            "channel": {
+              "type": "string"
+            },
+            "publish_camera": {
+              "type": "boolean"
+            },
+            "publish_media_player": {
+              "type": "boolean"
+            },
+            "publish_microphone": {
+              "type": "boolean"
+            },
+            "publish_synthetic_audio": {
+              "type": "boolean"
+            },
+            "token": {
+              "type": "string"
+            },
+            "uid": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "channel",
+            "uid"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "joinChannel",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.leaveChannel",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.leave_channel"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "leave_channel",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {},
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "leaveChannel",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.enableLocalAudio",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.enable_local_audio"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "local_audio_control",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "enabled"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "enableLocalAudio",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").media_player.openMediaPlayer",
+        "typed_facade": "ctx.device(role).agora_rtc.media_player.open_media_player"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "media_player_source",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "source_path": {
+              "type": "string"
+            },
+            "start_pos_ms": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "source_path"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcMediaPlayerProtocol",
+        "function": "openMediaPlayer",
+        "interface": "media_player",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").media_player.pauseMediaPlayer",
+        "typed_facade": "ctx.device(role).agora_rtc.media_player.pause_media_player"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "media_player_source",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {},
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcMediaPlayerProtocol",
+        "function": "pauseMediaPlayer",
+        "interface": "media_player",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").media_player.playMediaPlayer",
+        "typed_facade": "ctx.device(role).agora_rtc.media_player.play_media_player"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "media_player_source",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {},
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcMediaPlayerProtocol",
+        "function": "playMediaPlayer",
+        "interface": "media_player",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").media_player.resumeMediaPlayer",
+        "typed_facade": "ctx.device(role).agora_rtc.media_player.resume_media_player"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "media_player_source",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {},
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcMediaPlayerProtocol",
+        "function": "resumeMediaPlayer",
+        "interface": "media_player",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").media_player.stopMediaPlayer",
+        "typed_facade": "ctx.device(role).agora_rtc.media_player.stop_media_player"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "media_player_source",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {},
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcMediaPlayerProtocol",
+        "function": "stopMediaPlayer",
+        "interface": "media_player",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").video_preview.startPreview",
+        "typed_facade": "ctx.device(role).agora_rtc.video_preview.start_preview"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "preview_control",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "_extra": {
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "startPreview",
+        "interface": "video_preview",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").video_preview.stopPreview",
+        "typed_facade": "ctx.device(role).agora_rtc.video_preview.stop_preview"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "preview_control",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {},
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "stopPreview",
+        "interface": "video_preview",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.setRemoteVideoStream",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.set_remote_video_stream"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "remote_video_layer_selection",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "stream_type": {
+              "enum": [
+                "high",
+                "low"
+              ],
+              "type": "string"
+            },
+            "uid": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "uid",
+            "stream_type"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "setRemoteVideoStream",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.loadSDK",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.load_sdk"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "sdk_lifecycle",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {},
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "SDKLifecycle",
+        "function": "loadSDK",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.unloadSDK",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.unload_sdk"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "sdk_lifecycle",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {},
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "SDKLifecycle",
+        "function": "unloadSDK",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.setDualStreamMode",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.set_dual_stream_mode"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "simulcast_dual_stream",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "low_bitrate": {
+              "type": "integer"
+            },
+            "low_fps": {
+              "type": "integer"
+            },
+            "low_height": {
+              "type": "integer"
+            },
+            "low_width": {
+              "type": "integer"
+            },
+            "mode": {
+              "enum": [
+                "auto",
+                "enabled",
+                "disabled"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "mode"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "setDualStreamMode",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.startSyntheticVideo",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.start_synthetic_video"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "synthetic_video_source",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "_extra": {
+              "type": "object"
+            },
+            "fps": {
+              "default": 15,
+              "type": "integer"
+            },
+            "height": {
+              "default": 180,
+              "type": "integer"
+            },
+            "pattern": {
+              "default": "animated_clip",
+              "enum": [
+                "animated_clip",
+                "paired_media_clip",
+                "bars",
+                "moving_stripe"
+              ],
+              "type": "string"
+            },
+            "width": {
+              "default": 320,
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "startSyntheticVideo",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.stopSyntheticVideo",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.stop_synthetic_video"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "synthetic_video_source",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "_extra": {
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "stopSyntheticVideo",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.renewToken",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.renew_token"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "token_renewal",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "channel": {
+              "type": "string"
+            },
+            "token": {
+              "type": "string"
+            },
+            "uid": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "token"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "renewToken",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").visual_probe.bindLocalVideo",
+        "typed_facade": "ctx.device(role).agora_rtc.visual_probe.bind_local_video"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "visual_probe",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "AgoraVisualProbeProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "view_role": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "view_role"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraVisualProbe",
+        "function": "bindLocalVideo",
+        "interface": "visual_probe",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").visual_probe.bindRemoteVideo",
+        "typed_facade": "ctx.device(role).agora_rtc.visual_probe.bind_remote_video"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "visual_probe",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "AgoraVisualProbeProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "uid": {
+              "type": "integer"
+            },
+            "view_role": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "uid",
+            "view_role"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraVisualProbe",
+        "function": "bindRemoteVideo",
+        "interface": "visual_probe",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").visual_probe.captureSnapshot",
+        "typed_facade": "ctx.device(role).agora_rtc.visual_probe.capture_snapshot"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "visual_probe",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "AgoraVisualProbeProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "view_role": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "view_role"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraVisualProbe",
+        "function": "captureSnapshot",
+        "interface": "visual_probe",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").visual_probe.releaseView",
+        "typed_facade": "ctx.device(role).agora_rtc.visual_probe.release_view"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "visual_probe",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "AgoraVisualProbeProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "view_role": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "view_role"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraVisualProbe",
+        "function": "releaseView",
+        "interface": "visual_probe",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.onConnectionStateChanged",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.on_connection_state_changed"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "state",
+          "reason"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "connection_state",
+      "evidence_projection": {
+        "evidence_capability": "connection_state",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "state",
+          "reason"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "reason": {
+              "type": "integer"
+            },
+            "state": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onConnectionStateChanged",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.onError",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.on_error"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "code"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "error_event_observability",
+      "evidence_projection": {
+        "evidence_capability": "error_event_observability",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "code"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "code": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "code"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onError",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.onJoinChannelSuccess",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.on_join_channel_success"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "channel",
+          "uid"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "join_channel",
+      "evidence_projection": {
+        "evidence_capability": "join_channel",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "channel",
+          "uid",
+          "elapsed_ms"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "channel": {
+              "type": "string"
+            },
+            "elapsed_ms": {
+              "type": "integer"
+            },
+            "uid": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "channel",
+            "uid"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onJoinChannelSuccess",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.onLocalVideoStats",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.on_local_video_stats"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "width",
+          "height",
+          "source_type"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "local_video_stats_observability",
+      "evidence_projection": {
+        "evidence_capability": "local_video_stats_observability",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "width",
+          "height",
+          "sent_bitrate",
+          "source_type"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "height": {
+              "type": "integer"
+            },
+            "sent_bitrate": {
+              "type": "integer"
+            },
+            "source_type": {
+              "type": "integer"
+            },
+            "width": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onLocalVideoStats",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").media_player.onMediaPlayerStateChanged",
+        "typed_facade": "ctx.device(role).agora_rtc.media_player.on_media_player_state_changed"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "state",
+          "reason"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "media_player_state_observability",
+      "evidence_projection": {
+        "evidence_capability": "media_player_state_observability",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "player_id",
+          "state",
+          "reason"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "player_id": {
+              "type": "integer"
+            },
+            "reason": {
+              "type": "integer"
+            },
+            "state": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "player_id",
+            "state",
+            "reason"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcMediaPlayerDelegate",
+        "function": "onMediaPlayerStateChanged",
+        "interface": "media_player",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.onRemoteAudioStats",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.on_remote_audio_stats"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "uid"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "remote_audio_stats_observability",
+      "evidence_projection": {
+        "evidence_capability": "remote_audio_stats_observability",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "uid",
+          "received_bitrate"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "received_bitrate": {
+              "type": "integer"
+            },
+            "uid": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "uid"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onRemoteAudioStats",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.onFirstRemoteVideoFrame",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.on_first_remote_video_frame"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "uid"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "remote_video_rendering",
+      "evidence_projection": {
+        "evidence_capability": "remote_video_rendering",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "uid",
+          "width",
+          "height",
+          "elapsed"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "elapsed": {
+              "type": "integer"
+            },
+            "height": {
+              "type": "integer"
+            },
+            "uid": {
+              "type": "integer"
+            },
+            "width": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "uid",
+            "width",
+            "height"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onFirstRemoteVideoFrame",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.onRemoteVideoStats",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.on_remote_video_stats"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "uid",
+          "rx_stream_type"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "remote_video_stats_observability",
+      "evidence_projection": {
+        "evidence_capability": "simulcast_layer_observability",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "uid",
+          "width",
+          "height",
+          "received_bitrate",
+          "rx_stream_type"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "height": {
+              "type": "integer"
+            },
+            "received_bitrate": {
+              "type": "integer"
+            },
+            "rx_stream_type": {
+              "type": "integer"
+            },
+            "uid": {
+              "type": "integer"
+            },
+            "width": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "uid"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onRemoteVideoStats",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.onRtcStats",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.on_rtc_stats"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "duration"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "rtc_stats_observability",
+      "evidence_projection": {
+        "evidence_capability": "rtc_stats_observability",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "duration",
+          "tx_bytes",
+          "rx_bytes"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "duration": {
+              "type": "integer"
+            },
+            "rx_bytes": {
+              "type": "integer"
+            },
+            "tx_bytes": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onRtcStats",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.onSnapshotRequested",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.on_snapshot_requested"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "view_role"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "visual_snapshot_observability",
+      "evidence_projection": {
+        "evidence_capability": "visual_snapshot_observability",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "view_role"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "view_role": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onSnapshotRequested",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.onSnapshotTaken",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.on_snapshot_taken"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "view_role",
+          "err_code"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "visual_snapshot_observability",
+      "evidence_projection": {
+        "evidence_capability": "visual_snapshot_observability",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "view_role",
+          "file_path",
+          "err_code"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "err_code": {
+              "type": "integer"
+            },
+            "file_path": {
+              "type": "string"
+            },
+            "view_role": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onSnapshotTaken",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").rtc_engine.isJoined",
+        "typed_facade": "ctx.device(role).agora_rtc.rtc_engine.is_joined"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "joined_state",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "state",
+        "report_projection": "step.evidence",
+        "summary_fields": []
+      },
+      "kind": "state",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "type": "boolean"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "isJoined",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"agora_rtc\").video_preview.isPreviewing",
+        "typed_facade": "ctx.device(role).agora_rtc.video_preview.is_previewing"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "preview_state",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "state",
+        "report_projection": "step.evidence",
+        "summary_fields": []
+      },
+      "kind": "state",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "type": "boolean"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "isPreviewing",
+        "interface": "video_preview",
+        "sdk": "agora_rtc"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "capability": "connection_state",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "AgoraRtcEngineDelegate",
+            "function": "onConnectionStateChanged",
+            "interface": "rtc_engine",
+            "sdk": "agora_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "error_event_observability",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "AgoraRtcEngineDelegate",
+            "function": "onError",
+            "interface": "rtc_engine",
+            "sdk": "agora_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "join_channel",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "AgoraRtcEngineDelegate",
+            "function": "onJoinChannelSuccess",
+            "interface": "rtc_engine",
+            "sdk": "agora_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "local_video_stats_observability",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "AgoraRtcEngineDelegate",
+            "function": "onLocalVideoStats",
+            "interface": "rtc_engine",
+            "sdk": "agora_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "media_player_state_observability",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "AgoraRtcMediaPlayerDelegate",
+            "function": "onMediaPlayerStateChanged",
+            "interface": "media_player",
+            "sdk": "agora_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "remote_audio_stats_observability",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "AgoraRtcEngineDelegate",
+            "function": "onRemoteAudioStats",
+            "interface": "rtc_engine",
+            "sdk": "agora_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "remote_video_rendering",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "AgoraRtcEngineDelegate",
+            "function": "onFirstRemoteVideoFrame",
+            "interface": "rtc_engine",
+            "sdk": "agora_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "remote_video_stats_observability",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "AgoraRtcEngineDelegate",
+            "function": "onRemoteVideoStats",
+            "interface": "rtc_engine",
+            "sdk": "agora_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "rtc_stats_observability",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "AgoraRtcEngineDelegate",
+            "function": "onRtcStats",
+            "interface": "rtc_engine",
+            "sdk": "agora_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "simulcast_layer_observability",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "AgoraRtcEngineDelegate",
+            "function": "onRemoteVideoStats",
+            "interface": "rtc_engine",
+            "sdk": "agora_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "visual_snapshot_observability",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "AgoraRtcEngineDelegate",
+            "function": "onSnapshotRequested",
+            "interface": "rtc_engine",
+            "sdk": "agora_rtc"
+          },
+          "type": "event"
+        },
+        {
+          "event_target": {
+            "class_name": "AgoraRtcEngineDelegate",
+            "function": "onSnapshotTaken",
+            "interface": "rtc_engine",
+            "sdk": "agora_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    }
+  ],
+  "interfaces": [
+    {
+      "capability": "connection_state",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "_extra": {
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "getConnectionState",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "join_channel",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "_extra": {
+            "type": "object"
+          },
+          "auto_subscribe_audio": {
+            "type": "boolean"
+          },
+          "auto_subscribe_video": {
+            "type": "boolean"
+          },
+          "channel": {
+            "type": "string"
+          },
+          "publish_camera": {
+            "type": "boolean"
+          },
+          "publish_media_player": {
+            "type": "boolean"
+          },
+          "publish_microphone": {
+            "type": "boolean"
+          },
+          "publish_synthetic_audio": {
+            "type": "boolean"
+          },
+          "token": {
+            "type": "string"
+          },
+          "uid": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "channel",
+          "uid"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "joinChannel",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "leave_channel",
+      "kind": "call",
+      "params_schema": {
+        "properties": {},
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "leaveChannel",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "local_audio_control",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "enabled"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "enableLocalAudio",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "media_player_source",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "source_path": {
+            "type": "string"
+          },
+          "start_pos_ms": {
+            "default": 0,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "source_path"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcMediaPlayerProtocol",
+        "function": "openMediaPlayer",
+        "interface": "media_player",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "media_player_source",
+      "kind": "call",
+      "params_schema": {
+        "properties": {},
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcMediaPlayerProtocol",
+        "function": "pauseMediaPlayer",
+        "interface": "media_player",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "media_player_source",
+      "kind": "call",
+      "params_schema": {
+        "properties": {},
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcMediaPlayerProtocol",
+        "function": "playMediaPlayer",
+        "interface": "media_player",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "media_player_source",
+      "kind": "call",
+      "params_schema": {
+        "properties": {},
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcMediaPlayerProtocol",
+        "function": "resumeMediaPlayer",
+        "interface": "media_player",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "media_player_source",
+      "kind": "call",
+      "params_schema": {
+        "properties": {},
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcMediaPlayerProtocol",
+        "function": "stopMediaPlayer",
+        "interface": "media_player",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "preview_control",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "_extra": {
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "startPreview",
+        "interface": "video_preview",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "preview_control",
+      "kind": "call",
+      "params_schema": {
+        "properties": {},
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "stopPreview",
+        "interface": "video_preview",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "remote_video_layer_selection",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "stream_type": {
+            "enum": [
+              "high",
+              "low"
+            ],
+            "type": "string"
+          },
+          "uid": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "uid",
+          "stream_type"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "setRemoteVideoStream",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "sdk_lifecycle",
+      "kind": "call",
+      "params_schema": {
+        "properties": {},
+        "type": "object"
+      },
+      "target": {
+        "class_name": "SDKLifecycle",
+        "function": "loadSDK",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "sdk_lifecycle",
+      "kind": "call",
+      "params_schema": {
+        "properties": {},
+        "type": "object"
+      },
+      "target": {
+        "class_name": "SDKLifecycle",
+        "function": "unloadSDK",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "simulcast_dual_stream",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "low_bitrate": {
+            "type": "integer"
+          },
+          "low_fps": {
+            "type": "integer"
+          },
+          "low_height": {
+            "type": "integer"
+          },
+          "low_width": {
+            "type": "integer"
+          },
+          "mode": {
+            "enum": [
+              "auto",
+              "enabled",
+              "disabled"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "mode"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "setDualStreamMode",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "synthetic_video_source",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "_extra": {
+            "type": "object"
+          },
+          "fps": {
+            "default": 15,
+            "type": "integer"
+          },
+          "height": {
+            "default": 180,
+            "type": "integer"
+          },
+          "pattern": {
+            "default": "animated_clip",
+            "enum": [
+              "animated_clip",
+              "paired_media_clip",
+              "bars",
+              "moving_stripe"
+            ],
+            "type": "string"
+          },
+          "width": {
+            "default": 320,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "startSyntheticVideo",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "synthetic_video_source",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "_extra": {
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "stopSyntheticVideo",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "token_renewal",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "channel": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "uid": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "token"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "renewToken",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "visual_probe",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "view_role": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "view_role"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraVisualProbe",
+        "function": "bindLocalVideo",
+        "interface": "visual_probe",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "visual_probe",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "uid": {
+            "type": "integer"
+          },
+          "view_role": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "uid",
+          "view_role"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraVisualProbe",
+        "function": "bindRemoteVideo",
+        "interface": "visual_probe",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "visual_probe",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "view_role": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "view_role"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraVisualProbe",
+        "function": "captureSnapshot",
+        "interface": "visual_probe",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "visual_probe",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "view_role": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "view_role"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraVisualProbe",
+        "function": "releaseView",
+        "interface": "visual_probe",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "connection_state",
+      "evidence_summary_fields": [
+        "state",
+        "reason"
+      ],
+      "filterable_fields": [
+        "state",
+        "reason"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "reason": {
+            "type": "integer"
+          },
+          "state": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "state"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onConnectionStateChanged",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "error_event_observability",
+      "evidence_summary_fields": [
+        "code"
+      ],
+      "filterable_fields": [
+        "code"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "code": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onError",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "join_channel",
+      "evidence_summary_fields": [
+        "channel",
+        "uid",
+        "elapsed_ms"
+      ],
+      "filterable_fields": [
+        "channel",
+        "uid"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "channel": {
+            "type": "string"
+          },
+          "elapsed_ms": {
+            "type": "integer"
+          },
+          "uid": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "channel",
+          "uid"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onJoinChannelSuccess",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "local_video_stats_observability",
+      "evidence_summary_fields": [
+        "width",
+        "height",
+        "sent_bitrate",
+        "source_type"
+      ],
+      "filterable_fields": [
+        "width",
+        "height",
+        "source_type"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "height": {
+            "type": "integer"
+          },
+          "sent_bitrate": {
+            "type": "integer"
+          },
+          "source_type": {
+            "type": "integer"
+          },
+          "width": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onLocalVideoStats",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "media_player_state_observability",
+      "evidence_summary_fields": [
+        "player_id",
+        "state",
+        "reason"
+      ],
+      "filterable_fields": [
+        "state",
+        "reason"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "player_id": {
+            "type": "integer"
+          },
+          "reason": {
+            "type": "integer"
+          },
+          "state": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "player_id",
+          "state",
+          "reason"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcMediaPlayerDelegate",
+        "function": "onMediaPlayerStateChanged",
+        "interface": "media_player",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "remote_audio_stats_observability",
+      "evidence_summary_fields": [
+        "uid",
+        "received_bitrate"
+      ],
+      "filterable_fields": [
+        "uid"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "received_bitrate": {
+            "type": "integer"
+          },
+          "uid": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "uid"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onRemoteAudioStats",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "remote_video_rendering",
+      "evidence_summary_fields": [
+        "uid",
+        "width",
+        "height",
+        "elapsed"
+      ],
+      "filterable_fields": [
+        "uid"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "elapsed": {
+            "type": "integer"
+          },
+          "height": {
+            "type": "integer"
+          },
+          "uid": {
+            "type": "integer"
+          },
+          "width": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "uid",
+          "width",
+          "height"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onFirstRemoteVideoFrame",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "remote_video_stats_observability",
+      "evidence_summary_fields": [
+        "uid",
+        "width",
+        "height",
+        "received_bitrate",
+        "rx_stream_type"
+      ],
+      "filterable_fields": [
+        "uid",
+        "rx_stream_type"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "height": {
+            "type": "integer"
+          },
+          "received_bitrate": {
+            "type": "integer"
+          },
+          "rx_stream_type": {
+            "type": "integer"
+          },
+          "uid": {
+            "type": "integer"
+          },
+          "width": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "uid"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onRemoteVideoStats",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "rtc_stats_observability",
+      "evidence_summary_fields": [
+        "duration",
+        "tx_bytes",
+        "rx_bytes"
+      ],
+      "filterable_fields": [
+        "duration"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "duration": {
+            "type": "integer"
+          },
+          "rx_bytes": {
+            "type": "integer"
+          },
+          "tx_bytes": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onRtcStats",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "visual_snapshot_observability",
+      "evidence_summary_fields": [
+        "view_role"
+      ],
+      "filterable_fields": [
+        "view_role"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "view_role": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onSnapshotRequested",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "visual_snapshot_observability",
+      "evidence_summary_fields": [
+        "view_role",
+        "file_path",
+        "err_code"
+      ],
+      "filterable_fields": [
+        "view_role",
+        "err_code"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "err_code": {
+            "type": "integer"
+          },
+          "file_path": {
+            "type": "string"
+          },
+          "view_role": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineDelegate",
+        "function": "onSnapshotTaken",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "joined_state",
+      "kind": "state",
+      "payload_schema": {
+        "type": "boolean"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "isJoined",
+        "interface": "rtc_engine",
+        "sdk": "agora_rtc"
+      }
+    },
+    {
+      "capability": "preview_state",
+      "kind": "state",
+      "payload_schema": {
+        "type": "boolean"
+      },
+      "target": {
+        "class_name": "AgoraRtcEngineKit",
+        "function": "isPreviewing",
+        "interface": "video_preview",
+        "sdk": "agora_rtc"
+      }
+    }
+  ],
+  "sdk": "agora_rtc",
+  "version": 1
+}

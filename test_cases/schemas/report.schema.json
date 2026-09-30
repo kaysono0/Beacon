@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BeaconReport",
+  "type": "object",
+  "required": ["run_id", "status", "started_at", "finished_at", "summary", "case_results", "artifacts"],
+  "additionalProperties": false,
+  "properties": {
+    "run_id": { "type": "string" },
+    "status": { "type": "string", "enum": ["passed", "failed", "skipped", "unsupported"] },
+    "started_at": { "type": "string" },
+    "finished_at": { "type": "string" },
+    "summary": {
+      "type": "object",
+      "required": ["total", "passed", "failed", "skipped", "unsupported"],
+      "additionalProperties": false,
+      "properties": {
+        "total": { "type": "integer" },
+        "passed": { "type": "integer" },
+        "failed": { "type": "integer" },
+        "skipped": { "type": "integer" },
+        "unsupported": { "type": "integer" }
+      }
+    },
+    "case_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["case_id", "step_id", "status", "evidence"],
+        "properties": {
+          "case_id": { "type": "string" },
+          "step_id": { "type": "string" },
+          "status": { "type": "string", "enum": ["passed", "failed", "skipped", "unsupported"] },
+          "error": {},
+          "artifacts": { "type": "array", "items": { "type": "string" } },
+          "duration_ms": { "type": "integer" },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["type", "source", "node_id", "target", "payload", "timestamp_ms"],
+              "properties": {
+                "type": { "enum": ["event", "metric", "state", "artifact", "log"] },
+                "source": { "type": "string" },
+                "node_id": { "type": "string" },
+                "target": { "$ref": "packet.schema.json#/$defs/target" },
+                "payload": {},
+                "timestamp_ms": { "type": "integer" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "artifacts": { "type": "array", "items": { "type": "string" } }
+  }
+}

@@ -1,0 +1,8 @@
+sdk: beacon_system
+capabilities:
+  - id: clock_wait
+    name: 系统等待
+  - id: network_condition_control
+    name: 网络条件控制
+  - id: video_host_control
+    name: 视频承载窗口控制

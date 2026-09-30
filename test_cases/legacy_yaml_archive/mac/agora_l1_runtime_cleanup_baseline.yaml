@@ -1,0 +1,98 @@
+case_id: TC-MAC-AGORA-RUNTIME-CLEANUP-BASELINE
+name: macOS Agora L1 runtime cleanup baseline
+platform: mac
+suite: agora_direct_call_l1
+scenario_family: direct_call
+implementation_status: runnable
+covered_capabilities:
+  - leave_cleanup
+steps:
+  - step_id: join-and-confirm-success-before-baseline-check
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l1-runtime-baseline-join
+        timestamp_ms: 1770000002800
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: joinChannel
+            params:
+              channel: real-smoke-runtime-baseline
+              uid: 1001
+              token: "{{AGORA_RTC_TOKEN}}"
+            extra: {}
+  - step_id: leave-before-baseline-state-queries
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l1-runtime-baseline-leave
+        timestamp_ms: 1770000002850
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: leaveChannel
+            params: {}
+            extra: {}
+  - step_id: assert-runtime-baseline-not-joined
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l1-runtime-baseline-is-joined
+        timestamp_ms: 1770000002900
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: isJoined
+            params: {}
+            extra: {}
+    assertions:
+      - type: state_equals
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineKit
+          function: isJoined
+        value: false
+        timeout_ms: 5000
+  - step_id: assert-runtime-baseline-not-previewing
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l1-runtime-baseline-is-previewing
+        timestamp_ms: 1770000002950
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: isPreviewing
+            params: {}
+            extra: {}
+    assertions:
+      - type: state_equals
+        target:
+          sdk: agora_rtc
+          interface: video_preview
+          class_name: AgoraRtcEngineKit
+          function: isPreviewing
+        value: false
+        timeout_ms: 5000

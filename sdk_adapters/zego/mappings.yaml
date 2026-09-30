@@ -1,0 +1,206 @@
+sdk: zego_express
+event_routing:
+  default_target:
+    sdk: zego_express
+    interface: zego_room
+    class_name: ZegoEventHandler
+    function: onRoomStateUpdate
+mappings:
+  - capability: engine_lifecycle
+    calls:
+      - sdk: zego_express
+        interface: zego_engine
+        class_name: ZegoExpressEngine
+        function: createEngineWithProfile
+        params_schema:
+          type: object
+          properties: {}
+      - sdk: zego_express
+        interface: zego_engine
+        class_name: ZegoExpressEngine
+        function: destroyEngine
+        params_schema:
+          type: object
+          properties: {}
+  - capability: room_login
+    calls:
+      - sdk: zego_express
+        interface: zego_room
+        class_name: ZegoExpressEngine
+        function: loginRoom
+        params_schema:
+          type: object
+          properties:
+            room_id:
+              type: string
+            user_id:
+              type: string
+            token:
+              type: string
+          required:
+            - room_id
+            - user_id
+  - capability: room_logout
+    calls:
+      - sdk: zego_express
+        interface: zego_room
+        class_name: ZegoExpressEngine
+        function: logoutRoom
+        params_schema:
+          type: object
+          properties: {}
+  - capability: room_state_observability
+    callbacks:
+      - sdk: zego_express
+        interface: zego_room
+        class_name: ZegoEventHandler
+        function: onRoomStateUpdate
+        payload_schema:
+          type: object
+          properties:
+            room_id:
+              type: string
+            state:
+              type: integer
+            error_code:
+              type: integer
+          required:
+            - room_id
+            - state
+            - error_code
+        filterable_fields:
+          - room_id
+          - state
+          - error_code
+        evidence_summary_fields:
+          - room_id
+          - state
+          - error_code
+  - capability: stream_publish
+    calls:
+      - sdk: zego_express
+        interface: zego_publisher
+        class_name: ZegoExpressEngine
+        function: startPublishingStream
+        params_schema:
+          type: object
+          properties: {stream_id: {type: string}}
+          required: [stream_id]
+      - sdk: zego_express
+        interface: zego_publisher
+        class_name: ZegoExpressEngine
+        function: stopPublishingStream
+        params_schema: {type: object, properties: {}}
+    callbacks:
+      - sdk: zego_express
+        interface: zego_publisher
+        class_name: ZegoEventHandler
+        function: onPublisherStateUpdate
+        payload_schema:
+          type: object
+          properties: {stream_id: {type: string}, state: {type: integer}, error_code: {type: integer}}
+          required: [stream_id, state, error_code]
+        filterable_fields: [stream_id, state, error_code]
+        evidence_summary_fields: [stream_id, state, error_code]
+  - capability: stream_play
+    calls:
+      - sdk: zego_express
+        interface: zego_player
+        class_name: ZegoExpressEngine
+        function: startPlayingStream
+        params_schema:
+          type: object
+          properties: {stream_id: {type: string}, view_role: {type: string}}
+          required: [stream_id, view_role]
+      - sdk: zego_express
+        interface: zego_player
+        class_name: ZegoExpressEngine
+        function: stopPlayingStream
+        params_schema:
+          type: object
+          properties: {stream_id: {type: string}}
+          required: [stream_id]
+    callbacks:
+      - sdk: zego_express
+        interface: zego_player
+        class_name: ZegoEventHandler
+        function: onPlayerStateUpdate
+        payload_schema:
+          type: object
+          properties: {stream_id: {type: string}, state: {type: integer}, error_code: {type: integer}}
+          required: [stream_id, state, error_code]
+        filterable_fields: [stream_id, state, error_code]
+        evidence_summary_fields: [stream_id, state, error_code]
+      - sdk: zego_express
+        interface: zego_player
+        class_name: ZegoEventHandler
+        function: onPlayerRenderVideoFirstFrame
+        payload_schema:
+          type: object
+          properties: {stream_id: {type: string}}
+          required: [stream_id]
+        filterable_fields: [stream_id]
+        evidence_summary_fields: [stream_id]
+  - capability: local_video_preview
+    calls:
+      - sdk: zego_express
+        interface: zego_preview
+        class_name: ZegoExpressEngine
+        function: startPreview
+        params_schema:
+          type: object
+          properties: {view_role: {type: string}}
+          required: [view_role]
+      - sdk: zego_express
+        interface: zego_preview
+        class_name: ZegoExpressEngine
+        function: stopPreview
+        params_schema: {type: object, properties: {}}
+  - capability: synthetic_video_source
+    calls:
+      - sdk: zego_express
+        interface: zego_publisher
+        class_name: ZegoExpressEngine
+        function: startSyntheticVideo
+        params_schema:
+          type: object
+          properties:
+            width: {type: integer}
+            height: {type: integer}
+            fps: {type: integer}
+            pattern: {type: string}
+          required: [width, height, fps, pattern]
+      - sdk: zego_express
+        interface: zego_publisher
+        class_name: ZegoExpressEngine
+        function: stopSyntheticVideo
+        params_schema: {type: object, properties: {}}
+  - capability: visual_snapshot_observability
+    calls:
+      - sdk: zego_express
+        interface: zego_visual_probe
+        class_name: ZegoVisualProbe
+        function: captureSnapshot
+        params_schema:
+          type: object
+          properties: {view_role: {type: string}}
+          required: [view_role]
+      - sdk: zego_express
+        interface: zego_visual_probe
+        class_name: ZegoVisualProbe
+        function: releaseView
+        params_schema:
+          type: object
+          properties: {view_role: {type: string}}
+          required: [view_role]
+    callbacks:
+      - sdk: zego_express
+        interface: zego_visual_probe
+        class_name: BeaconZegoVisualProbe
+        function: onRenderedViewSnapshot
+        payload_schema:
+          type: object
+          properties: {view_role: {type: string}, err_code: {type: integer}, file_path: {type: string}}
+          required: [view_role, err_code, file_path]
+        filterable_fields: [view_role, err_code]
+        evidence_summary_fields: [view_role, err_code, file_path]

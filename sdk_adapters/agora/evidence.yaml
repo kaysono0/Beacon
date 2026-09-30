@@ -1,0 +1,96 @@
+sdk: agora_rtc
+evidence:
+  - capability: join_channel
+    expects:
+      - type: event
+        event_target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onJoinChannelSuccess
+  - capability: error_event_observability
+    expects:
+      - type: event
+        event_target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onError
+  - capability: remote_video_rendering
+    expects:
+      - type: event
+        event_target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onFirstRemoteVideoFrame
+  - capability: connection_state
+    expects:
+      - type: event
+        event_target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onConnectionStateChanged
+  - capability: rtc_stats_observability
+    expects:
+      - type: event
+        event_target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onRtcStats
+  - capability: local_video_stats_observability
+    expects:
+      - type: event
+        event_target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onLocalVideoStats
+  - capability: remote_audio_stats_observability
+    expects:
+      - type: event
+        event_target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onRemoteAudioStats
+  - capability: remote_video_stats_observability
+    expects:
+      - type: event
+        event_target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onRemoteVideoStats
+  - capability: simulcast_layer_observability
+    expects:
+      - type: event
+        event_target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onRemoteVideoStats
+  - capability: visual_snapshot_observability
+    expects:
+      - type: event
+        event_target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onSnapshotRequested
+      - type: event
+        event_target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onSnapshotTaken
+  - capability: media_player_state_observability
+    expects:
+      - type: event
+        event_target:
+          sdk: agora_rtc
+          interface: media_player
+          class_name: AgoraRtcMediaPlayerDelegate
+          function: onMediaPlayerStateChanged

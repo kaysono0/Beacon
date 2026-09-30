@@ -1,0 +1,48 @@
+case_id: TC-MAC-SMOKE
+name: macOS callback smoke
+platform: mac
+steps:
+  - step_id: install-callback
+    packet:
+      common:
+        action: callbackRequest
+        op_id: op-mac-callback
+        timestamp_ms: 1770000000200
+      data:
+        node_id: mac-local-001
+        sync: true
+        list:
+          - event_target:
+              sdk: agora_rtc
+              class_name: AgoraRtcEngineDelegate
+              function: onJoinChannelSuccess
+            repeat: 1
+            call_elements:
+              - target:
+                  sdk: agora_rtc
+                  class_name: AgoraRtcEngineKit
+                  function: joinChannel
+                params:
+                  timeout_ms: 3000
+                extra: {}
+  - step_id: callback-event
+    packet:
+      common:
+        action: callbackEventRequest
+        op_id: op-mac-callback-event
+        timestamp_ms: 1770000000300
+      data:
+        node_id: mac-local-001
+        event_id: evt-mac-local-001-1770000000300-001
+        event_target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onJoinChannelSuccess
+        payload:
+          channel: smoke
+          uid: 1001
+        callback_execution:
+          defer_matched: false
+          defer_executed: false
+          call_results: []

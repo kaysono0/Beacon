@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Configure CMake Debug",
+      "type": "shell",
+      "command": "set -a && source local.agora.env && set +a && cmake -S . -B build-debug -DCMAKE_BUILD_TYPE=Debug",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "shell": {
+          "executable": "/bin/zsh",
+          "args": ["-lc"]
+        }
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build mac_real_adapter_test Debug",
+      "type": "shell",
+      "command": "set -a && source local.agora.env && set +a && cmake -S . -B build-debug -DCMAKE_BUILD_TYPE=Debug && cmake --build build-debug --target mac_real_adapter_test",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "shell": {
+          "executable": "/bin/zsh",
+          "args": ["-lc"]
+        }
+      },
+      "problemMatcher": [],
+      "group": "build"
+    }
+  ]
+}

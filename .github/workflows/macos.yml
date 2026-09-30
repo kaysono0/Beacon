@@ -1,0 +1,73 @@
+name: macOS gates
+
+# macOS 专项不重复 Linux 公共检查；真实 SDK 由配置齐备的本地环境执行。
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      macos: ${{ steps.select.outputs.macos }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Select platform checks
+        id: select
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+          MANUAL: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          if [ "$MANUAL" = "true" ]; then BASE_SHA=""; fi
+          python3 scripts/validation/select_ci_checks.py "$BASE_SHA" "$HEAD_SHA" >> "$GITHUB_OUTPUT"
+
+  gates:
+    needs: changes
+    if: needs.changes.outputs.macos == 'true'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: CMake and toolchain
+        run: |
+          cmake --version
+          swift --version
+          python3 --version
+
+      - name: Agent core (C++)
+        run: make test-agent-core
+
+      - name: Logging (C++)
+        run: make test-logging
+
+      - name: macOS mock adapter
+        run: make test-mac-mock
+
+      - name: Mock E2E
+        run: make test-e2e-mock
+
+      - name: Mac console build and unit tests
+        run: make test-mac-console
+
+      - name: Check reports before upload
+        id: report-secrets
+        if: always()
+        run: make report-secrets
+
+      - name: Upload reports
+        if: always() && steps.report-secrets.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports-macos
+          path: reports/latest/
+          if-no-files-found: ignore

@@ -1,0 +1,308 @@
+sdk: mock_complex_sdk
+mappings:
+  - capability: apply_value
+    calls:
+      - sdk: mock_complex_sdk
+        interface: session
+        class_name: MockComplexSession
+        function: applyValue
+        params_schema:
+          type: object
+          properties:
+            value:
+              type: string
+          required:
+            - value
+  - capability: configure_value
+    calls:
+      - sdk: mock_complex_sdk
+        interface: session
+        class_name: MockComplexSession
+        function: configureValue
+        params_schema:
+          type: object
+          properties:
+            value:
+              type: string
+            options:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                ratio:
+                  type: number
+                tags:
+                  type: array
+                  items:
+                    type: string
+                metadata:
+                  type: object
+                  properties:
+                    owner:
+                      type: string
+                    retries:
+                      type: integer
+              required:
+                - enabled
+                - ratio
+                - tags
+                - metadata
+          required:
+            - value
+            - options
+  - capability: describe_value
+    calls:
+      - sdk: mock_complex_sdk
+        interface: session
+        class_name: MockComplexSession
+        function: describeValue
+        params_schema:
+          type: object
+          additionalProperties: false
+        result_schema:
+          type: object
+          properties:
+            value:
+              type:
+                - string
+                - 'null'
+            revision:
+              type: integer
+          required:
+            - value
+            - revision
+  - capability: ensure_value
+    calls:
+      - sdk: mock_complex_sdk
+        interface: session
+        class_name: MockComplexSession
+        function: ensureValue
+        params_schema:
+          type: object
+          additionalProperties: false
+          properties:
+            value:
+              type: string
+          required:
+            - value
+        result_schema:
+          type: object
+          properties:
+            value:
+              type: string
+            applied:
+              type: boolean
+            revision:
+              type: integer
+          required:
+            - value
+            - applied
+            - revision
+  - capability: reject_value
+    calls:
+      - sdk: mock_complex_sdk
+        interface: session
+        class_name: MockComplexSession
+        function: rejectValue
+        params_schema:
+          type: object
+          additionalProperties: false
+          properties:
+            reason:
+              type: string
+          required:
+            - reason
+        result_schema:
+          type: 'null'
+  - capability: reset_value
+    calls:
+      - sdk: mock_complex_sdk
+        interface: control
+        class_name: MockComplexControl
+        function: resetValue
+        params_schema:
+          type: object
+          additionalProperties: false
+        result_schema:
+          type: 'null'
+  - capability: set_parameter_matrix
+    calls:
+      - sdk: mock_complex_sdk
+        interface: session
+        class_name: MockComplexSession
+        function: setParameterMatrix
+        params_schema:
+          type: object
+          additionalProperties: false
+          properties:
+            profile:
+              type: string
+              enum:
+                - strict
+                - relaxed
+            display_name:
+              type:
+                - string
+                - 'null'
+            labels:
+              type: object
+              additionalProperties:
+                type: string
+            file_ref:
+              type: object
+              additionalProperties: false
+              properties:
+                uri:
+                  type: string
+                  minLength: 1
+                media_type:
+                  type: string
+              required:
+                - uri
+            attempts:
+              type: integer
+              minimum: 1
+              maximum: 3
+              default: 2
+            optional_note:
+              type: string
+            _extra:
+              type: object
+              additionalProperties: false
+              properties:
+                fixture:
+                  type: string
+          required:
+            - profile
+            - display_name
+            - labels
+            - file_ref
+  - capability: parameter_matrix_set
+    callbacks:
+      - sdk: mock_complex_sdk
+        interface: session
+        class_name: MockComplexSessionObserver
+        function: onParameterMatrixSet
+        payload_schema:
+          type: object
+          properties:
+            profile:
+              type: string
+            display_name:
+              type:
+                - string
+                - 'null'
+            labels:
+              type: object
+              additionalProperties:
+                type: string
+            file_ref:
+              type: object
+            attempts:
+              type: integer
+            optional_note:
+              type: string
+          required:
+            - profile
+            - display_name
+            - labels
+            - file_ref
+            - attempts
+        filterable_fields:
+          - profile
+          - display_name
+        evidence_summary_fields:
+          - profile
+          - display_name
+          - attempts
+  - capability: value_applied
+    callbacks:
+      - sdk: mock_complex_sdk
+        interface: session
+        class_name: MockComplexSessionObserver
+        function: onValueApplied
+        payload_schema:
+          type: object
+          properties:
+            value:
+              type:
+                - string
+                - 'null'
+            revision:
+              type: integer
+          required:
+            - value
+            - revision
+        filterable_fields:
+          - value
+        evidence_summary_fields:
+          - value
+          - revision
+  - capability: last_applied_value
+    states:
+      - sdk: mock_complex_sdk
+        interface: session
+        class_name: MockComplexSession
+        function: getLastAppliedValue
+        payload_schema:
+          type: object
+          properties:
+            value:
+              type:
+                - string
+                - 'null'
+            revision:
+              type: integer
+          required:
+            - value
+            - revision
+  - capability: applied_value_count
+    metrics:
+      - sdk: mock_complex_sdk
+        interface: metrics
+        class_name: MockComplexMetrics
+        function: appliedCount
+        payload_schema:
+          type: number
+        evidence_summary_fields:
+          - value
+  - capability: value_snapshot
+    artifacts:
+      - sdk: mock_complex_sdk
+        interface: artifacts
+        class_name: MockComplexArtifacts
+        function: latestSnapshot
+        payload_schema:
+          type: object
+          properties:
+            artifact_type:
+              type: string
+            path:
+              type: string
+            metadata:
+              type: object
+        filterable_fields:
+          - artifact_type
+          - metadata.format
+        evidence_summary_fields:
+          - artifact_id
+          - artifact_type
+          - path
+  - capability: value_applied_log
+    logs:
+      - sdk: mock_complex_sdk
+        interface: diagnostics
+        class_name: MockComplexDiagnostics
+        function: valueApplied
+        payload_schema:
+          type: object
+          properties:
+            extra:
+              type: object
+        filterable_fields:
+          - extra.value
+        evidence_summary_fields:
+          - level
+          - module
+          - event
+          - message

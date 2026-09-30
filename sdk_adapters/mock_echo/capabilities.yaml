@@ -1,0 +1,8 @@
+sdk: mock_echo
+capabilities:
+  - id: echo_basic
+    name: Basic echo invocation
+  - id: echo_callback
+    name: Echo callback event
+  - id: echo_state
+    name: Echo state tracking

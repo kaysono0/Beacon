@@ -1,0 +1,585 @@
+{
+  "capabilities": [
+    {
+      "id": "clock_wait",
+      "name": "系统等待"
+    },
+    {
+      "id": "network_condition_control",
+      "name": "网络条件控制"
+    },
+    {
+      "id": "video_host_control",
+      "name": "视频承载窗口控制"
+    }
+  ],
+  "contract_matrix": [
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"beacon_system\").clock.waitInMs",
+        "typed_facade": "ctx.device(role).beacon_system.clock.wait_in_ms"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "clock_wait",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "ms": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "ms"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "SystemClock",
+        "function": "waitInMs",
+        "interface": "clock",
+        "sdk": "beacon_system"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"beacon_system\").network_condition.applyImpairment",
+        "typed_facade": "ctx.device(role).beacon_system.network_condition.apply_impairment"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "network_condition_control",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "NetworkConditionProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "duration_ms": {
+              "type": "integer"
+            },
+            "profile": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "profile"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "NetworkCondition",
+        "function": "applyImpairment",
+        "interface": "network_condition",
+        "sdk": "beacon_system"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"beacon_system\").network_condition.getConditionState",
+        "typed_facade": "ctx.device(role).beacon_system.network_condition.get_condition_state"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "network_condition_control",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "NetworkConditionProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {},
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "NetworkCondition",
+        "function": "getConditionState",
+        "interface": "network_condition",
+        "sdk": "beacon_system"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"beacon_system\").network_condition.resetImpairment",
+        "typed_facade": "ctx.device(role).beacon_system.network_condition.reset_impairment"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "network_condition_control",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "NetworkConditionProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {},
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "NetworkCondition",
+        "function": "resetImpairment",
+        "interface": "network_condition",
+        "sdk": "beacon_system"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"beacon_system\").video_host.focus",
+        "typed_facade": "ctx.device(role).beacon_system.video_host.focus"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "video_host_control",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "VideoHostProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {},
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "VideoHost",
+        "function": "focus",
+        "interface": "video_host",
+        "sdk": "beacon_system"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"beacon_system\").video_host.hide",
+        "typed_facade": "ctx.device(role).beacon_system.video_host.hide"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "video_host_control",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "VideoHostProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {},
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "VideoHost",
+        "function": "hide",
+        "interface": "video_host",
+        "sdk": "beacon_system"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"beacon_system\").video_host.rearrange",
+        "typed_facade": "ctx.device(role).beacon_system.video_host.rearrange"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "video_host_control",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "VideoHostProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {},
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "VideoHost",
+        "function": "rearrange",
+        "interface": "video_host",
+        "sdk": "beacon_system"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"beacon_system\").video_host.show",
+        "typed_facade": "ctx.device(role).beacon_system.video_host.show"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "video_host_control",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "VideoHostProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {},
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "VideoHost",
+        "function": "show",
+        "interface": "video_host",
+        "sdk": "beacon_system"
+      }
+    }
+  ],
+  "evidence": [],
+  "interfaces": [
+    {
+      "capability": "clock_wait",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "ms": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "ms"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "SystemClock",
+        "function": "waitInMs",
+        "interface": "clock",
+        "sdk": "beacon_system"
+      }
+    },
+    {
+      "capability": "network_condition_control",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "duration_ms": {
+            "type": "integer"
+          },
+          "profile": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "profile"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "NetworkCondition",
+        "function": "applyImpairment",
+        "interface": "network_condition",
+        "sdk": "beacon_system"
+      }
+    },
+    {
+      "capability": "network_condition_control",
+      "kind": "call",
+      "params_schema": {
+        "properties": {},
+        "type": "object"
+      },
+      "target": {
+        "class_name": "NetworkCondition",
+        "function": "getConditionState",
+        "interface": "network_condition",
+        "sdk": "beacon_system"
+      }
+    },
+    {
+      "capability": "network_condition_control",
+      "kind": "call",
+      "params_schema": {
+        "properties": {},
+        "type": "object"
+      },
+      "target": {
+        "class_name": "NetworkCondition",
+        "function": "resetImpairment",
+        "interface": "network_condition",
+        "sdk": "beacon_system"
+      }
+    },
+    {
+      "capability": "video_host_control",
+      "kind": "call",
+      "params_schema": {
+        "properties": {},
+        "type": "object"
+      },
+      "target": {
+        "class_name": "VideoHost",
+        "function": "focus",
+        "interface": "video_host",
+        "sdk": "beacon_system"
+      }
+    },
+    {
+      "capability": "video_host_control",
+      "kind": "call",
+      "params_schema": {
+        "properties": {},
+        "type": "object"
+      },
+      "target": {
+        "class_name": "VideoHost",
+        "function": "hide",
+        "interface": "video_host",
+        "sdk": "beacon_system"
+      }
+    },
+    {
+      "capability": "video_host_control",
+      "kind": "call",
+      "params_schema": {
+        "properties": {},
+        "type": "object"
+      },
+      "target": {
+        "class_name": "VideoHost",
+        "function": "rearrange",
+        "interface": "video_host",
+        "sdk": "beacon_system"
+      }
+    },
+    {
+      "capability": "video_host_control",
+      "kind": "call",
+      "params_schema": {
+        "properties": {},
+        "type": "object"
+      },
+      "target": {
+        "class_name": "VideoHost",
+        "function": "show",
+        "interface": "video_host",
+        "sdk": "beacon_system"
+      }
+    }
+  ],
+  "sdk": "beacon_system",
+  "version": 1
+}

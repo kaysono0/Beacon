@@ -1,0 +1,90 @@
+case_id: TC-MAC-AGORA-REAL-JOIN-LEAVE-STATE
+name: macOS Agora real join leave and state
+platform: mac
+suite: agora_direct_call_core
+scenario_family: direct_call
+implementation_status: runnable
+covered_capabilities:
+  - join_success_fact
+  - connection_state_transition
+  - leave_cleanup
+steps:
+  - step_id: join-before-state
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-real-join-state
+        timestamp_ms: 1770000001400
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: joinChannel
+            params:
+              channel: real-smoke
+              uid: 1001
+              token: "{{AGORA_RTC_TOKEN}}"
+            extra: {}
+    assertions:
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onJoinChannelSuccess
+        timeout_ms: 5000
+  - step_id: query-connection-state
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-real-state
+        timestamp_ms: 1770000001500
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: getConnectionState
+            params: {}
+            extra: {}
+  - step_id: leave-real-channel
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-real-leave
+        timestamp_ms: 1770000001600
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: leaveChannel
+            params: {}
+            extra: {}
+  - step_id: unload-sdk-after-channel
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-real-unload-after-channel
+        timestamp_ms: 1770000001700
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: SDKLifecycle
+              function: unloadSDK
+            params: {}
+            extra: {}

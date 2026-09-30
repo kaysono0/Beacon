@@ -1,0 +1,401 @@
+{
+  "capabilities": [
+    {
+      "id": "echo_basic",
+      "name": "Basic echo invocation"
+    },
+    {
+      "id": "echo_callback",
+      "name": "Echo callback event"
+    },
+    {
+      "id": "echo_state",
+      "name": "Echo state tracking"
+    }
+  ],
+  "contract_matrix": [
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"mock_echo\").echo.echo",
+        "typed_facade": "ctx.device(role).mock_echo.echo.echo"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "echo_basic",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "server/tests",
+          "platform": "server_test_dispatcher",
+          "provider": "FunctionReplyDispatcher",
+          "status": "supported"
+        },
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "message": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "message"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "EchoService",
+        "function": "echo",
+        "interface": "echo",
+        "sdk": "mock_echo"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"mock_echo\").echo.echoWithCallback",
+        "typed_facade": "ctx.device(role).mock_echo.echo.echo_with_callback"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "echo_callback",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "server/tests",
+          "platform": "server_test_dispatcher",
+          "provider": "FunctionReplyDispatcher",
+          "status": "supported"
+        },
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "message": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "message"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "EchoService",
+        "function": "echoWithCallback",
+        "interface": "echo",
+        "sdk": "mock_echo"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"mock_echo\").echo.onEchoReceived",
+        "typed_facade": "ctx.device(role).mock_echo.echo.on_echo_received"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "message"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "echo_callback",
+      "evidence_projection": {
+        "evidence_capability": "echo_callback",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "message",
+          "timestamp_ms"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "server/tests",
+          "platform": "server_test_dispatcher",
+          "provider": "FunctionReplyDispatcher",
+          "status": "supported"
+        },
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "message": {
+              "type": "string"
+            },
+            "timestamp_ms": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "message"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "EchoDelegate",
+        "function": "onEchoReceived",
+        "interface": "echo",
+        "sdk": "mock_echo"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"mock_echo\").echo.getLastEcho",
+        "typed_facade": "ctx.device(role).mock_echo.echo.get_last_echo"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "echo_state",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "state",
+        "report_projection": "step.evidence",
+        "summary_fields": []
+      },
+      "kind": "state",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "server/tests",
+          "platform": "server_test_dispatcher",
+          "provider": "FunctionReplyDispatcher",
+          "status": "supported"
+        },
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "message": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "message"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "EchoService",
+        "function": "getLastEcho",
+        "interface": "echo",
+        "sdk": "mock_echo"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "capability": "echo_callback",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "EchoDelegate",
+            "function": "onEchoReceived",
+            "interface": "echo",
+            "sdk": "mock_echo"
+          },
+          "type": "event"
+        }
+      ]
+    }
+  ],
+  "interfaces": [
+    {
+      "capability": "echo_basic",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "EchoService",
+        "function": "echo",
+        "interface": "echo",
+        "sdk": "mock_echo"
+      }
+    },
+    {
+      "capability": "echo_callback",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "EchoService",
+        "function": "echoWithCallback",
+        "interface": "echo",
+        "sdk": "mock_echo"
+      }
+    },
+    {
+      "capability": "echo_callback",
+      "evidence_summary_fields": [
+        "message",
+        "timestamp_ms"
+      ],
+      "filterable_fields": [
+        "message"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "timestamp_ms": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "EchoDelegate",
+        "function": "onEchoReceived",
+        "interface": "echo",
+        "sdk": "mock_echo"
+      }
+    },
+    {
+      "capability": "echo_state",
+      "kind": "state",
+      "payload_schema": {
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "EchoService",
+        "function": "getLastEcho",
+        "interface": "echo",
+        "sdk": "mock_echo"
+      }
+    }
+  ],
+  "sdk": "mock_echo",
+  "version": 1
+}

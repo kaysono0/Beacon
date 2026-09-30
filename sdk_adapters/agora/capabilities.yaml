@@ -1,0 +1,48 @@
+sdk: agora_rtc
+capabilities:
+  - id: sdk_lifecycle
+    name: SDK 生命周期
+  - id: join_channel
+    name: 加入频道
+  - id: leave_channel
+    name: 离开频道
+  - id: token_renewal
+    name: Token 续期
+  - id: connection_state
+    name: 查询连接状态
+  - id: error_event_observability
+    name: 错误事件可观测性
+  - id: joined_state
+    name: 查询是否已加入频道
+  - id: preview_state
+    name: 查询是否正在预览
+  - id: preview_control
+    name: 预览控制
+  - id: local_audio_control
+    name: 本地音频控制
+  - id: remote_video_rendering
+    name: 远端视频渲染
+  - id: synthetic_video_source
+    name: 合成视频源
+  - id: simulcast_dual_stream
+    name: Simulcast 双流发布配置
+  - id: remote_video_layer_selection
+    name: Simulcast 远端视频层选择
+  - id: media_player_source
+    name: MediaPlayer 文件媒体源
+  - id: media_player_state_observability
+    name: MediaPlayer 状态可观测性
+  - id: visual_probe
+    name: 视觉探针
+  - id: rtc_stats_observability
+    name: RTC 统计可观测性
+  - id: local_video_stats_observability
+    name: 本地视频统计可观测性
+  - id: remote_audio_stats_observability
+    name: 远端音频统计可观测性
+  - id: remote_video_stats_observability
+    name: 远端视频统计可观测性
+  - id: simulcast_layer_observability
+    name: Simulcast 实际接收层可观测性
+  - id: visual_snapshot_observability
+    name: 视觉快照可观测性

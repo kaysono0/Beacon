@@ -1,0 +1,66 @@
+sdk: beacon_system
+mappings:
+  - capability: clock_wait
+    calls:
+      - sdk: beacon_system
+        interface: clock
+        class_name: SystemClock
+        function: waitInMs
+        params_schema:
+          type: object
+          properties:
+            ms:
+              type: integer
+          required:
+            - ms
+  - capability: network_condition_control
+    calls:
+      - sdk: beacon_system
+        interface: network_condition
+        class_name: NetworkCondition
+        function: applyImpairment
+        params_schema:
+          type: object
+          properties:
+            profile:
+              type: string
+            duration_ms:
+              type: integer
+          required:
+            - profile
+      - sdk: beacon_system
+        interface: network_condition
+        class_name: NetworkCondition
+        function: getConditionState
+        params_schema:
+          type: object
+          properties: {}
+      - sdk: beacon_system
+        interface: network_condition
+        class_name: NetworkCondition
+        function: resetImpairment
+        params_schema:
+          type: object
+          properties: {}
+  - capability: video_host_control
+    calls:
+      - sdk: beacon_system
+        interface: video_host
+        class_name: VideoHost
+        function: show
+        params_schema: {type: object, properties: {}}
+      - sdk: beacon_system
+        interface: video_host
+        class_name: VideoHost
+        function: hide
+        params_schema: {type: object, properties: {}}
+      - sdk: beacon_system
+        interface: video_host
+        class_name: VideoHost
+        function: focus
+        params_schema: {type: object, properties: {}}
+      - sdk: beacon_system
+        interface: video_host
+        class_name: VideoHost
+        function: rearrange
+        params_schema: {type: object, properties: {}}

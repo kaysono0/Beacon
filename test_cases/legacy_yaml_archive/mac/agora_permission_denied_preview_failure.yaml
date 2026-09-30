@@ -1,0 +1,47 @@
+case_id: TC-MAC-AGORA-PERMISSION-DENIED-PREVIEW-FAILURE
+name: macOS Agora permission denied preview failure
+platform: mac
+suite: agora_failure_recovery_resilience
+scenario_family: failure_recovery
+implementation_status: runnable
+covered_capabilities:
+  - permission_denied_failure
+steps:
+  - step_id: load-sdk-before-permission-denied-preview
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-permission-denied-preview-load-sdk
+        timestamp_ms: 1770000004400
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: SDKLifecycle
+              function: loadSDK
+            params: {}
+            extra: {}
+  - step_id: start-preview-with-denied-media-permission
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-permission-denied-preview-start
+        timestamp_ms: 1770000004500
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: startPreview
+            params: {}
+            extra:
+              permission_fixture: deny_media_for_testing
+    assertions:
+      - type: error_code
+        value: 402

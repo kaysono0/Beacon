@@ -1,0 +1,37 @@
+# Generic mock_echo test: call with callback event assertion.
+# Demonstrates event_exists assertion pattern using a non-Agora SDK.
+case_id: TC-COMMON-ECHO-CALLBACK
+name: Common mock_echo call with callback
+platform: common
+suite: mock_echo_l2
+scenario_family: echo_callback
+implementation_status: runnable
+covered_capabilities:
+  - echo_callback
+steps:
+  - step_id: echo-with-callback
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-echo-cb
+        timestamp_ms: 1770000000000
+      data:
+        node_id: mock-agent-001
+        sync: true
+        list:
+          - target:
+              sdk: mock_echo
+              interface: echo
+              class_name: EchoService
+              function: echoWithCallback
+            params:
+              message: ping
+            extra: {}
+    assertions:
+      - type: event_exists
+        target:
+          sdk: mock_echo
+          interface: echo
+          class_name: EchoDelegate
+          function: onEchoReceived
+        timeout_ms: 3000

@@ -1,0 +1,396 @@
+case_id: TC-MAC-AGORA-1V1-REMOTE-VIDEO-RENDERED
+name: macOS Agora 1V1 bidirectional remote video rendered
+platform: mac
+suite: agora_direct_call_enhanced
+scenario_family: direct_call
+implementation_status: runnable
+covered_capabilities:
+  - remote_video_rendering
+steps:
+  - step_id: primary-setup-local-video-for-1v1-visual-call
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-1v1-visual-primary-setup-local-video
+        timestamp_ms: 1770000005000
+      data:
+        device_role: primary
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: setupLocalVideo
+            params:
+              view_id: primary_local_preview
+            extra: {}
+  - step_id: primary-start-preview-for-1v1-visual-call
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-1v1-visual-primary-start-preview
+        timestamp_ms: 1770000005005
+      data:
+        device_role: primary
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: startPreview
+            params: {}
+            extra: {}
+  - step_id: primary-join-for-1v1-visual-call
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-1v1-visual-primary-join
+        timestamp_ms: 1770000005010
+      data:
+        device_role: primary
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: joinChannel
+            params:
+              channel: real-smoke-1v1-visual
+              uid: 1001
+              token: "{{AGORA_RTC_TOKEN}}"
+              auto_subscribe_audio: true
+              auto_subscribe_video: true
+              publish_camera: true
+              publish_microphone: true
+            extra: {}
+    assertions:
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onJoinChannelSuccess
+        timeout_ms: 5000
+  - step_id: peer-setup-local-video-for-1v1-visual-call
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-1v1-visual-peer-setup-local-video
+        timestamp_ms: 1770000005025
+      data:
+        device_role: peer
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: setupLocalVideo
+            params:
+              view_id: peer_local_preview
+            extra: {}
+  - step_id: peer-start-preview-for-1v1-visual-call
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-1v1-visual-peer-start-preview
+        timestamp_ms: 1770000005030
+      data:
+        device_role: peer
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: startPreview
+            params: {}
+            extra: {}
+  - step_id: peer-join-for-1v1-visual-call
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-1v1-visual-peer-join
+        timestamp_ms: 1770000005035
+      data:
+        device_role: peer
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: joinChannel
+            params:
+              channel: real-smoke-1v1-visual
+              uid: 1002
+              token: "{{AGORA_RTC_TOKEN}}"
+              auto_subscribe_audio: true
+              auto_subscribe_video: true
+              publish_camera: true
+              publish_microphone: true
+            extra: {}
+    assertions:
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onJoinChannelSuccess
+        timeout_ms: 5000
+  - step_id: primary-setup-remote-video-for-1v1-visual-call
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-1v1-visual-primary-setup-remote-video
+        timestamp_ms: 1770000005040
+      data:
+        device_role: primary
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: setupRemoteVideo
+            params:
+              uid: 1002
+              view_id: primary_remote_view
+            extra: {}
+  - step_id: peer-setup-remote-video-for-1v1-visual-call
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-1v1-visual-peer-setup-remote-video
+        timestamp_ms: 1770000005045
+      data:
+        device_role: peer
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: setupRemoteVideo
+            params:
+              uid: 1001
+              view_id: peer_remote_view
+            extra: {}
+  - step_id: observe-1v1-primary-remote-video-frame
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-1v1-visual-primary-query-connection-state
+        timestamp_ms: 1770000005050
+      data:
+        device_role: primary
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: getConnectionState
+            params: {}
+            extra: {}
+  - step_id: observe-1v1-peer-remote-video-frame
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-1v1-visual-peer-query-connection-state
+        timestamp_ms: 1770000005055
+      data:
+        device_role: peer
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: getConnectionState
+            params: {}
+            extra: {}
+  - step_id: wait-1v1-stable-video-window
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-1v1-visual-stable-window
+        timestamp_ms: 1770000005060
+      data:
+        device_role: primary
+        sync: true
+        list:
+          - target:
+              sdk: beacon_system
+              class_name: SystemClock
+              function: waitInMs
+            params:
+              ms: 20000
+            extra: {}
+  - step_id: observe-1v1-primary-stable-video-and-snapshots
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-1v1-visual-primary-stable-video
+        timestamp_ms: 1770000005065
+      data:
+        device_role: primary
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: getConnectionState
+            params:
+              visual_snapshot_role: primary_local_preview
+            extra: {}
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: getConnectionState
+            params:
+              visual_snapshot_role: primary_remote_view
+            extra: {}
+    assertions:
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onRtcStats
+        timeout_ms: 30000
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onSnapshotRequested
+        timeout_ms: 30000
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onSnapshotTaken
+        timeout_ms: 30000
+  - step_id: observe-1v1-peer-stable-video-and-snapshots
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-1v1-visual-peer-stable-video
+        timestamp_ms: 1770000005070
+      data:
+        device_role: peer
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: getConnectionState
+            params:
+              visual_snapshot_role: peer_local_preview
+            extra: {}
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: getConnectionState
+            params:
+              visual_snapshot_role: peer_remote_view
+            extra: {}
+    assertions:
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onRtcStats
+        timeout_ms: 30000
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onSnapshotRequested
+        timeout_ms: 30000
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onSnapshotTaken
+        timeout_ms: 30000
+  - step_id: primary-stop-preview-after-1v1-visual-call
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-1v1-visual-primary-stop-preview
+        timestamp_ms: 1770000005075
+      data:
+        device_role: primary
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: stopPreview
+            params: {}
+            extra: {}
+  - step_id: peer-stop-preview-after-1v1-visual-call
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-1v1-visual-peer-stop-preview
+        timestamp_ms: 1770000005080
+      data:
+        device_role: peer
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: stopPreview
+            params: {}
+            extra: {}
+  - step_id: peer-leave-after-1v1-visual-call
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-1v1-visual-peer-leave
+        timestamp_ms: 1770000005085
+      data:
+        device_role: peer
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: leaveChannel
+            params: {}
+            extra: {}
+  - step_id: primary-leave-after-1v1-visual-call
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-1v1-visual-primary-leave
+        timestamp_ms: 1770000005100
+      data:
+        device_role: primary
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: leaveChannel
+            params: {}
+            extra: {}

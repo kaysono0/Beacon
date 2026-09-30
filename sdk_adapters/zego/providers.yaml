@@ -1,0 +1,15 @@
+sdk: zego_express
+
+rules:
+  - interfaces: [zego_engine, zego_room, zego_preview, zego_publisher, zego_player]
+    mappings:
+      - platform: mac
+        status: supported
+        provider: ZegoRTCInvocationProvider
+        bridge_boundary: agents/mac
+  - interfaces: [zego_visual_probe]
+    mappings:
+      - platform: mac
+        status: supported
+        provider: ZegoVisualProbeProvider
+        bridge_boundary: agents/mac

@@ -1,0 +1,2507 @@
+{
+  "capabilities": [
+    {
+      "id": "engine_connection_state",
+      "name": "引擎连接状态可观测性"
+    },
+    {
+      "id": "engine_error_events",
+      "name": "引擎错误事件可观测性"
+    },
+    {
+      "id": "engine_lifecycle",
+      "name": "引擎生命周期"
+    },
+    {
+      "id": "engine_video_capture",
+      "name": "本地视频采集开关"
+    },
+    {
+      "id": "local_video_stats_observability",
+      "name": "本地视频统计可观测性"
+    },
+    {
+      "id": "remote_video_rendering",
+      "name": "远端视频渲染"
+    },
+    {
+      "id": "remote_video_stats_observability",
+      "name": "远端视频统计可观测性"
+    },
+    {
+      "id": "room_join",
+      "name": "加入房间"
+    },
+    {
+      "id": "room_joined_state",
+      "name": "查询是否已加入房间"
+    },
+    {
+      "id": "room_leave",
+      "name": "离开房间"
+    },
+    {
+      "id": "rtc_stats_observability",
+      "name": "RTC 统计可观测性"
+    },
+    {
+      "id": "synthetic_video_source",
+      "name": "合成视频源"
+    },
+    {
+      "id": "visual_probe",
+      "name": "视觉探针"
+    },
+    {
+      "id": "visual_snapshot_observability",
+      "name": "视觉快照可观测性"
+    }
+  ],
+  "contract_matrix": [
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_engine.createRTCEngine",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_engine.create_rtc_engine"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "engine_lifecycle",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "_extra": {
+              "type": "object"
+            },
+            "app_id": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCEngine",
+        "function": "createRTCEngine",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_engine.destroyRTCEngine",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_engine.destroy_rtc_engine"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "engine_lifecycle",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {},
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCEngine",
+        "function": "destroyRTCEngine",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_engine.startVideoCapture",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_engine.start_video_capture"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "engine_video_capture",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "_extra": {
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCEngine",
+        "function": "startVideoCapture",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_engine.stopVideoCapture",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_engine.stop_video_capture"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "engine_video_capture",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {},
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCEngine",
+        "function": "stopVideoCapture",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_room.joinRoom",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_room.join_room"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "room_join",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "_extra": {
+              "type": "object"
+            },
+            "auto_subscribe_audio": {
+              "default": true,
+              "type": "boolean"
+            },
+            "auto_subscribe_video": {
+              "default": false,
+              "type": "boolean"
+            },
+            "publish_audio": {
+              "default": true,
+              "type": "boolean"
+            },
+            "publish_video": {
+              "default": false,
+              "type": "boolean"
+            },
+            "room_id": {
+              "type": "string"
+            },
+            "token": {
+              "type": "string"
+            },
+            "user_id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "room_id",
+            "user_id",
+            "token"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCRoom",
+        "function": "joinRoom",
+        "interface": "byte_rtc_room",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_room.leaveRoom",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_room.leave_room"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "room_leave",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {},
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCRoom",
+        "function": "leaveRoom",
+        "interface": "byte_rtc_room",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_engine.startSyntheticVideo",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_engine.start_synthetic_video"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "synthetic_video_source",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "_extra": {
+              "type": "object"
+            },
+            "fps": {
+              "default": 15,
+              "type": "integer"
+            },
+            "height": {
+              "default": 180,
+              "type": "integer"
+            },
+            "pattern": {
+              "default": "animated_clip",
+              "enum": [
+                "animated_clip",
+                "bars",
+                "moving_stripe"
+              ],
+              "type": "string"
+            },
+            "width": {
+              "default": 320,
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCEngine",
+        "function": "startSyntheticVideo",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_engine.stopSyntheticVideo",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_engine.stop_synthetic_video"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "synthetic_video_source",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "_extra": {
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCEngine",
+        "function": "stopSyntheticVideo",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").visual_probe.bindLocalVideo",
+        "typed_facade": "ctx.device(role).volcengine_rtc.visual_probe.bind_local_video"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "visual_probe",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "VolcengineVisualProbeProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "view_role": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "view_role"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCVisualProbe",
+        "function": "bindLocalVideo",
+        "interface": "visual_probe",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").visual_probe.bindRemoteVideo",
+        "typed_facade": "ctx.device(role).volcengine_rtc.visual_probe.bind_remote_video"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "visual_probe",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "VolcengineVisualProbeProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "uid": {
+              "type": "string"
+            },
+            "view_role": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "uid",
+            "view_role"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCVisualProbe",
+        "function": "bindRemoteVideo",
+        "interface": "visual_probe",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").visual_probe.captureSnapshot",
+        "typed_facade": "ctx.device(role).volcengine_rtc.visual_probe.capture_snapshot"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "visual_probe",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "VolcengineVisualProbeProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "view_role": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "view_role"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCVisualProbe",
+        "function": "captureSnapshot",
+        "interface": "visual_probe",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").visual_probe.releaseView",
+        "typed_facade": "ctx.device(role).volcengine_rtc.visual_probe.release_view"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "visual_probe",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "VolcengineVisualProbeProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "view_role": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "view_role"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCVisualProbe",
+        "function": "releaseView",
+        "interface": "visual_probe",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_engine.onConnectionStateChanged",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_engine.on_connection_state_changed"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "state"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "engine_connection_state",
+      "evidence_projection": {
+        "evidence_capability": "engine_connection_state",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "state"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "state": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCEngineDelegate",
+        "function": "onConnectionStateChanged",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_engine.onError",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_engine.on_error"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "code"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "engine_error_events",
+      "evidence_projection": {
+        "evidence_capability": "engine_error_events",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "code"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "code": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "code"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCEngineDelegate",
+        "function": "onError",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_room.onLocalVideoStats",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_room.on_local_video_stats"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "uid",
+          "source_type"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "local_video_stats_observability",
+      "evidence_projection": {
+        "evidence_capability": "local_video_stats_observability",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "uid",
+          "width",
+          "height",
+          "sent_bitrate",
+          "sent_frame_rate",
+          "source_type"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "height": {
+              "type": "integer"
+            },
+            "sdk_function": {
+              "type": "string"
+            },
+            "sent_bitrate": {
+              "type": "number"
+            },
+            "sent_frame_rate": {
+              "type": "integer"
+            },
+            "source_type": {
+              "type": "integer"
+            },
+            "stream_id": {
+              "type": "string"
+            },
+            "uid": {
+              "type": "string"
+            },
+            "width": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "uid"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCRoomDelegate",
+        "function": "onLocalVideoStats",
+        "interface": "byte_rtc_room",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_engine.onFirstRemoteVideoFrame",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_engine.on_first_remote_video_frame"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "uid",
+          "stream_id"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "remote_video_rendering",
+      "evidence_projection": {
+        "evidence_capability": "remote_video_rendering",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "uid",
+          "width",
+          "height"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "height": {
+              "type": "integer"
+            },
+            "sdk_function": {
+              "type": "string"
+            },
+            "stream_id": {
+              "type": "string"
+            },
+            "uid": {
+              "type": "string"
+            },
+            "width": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "uid",
+            "width",
+            "height"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCEngineDelegate",
+        "function": "onFirstRemoteVideoFrame",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_room.onRemoteVideoStats",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_room.on_remote_video_stats"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "uid",
+          "stream_id"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "remote_video_stats_observability",
+      "evidence_projection": {
+        "evidence_capability": "remote_video_stats_observability",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "uid",
+          "width",
+          "height",
+          "received_bitrate",
+          "decoder_output_frame_rate",
+          "renderer_output_frame_rate"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "decoder_output_frame_rate": {
+              "type": "integer"
+            },
+            "height": {
+              "type": "integer"
+            },
+            "received_bitrate": {
+              "type": "number"
+            },
+            "renderer_output_frame_rate": {
+              "type": "integer"
+            },
+            "sdk_function": {
+              "type": "string"
+            },
+            "stream_id": {
+              "type": "string"
+            },
+            "uid": {
+              "type": "string"
+            },
+            "width": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "uid"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCRoomDelegate",
+        "function": "onRemoteVideoStats",
+        "interface": "byte_rtc_room",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_room.onRoomStateChanged",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_room.on_room_state_changed"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "room_id",
+          "uid",
+          "state"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "room_join",
+      "evidence_projection": {
+        "evidence_capability": "room_join",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "room_id",
+          "uid",
+          "state",
+          "elapsed_ms"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "elapsed_ms": {
+              "type": "integer"
+            },
+            "room_id": {
+              "type": "string"
+            },
+            "state": {
+              "type": "integer"
+            },
+            "uid": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "room_id",
+            "uid",
+            "state"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCRoomDelegate",
+        "function": "onRoomStateChanged",
+        "interface": "byte_rtc_room",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_room.onLeaveRoom",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_room.on_leave_room"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "room_id"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "room_leave",
+      "evidence_projection": {
+        "evidence_capability": "room_leave",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "room_id"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "room_id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "room_id"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCRoomDelegate",
+        "function": "onLeaveRoom",
+        "interface": "byte_rtc_room",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_room.onRtcStats",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_room.on_rtc_stats"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "tx_video_kbitrate",
+          "rx_video_kbitrate"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "rtc_stats_observability",
+      "evidence_projection": {
+        "evidence_capability": "rtc_stats_observability",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "tx_video_kbitrate",
+          "rx_video_kbitrate"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "rx_video_kbitrate": {
+              "type": "number"
+            },
+            "sdk_function": {
+              "type": "string"
+            },
+            "tx_video_kbitrate": {
+              "type": "number"
+            }
+          },
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCRoomDelegate",
+        "function": "onRtcStats",
+        "interface": "byte_rtc_room",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_engine.onSnapshotRequested",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_engine.on_snapshot_requested"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "view_role",
+          "return_code"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "visual_snapshot_observability",
+      "evidence_projection": {
+        "evidence_capability": "visual_snapshot_observability",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "uid",
+          "view_role",
+          "file_path",
+          "return_code"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "artifact_key": {
+              "type": "string"
+            },
+            "file_path": {
+              "type": "string"
+            },
+            "return_code": {
+              "type": "integer"
+            },
+            "sdk_function": {
+              "type": "string"
+            },
+            "stream_id": {
+              "type": "string"
+            },
+            "task_id": {
+              "type": "integer"
+            },
+            "uid": {
+              "type": "string"
+            },
+            "view_role": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCEngineDelegate",
+        "function": "onSnapshotRequested",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_engine.onSnapshotTaken",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_engine.on_snapshot_taken"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "view_role",
+          "err_code"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "visual_snapshot_observability",
+      "evidence_projection": {
+        "evidence_capability": "visual_snapshot_observability",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "uid",
+          "view_role",
+          "file_path",
+          "width",
+          "height",
+          "err_code"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": "RTCInvocationProvider",
+          "status": "supported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "artifact_key": {
+              "type": "string"
+            },
+            "err_code": {
+              "type": "integer"
+            },
+            "file_path": {
+              "type": "string"
+            },
+            "height": {
+              "type": "integer"
+            },
+            "sdk_function": {
+              "type": "string"
+            },
+            "stream_id": {
+              "type": "string"
+            },
+            "task_id": {
+              "type": "integer"
+            },
+            "uid": {
+              "type": "string"
+            },
+            "view_role": {
+              "type": "string"
+            },
+            "width": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCEngineDelegate",
+        "function": "onSnapshotTaken",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"volcengine_rtc\").byte_rtc_room.onRoomStateChangedWithReason",
+        "typed_facade": "ctx.device(role).volcengine_rtc.byte_rtc_room.on_room_state_changed_with_reason"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "room_joined_state",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "state",
+        "report_projection": "step.evidence",
+        "summary_fields": []
+      },
+      "kind": "state",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "reason": {
+              "type": "integer"
+            },
+            "room_id": {
+              "type": "string"
+            },
+            "state": {
+              "type": "integer"
+            },
+            "uid": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "room_id",
+            "uid",
+            "state"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "ByteRTCRoom",
+        "function": "onRoomStateChangedWithReason",
+        "interface": "byte_rtc_room",
+        "sdk": "volcengine_rtc"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "capability": "engine_connection_state",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "ByteRTCEngineDelegate",
+            "function": "onConnectionStateChanged",
+            "interface": "byte_rtc_engine",
+            "sdk": "volcengine_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "engine_error_events",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "ByteRTCEngineDelegate",
+            "function": "onError",
+            "interface": "byte_rtc_engine",
+            "sdk": "volcengine_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "local_video_stats_observability",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "ByteRTCRoomDelegate",
+            "function": "onLocalVideoStats",
+            "interface": "byte_rtc_room",
+            "sdk": "volcengine_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "remote_video_rendering",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "ByteRTCEngineDelegate",
+            "function": "onFirstRemoteVideoFrame",
+            "interface": "byte_rtc_engine",
+            "sdk": "volcengine_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "remote_video_stats_observability",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "ByteRTCRoomDelegate",
+            "function": "onRemoteVideoStats",
+            "interface": "byte_rtc_room",
+            "sdk": "volcengine_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "room_join",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "ByteRTCRoomDelegate",
+            "function": "onRoomStateChanged",
+            "interface": "byte_rtc_room",
+            "sdk": "volcengine_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "room_leave",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "ByteRTCRoomDelegate",
+            "function": "onLeaveRoom",
+            "interface": "byte_rtc_room",
+            "sdk": "volcengine_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "rtc_stats_observability",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "ByteRTCRoomDelegate",
+            "function": "onRtcStats",
+            "interface": "byte_rtc_room",
+            "sdk": "volcengine_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "visual_snapshot_observability",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "ByteRTCEngineDelegate",
+            "function": "onSnapshotRequested",
+            "interface": "byte_rtc_engine",
+            "sdk": "volcengine_rtc"
+          },
+          "type": "event"
+        },
+        {
+          "event_target": {
+            "class_name": "ByteRTCEngineDelegate",
+            "function": "onSnapshotTaken",
+            "interface": "byte_rtc_engine",
+            "sdk": "volcengine_rtc"
+          },
+          "type": "event"
+        }
+      ]
+    }
+  ],
+  "interfaces": [
+    {
+      "capability": "engine_lifecycle",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "_extra": {
+            "type": "object"
+          },
+          "app_id": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCEngine",
+        "function": "createRTCEngine",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "engine_lifecycle",
+      "kind": "call",
+      "params_schema": {
+        "properties": {},
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCEngine",
+        "function": "destroyRTCEngine",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "engine_video_capture",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "_extra": {
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCEngine",
+        "function": "startVideoCapture",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "engine_video_capture",
+      "kind": "call",
+      "params_schema": {
+        "properties": {},
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCEngine",
+        "function": "stopVideoCapture",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "room_join",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "_extra": {
+            "type": "object"
+          },
+          "auto_subscribe_audio": {
+            "default": true,
+            "type": "boolean"
+          },
+          "auto_subscribe_video": {
+            "default": false,
+            "type": "boolean"
+          },
+          "publish_audio": {
+            "default": true,
+            "type": "boolean"
+          },
+          "publish_video": {
+            "default": false,
+            "type": "boolean"
+          },
+          "room_id": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "room_id",
+          "user_id",
+          "token"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCRoom",
+        "function": "joinRoom",
+        "interface": "byte_rtc_room",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "room_leave",
+      "kind": "call",
+      "params_schema": {
+        "properties": {},
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCRoom",
+        "function": "leaveRoom",
+        "interface": "byte_rtc_room",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "synthetic_video_source",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "_extra": {
+            "type": "object"
+          },
+          "fps": {
+            "default": 15,
+            "type": "integer"
+          },
+          "height": {
+            "default": 180,
+            "type": "integer"
+          },
+          "pattern": {
+            "default": "animated_clip",
+            "enum": [
+              "animated_clip",
+              "bars",
+              "moving_stripe"
+            ],
+            "type": "string"
+          },
+          "width": {
+            "default": 320,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCEngine",
+        "function": "startSyntheticVideo",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "synthetic_video_source",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "_extra": {
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCEngine",
+        "function": "stopSyntheticVideo",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "visual_probe",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "view_role": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "view_role"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCVisualProbe",
+        "function": "bindLocalVideo",
+        "interface": "visual_probe",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "visual_probe",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "uid": {
+            "type": "string"
+          },
+          "view_role": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "uid",
+          "view_role"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCVisualProbe",
+        "function": "bindRemoteVideo",
+        "interface": "visual_probe",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "visual_probe",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "view_role": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "view_role"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCVisualProbe",
+        "function": "captureSnapshot",
+        "interface": "visual_probe",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "visual_probe",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "view_role": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "view_role"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCVisualProbe",
+        "function": "releaseView",
+        "interface": "visual_probe",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "engine_connection_state",
+      "evidence_summary_fields": [
+        "state"
+      ],
+      "filterable_fields": [
+        "state"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "state": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "state"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCEngineDelegate",
+        "function": "onConnectionStateChanged",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "engine_error_events",
+      "evidence_summary_fields": [
+        "code"
+      ],
+      "filterable_fields": [
+        "code"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "code": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCEngineDelegate",
+        "function": "onError",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "local_video_stats_observability",
+      "evidence_summary_fields": [
+        "uid",
+        "width",
+        "height",
+        "sent_bitrate",
+        "sent_frame_rate",
+        "source_type"
+      ],
+      "filterable_fields": [
+        "uid",
+        "source_type"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "height": {
+            "type": "integer"
+          },
+          "sdk_function": {
+            "type": "string"
+          },
+          "sent_bitrate": {
+            "type": "number"
+          },
+          "sent_frame_rate": {
+            "type": "integer"
+          },
+          "source_type": {
+            "type": "integer"
+          },
+          "stream_id": {
+            "type": "string"
+          },
+          "uid": {
+            "type": "string"
+          },
+          "width": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "uid"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCRoomDelegate",
+        "function": "onLocalVideoStats",
+        "interface": "byte_rtc_room",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "remote_video_rendering",
+      "evidence_summary_fields": [
+        "uid",
+        "width",
+        "height"
+      ],
+      "filterable_fields": [
+        "uid",
+        "stream_id"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "height": {
+            "type": "integer"
+          },
+          "sdk_function": {
+            "type": "string"
+          },
+          "stream_id": {
+            "type": "string"
+          },
+          "uid": {
+            "type": "string"
+          },
+          "width": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "uid",
+          "width",
+          "height"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCEngineDelegate",
+        "function": "onFirstRemoteVideoFrame",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "remote_video_stats_observability",
+      "evidence_summary_fields": [
+        "uid",
+        "width",
+        "height",
+        "received_bitrate",
+        "decoder_output_frame_rate",
+        "renderer_output_frame_rate"
+      ],
+      "filterable_fields": [
+        "uid",
+        "stream_id"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "decoder_output_frame_rate": {
+            "type": "integer"
+          },
+          "height": {
+            "type": "integer"
+          },
+          "received_bitrate": {
+            "type": "number"
+          },
+          "renderer_output_frame_rate": {
+            "type": "integer"
+          },
+          "sdk_function": {
+            "type": "string"
+          },
+          "stream_id": {
+            "type": "string"
+          },
+          "uid": {
+            "type": "string"
+          },
+          "width": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "uid"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCRoomDelegate",
+        "function": "onRemoteVideoStats",
+        "interface": "byte_rtc_room",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "room_join",
+      "evidence_summary_fields": [
+        "room_id",
+        "uid",
+        "state",
+        "elapsed_ms"
+      ],
+      "filterable_fields": [
+        "room_id",
+        "uid",
+        "state"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "elapsed_ms": {
+            "type": "integer"
+          },
+          "room_id": {
+            "type": "string"
+          },
+          "state": {
+            "type": "integer"
+          },
+          "uid": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "room_id",
+          "uid",
+          "state"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCRoomDelegate",
+        "function": "onRoomStateChanged",
+        "interface": "byte_rtc_room",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "room_leave",
+      "evidence_summary_fields": [
+        "room_id"
+      ],
+      "filterable_fields": [
+        "room_id"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "room_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "room_id"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCRoomDelegate",
+        "function": "onLeaveRoom",
+        "interface": "byte_rtc_room",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "rtc_stats_observability",
+      "evidence_summary_fields": [
+        "tx_video_kbitrate",
+        "rx_video_kbitrate"
+      ],
+      "filterable_fields": [
+        "tx_video_kbitrate",
+        "rx_video_kbitrate"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "rx_video_kbitrate": {
+            "type": "number"
+          },
+          "sdk_function": {
+            "type": "string"
+          },
+          "tx_video_kbitrate": {
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCRoomDelegate",
+        "function": "onRtcStats",
+        "interface": "byte_rtc_room",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "visual_snapshot_observability",
+      "evidence_summary_fields": [
+        "uid",
+        "view_role",
+        "file_path",
+        "return_code"
+      ],
+      "filterable_fields": [
+        "view_role",
+        "return_code"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "artifact_key": {
+            "type": "string"
+          },
+          "file_path": {
+            "type": "string"
+          },
+          "return_code": {
+            "type": "integer"
+          },
+          "sdk_function": {
+            "type": "string"
+          },
+          "stream_id": {
+            "type": "string"
+          },
+          "task_id": {
+            "type": "integer"
+          },
+          "uid": {
+            "type": "string"
+          },
+          "view_role": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCEngineDelegate",
+        "function": "onSnapshotRequested",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "visual_snapshot_observability",
+      "evidence_summary_fields": [
+        "uid",
+        "view_role",
+        "file_path",
+        "width",
+        "height",
+        "err_code"
+      ],
+      "filterable_fields": [
+        "view_role",
+        "err_code"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "artifact_key": {
+            "type": "string"
+          },
+          "err_code": {
+            "type": "integer"
+          },
+          "file_path": {
+            "type": "string"
+          },
+          "height": {
+            "type": "integer"
+          },
+          "sdk_function": {
+            "type": "string"
+          },
+          "stream_id": {
+            "type": "string"
+          },
+          "task_id": {
+            "type": "integer"
+          },
+          "uid": {
+            "type": "string"
+          },
+          "view_role": {
+            "type": "string"
+          },
+          "width": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCEngineDelegate",
+        "function": "onSnapshotTaken",
+        "interface": "byte_rtc_engine",
+        "sdk": "volcengine_rtc"
+      }
+    },
+    {
+      "capability": "room_joined_state",
+      "kind": "state",
+      "payload_schema": {
+        "properties": {
+          "reason": {
+            "type": "integer"
+          },
+          "room_id": {
+            "type": "string"
+          },
+          "state": {
+            "type": "integer"
+          },
+          "uid": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "room_id",
+          "uid",
+          "state"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "ByteRTCRoom",
+        "function": "onRoomStateChangedWithReason",
+        "interface": "byte_rtc_room",
+        "sdk": "volcengine_rtc"
+      }
+    }
+  ],
+  "sdk": "volcengine_rtc",
+  "version": 1
+}

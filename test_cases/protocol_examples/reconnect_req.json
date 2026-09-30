@@ -1,0 +1,11 @@
+{
+  "common": {
+    "action": "reconnectRequest",
+    "op_id": "op-reconnect-001",
+    "timestamp_ms": 1770000000400
+  },
+  "data": {
+    "node_id": "mac-local-001",
+    "lease_id": "lease-local-001"
+  }
+}

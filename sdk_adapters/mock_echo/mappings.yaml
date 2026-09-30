@@ -1,0 +1,60 @@
+sdk: mock_echo
+mappings:
+  - capability: echo_basic
+    calls:
+      - sdk: mock_echo
+        interface: echo
+        class_name: EchoService
+        function: echo
+        params_schema:
+          type: object
+          properties:
+            message:
+              type: string
+          required:
+            - message
+  - capability: echo_callback
+    calls:
+      - sdk: mock_echo
+        interface: echo
+        class_name: EchoService
+        function: echoWithCallback
+        params_schema:
+          type: object
+          properties:
+            message:
+              type: string
+          required:
+            - message
+    callbacks:
+      - sdk: mock_echo
+        interface: echo
+        class_name: EchoDelegate
+        function: onEchoReceived
+        payload_schema:
+          type: object
+          properties:
+            message:
+              type: string
+            timestamp_ms:
+              type: integer
+          required:
+            - message
+        filterable_fields:
+          - message
+        evidence_summary_fields:
+          - message
+          - timestamp_ms
+  - capability: echo_state
+    states:
+      - sdk: mock_echo
+        interface: echo
+        class_name: EchoService
+        function: getLastEcho
+        payload_schema:
+          type: object
+          properties:
+            message:
+              type: string
+          required:
+            - message

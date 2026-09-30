@@ -1,0 +1,35 @@
+{
+  "common": {
+    "action": "callbackRequest",
+    "op_id": "op-callback-001",
+    "timestamp_ms": 1770000000200
+  },
+  "data": {
+    "node_id": "mac-local-001",
+    "sync": true,
+    "list": [
+      {
+        "event_target": {
+          "sdk": "agora_rtc",
+          "interface": "rtc_engine",
+          "class_name": "AgoraRtcEngineDelegate",
+          "function": "onJoinChannelSuccess"
+        },
+        "repeat": 1,
+        "call_elements": [
+          {
+            "target": {
+              "sdk": "agora_rtc",
+              "interface": "rtc_engine",
+              "class_name": "AgoraRtcEngineKit",
+              "function": "enableLocalVideo"
+            },
+            "resource_ref": "engine_1",
+            "params": "{\"enabled\":true}",
+            "extra": "{}"
+          }
+        ]
+      }
+    ]
+  }
+}

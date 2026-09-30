@@ -1,0 +1,18 @@
+sdk: agora_rtc
+
+# provider 支持关系：按 interface 声明「哪个平台由哪个 provider 支撑」。
+# 规则按声明顺序匹配，首个命中生效。
+rules:
+  - interfaces: [visual_probe]
+    mappings:
+      - platform: mac
+        status: supported
+        provider: AgoraVisualProbeProvider
+        bridge_boundary: agents/mac
+
+  - interfaces: [rtc_engine, video_preview, media_player]
+    mappings:
+      - platform: mac
+        status: supported
+        provider: RTCInvocationProvider
+        bridge_boundary: agents/mac

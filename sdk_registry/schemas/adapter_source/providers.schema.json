@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sdk", "rules"],
+  "properties": {
+    "sdk": {"type": "string", "minLength": 1},
+    "rules": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/rule"}}
+  },
+  "$defs": {
+    "mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["platform", "status", "provider", "bridge_boundary"],
+      "properties": {
+        "platform": {"type": "string", "minLength": 1},
+        "status": {"enum": ["supported", "unsupported", "partial", "designed_but_blocked"]},
+        "provider": {"type": ["string", "null"]},
+        "bridge_boundary": {"type": "string", "minLength": 1}
+      }
+    },
+    "rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["interfaces", "mappings"],
+      "properties": {
+        "interfaces": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "functions": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "mappings": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/mapping"}}
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+name: CI (Linux)
+
+# Portable subset of the verification gates: Python, protocol and server work
+# only. macOS-only gates (agent core build, macOS adapter, console, real SDK)
+# live in macos.yml.
+#
+# Real-SDK gates are never run here. When a gate needs an SDK it must report
+# `skipped` and exit 0 - a skipped gate is not verified behaviour.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Repository format
+        run: make format-check
+
+      - name: Server type check
+        run: make type-server
+
+      - name: Protocol and test cases
+        run: make test-protocol
+
+      - name: Python tests (Server, SDK, tools, integration)
+        run: make test-server-quiet
+
+      - name: Python SDK coverage (95% and source completeness)
+        run: make coverage-python-sdk
+
+      - name: CI selection regression tests
+        run: make test-ci-selection
+
+      - name: Report scanner regression tests
+        id: scanner-tests
+        if: always()
+        run: make test-report-secrets
+
+      - name: Check reports before upload
+        id: report-secrets
+        if: always()
+        run: make report-secrets
+
+      - name: Upload reports
+        if: always() && steps.scanner-tests.outcome == 'success' && steps.report-secrets.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports-linux
+          path: reports/latest/
+          if-no-files-found: ignore

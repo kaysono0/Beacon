@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "work_package", "status", "baseline_commit", "verified_commit", "diff_digest", "production_entry_changed", "changed_files", "invariants", "verification", "exit_criteria", "skipped", "not_run", "blockers", "dirty_files_preserved", "next_allowed_packages"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": 1},
+    "work_package": {"pattern": "^IR-(0[0-9]|1[0-2])$"},
+    "status": {"enum": ["passed", "failed", "skipped", "not_run"]},
+    "baseline_commit": {"type": "string"},
+    "verified_commit": {"type": ["string", "null"]},
+    "diff_digest": {"type": "string"},
+    "production_entry_changed": {"type": "boolean"},
+    "changed_files": {"type": "array", "items": {"type": "string"}},
+    "invariants": {"type": "array"}, "verification": {"type": "array"}, "exit_criteria": {"type": "array"},
+    "skipped": {"type": "array"}, "not_run": {"type": "array"}, "blockers": {"type": "array"},
+    "dirty_files_preserved": {"type": "array"}, "next_allowed_packages": {"type": "array", "items": {"type": "string"}}
+  }
+}

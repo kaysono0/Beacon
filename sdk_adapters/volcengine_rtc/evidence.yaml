@@ -1,0 +1,81 @@
+sdk: volcengine_rtc
+evidence:
+  - capability: engine_connection_state
+    expects:
+      - type: event
+        event_target:
+          sdk: volcengine_rtc
+          interface: byte_rtc_engine
+          class_name: ByteRTCEngineDelegate
+          function: onConnectionStateChanged
+  - capability: room_join
+    expects:
+      - type: event
+        event_target:
+          sdk: volcengine_rtc
+          interface: byte_rtc_room
+          class_name: ByteRTCRoomDelegate
+          function: onRoomStateChanged
+  - capability: room_leave
+    expects:
+      - type: event
+        event_target:
+          sdk: volcengine_rtc
+          interface: byte_rtc_room
+          class_name: ByteRTCRoomDelegate
+          function: onLeaveRoom
+  - capability: engine_error_events
+    expects:
+      - type: event
+        event_target:
+          sdk: volcengine_rtc
+          interface: byte_rtc_engine
+          class_name: ByteRTCEngineDelegate
+          function: onError
+  # ---- 画面能力面（B-020）：每条 callback 映射必须有事件证据绑定，否则编译期失败 ----
+  - capability: remote_video_rendering
+    expects:
+      - type: event
+        event_target:
+          sdk: volcengine_rtc
+          interface: byte_rtc_engine
+          class_name: ByteRTCEngineDelegate
+          function: onFirstRemoteVideoFrame
+  - capability: rtc_stats_observability
+    expects:
+      - type: event
+        event_target:
+          sdk: volcengine_rtc
+          interface: byte_rtc_room
+          class_name: ByteRTCRoomDelegate
+          function: onRtcStats
+  - capability: local_video_stats_observability
+    expects:
+      - type: event
+        event_target:
+          sdk: volcengine_rtc
+          interface: byte_rtc_room
+          class_name: ByteRTCRoomDelegate
+          function: onLocalVideoStats
+  - capability: remote_video_stats_observability
+    expects:
+      - type: event
+        event_target:
+          sdk: volcengine_rtc
+          interface: byte_rtc_room
+          class_name: ByteRTCRoomDelegate
+          function: onRemoteVideoStats
+  - capability: visual_snapshot_observability
+    expects:
+      - type: event
+        event_target:
+          sdk: volcengine_rtc
+          interface: byte_rtc_engine
+          class_name: ByteRTCEngineDelegate
+          function: onSnapshotRequested
+      - type: event
+        event_target:
+          sdk: volcengine_rtc
+          interface: byte_rtc_engine
+          class_name: ByteRTCEngineDelegate
+          function: onSnapshotTaken

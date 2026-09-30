@@ -1,0 +1,71 @@
+name: Bug report
+description: Report a defect with a reproduction and the generated evidence.
+title: "[Bug] "
+labels:
+  - needs-triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a problem. Reports are much easier to act on with a
+        reproduction and the generated report artifact, so please fill in the fields below.
+
+        For security issues, do not open an issue - see SECURITY.md instead.
+  - type: input
+    id: component
+    attributes:
+      label: Affected component
+      description: Which part of Beacon is affected?
+      placeholder: agent_core / agents/mac / server / python_sdk / apps/mac_test_console / docs
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Output of `git rev-parse --short HEAD`, or the release tag.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Platform and toolchain versions, and whether the real SDK environment was present.
+      value: |
+        - macOS: (`sw_vers`)
+        - Python: (`python3 -V`)
+        - Swift: (`swift --version`)
+        - CMake: (`cmake --version`)
+        - Agora SDK present (AGORA_MAC_SDK_ROOT set): yes / no
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command
+      description: The exact command you ran.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+      description: Include the relevant output and, if available, the artifact under `reports/latest/`.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I did not include credentials, tokens, or personal data in this report.
+          required: true
+        - label: This is not a security vulnerability (those go through SECURITY.md).
+          required: true

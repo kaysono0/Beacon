@@ -1,0 +1,15 @@
+sdk: mock_echo
+
+# provider 支持关系：按 interface 声明「哪个平台由哪个 provider 支撑」。
+# 规则按声明顺序匹配，首个命中生效。
+rules:
+  - interfaces: [echo]
+    mappings:
+      - platform: server_test_dispatcher
+        status: supported
+        provider: FunctionReplyDispatcher
+        bridge_boundary: server/tests
+      - platform: mac
+        status: unsupported
+        provider: null
+        bridge_boundary: agents/mac

@@ -1,0 +1,32 @@
+# Generic mock_echo test: basic call without callback or assertion.
+# Demonstrates the simplest possible SDK invocation using a non-Agora SDK.
+case_id: TC-COMMON-ECHO-CALL
+name: Common mock_echo basic call
+platform: common
+suite: mock_echo_l1
+scenario_family: echo_basic
+implementation_status: runnable
+covered_capabilities:
+  - echo_basic
+steps:
+  - step_id: echo-invoke
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-echo-call
+        timestamp_ms: 1770000000000
+      data:
+        node_id: mock-agent-001
+        sync: true
+        list:
+          - target:
+              sdk: mock_echo
+              interface: echo
+              class_name: EchoService
+              function: echo
+            params:
+              message: hello beacon
+            extra: {}
+    assertions:
+      - type: error_code
+        value: 0

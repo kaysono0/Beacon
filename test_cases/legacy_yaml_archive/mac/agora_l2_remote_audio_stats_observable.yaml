@@ -1,0 +1,127 @@
+case_id: TC-MAC-AGORA-REMOTE-AUDIO-STATS-OBSERVABLE
+name: macOS Agora L2 remote audio stats observable
+platform: mac
+suite: agora_direct_call_l2
+scenario_family: direct_call
+implementation_status: runnable
+covered_capabilities:
+  - media_stats_observability
+steps:
+  - step_id: join-before-remote-audio-stats-observation
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-remote-audio-stats-join
+        timestamp_ms: 1770000003800
+      data:
+        device_role: primary
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: joinChannel
+            params:
+              channel: real-smoke-remote-audio-stats
+              uid: 1001
+              token: "{{AGORA_RTC_TOKEN}}"
+              auto_subscribe_audio: true
+              auto_subscribe_video: true
+            extra: {}
+    assertions:
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onJoinChannelSuccess
+        timeout_ms: 5000
+  - step_id: peer-join-for-remote-audio-stats
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-remote-audio-stats-peer-join
+        timestamp_ms: 1770000003825
+      data:
+        device_role: peer
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: joinChannel
+            params:
+              channel: real-smoke-remote-audio-stats
+              uid: 1002
+              token: "{{AGORA_RTC_TOKEN}}"
+              publish_microphone: true
+            extra: {}
+    assertions:
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onJoinChannelSuccess
+        timeout_ms: 5000
+  - step_id: observe-remote-audio-stats
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-remote-audio-stats-query-connection-state
+        timestamp_ms: 1770000003850
+      data:
+        device_role: primary
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: getConnectionState
+            params: {}
+            extra: {}
+    assertions:
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onRemoteAudioStats
+        timeout_ms: 5000
+  - step_id: peer-leave-after-remote-audio-stats-observation
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-remote-audio-stats-peer-leave
+        timestamp_ms: 1770000003875
+      data:
+        device_role: peer
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: leaveChannel
+            params: {}
+            extra: {}
+  - step_id: leave-after-remote-audio-stats-observation
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-remote-audio-stats-leave
+        timestamp_ms: 1770000003900
+      data:
+        device_role: primary
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: leaveChannel
+            params: {}
+            extra: {}

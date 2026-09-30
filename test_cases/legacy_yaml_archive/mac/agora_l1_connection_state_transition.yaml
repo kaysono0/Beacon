@@ -1,0 +1,54 @@
+case_id: TC-MAC-AGORA-CONNECTION-STATE-TRANSITION
+name: macOS Agora L1 connection state transition
+platform: mac
+suite: agora_direct_call_l1
+scenario_family: direct_call
+implementation_status: runnable
+covered_capabilities:
+  - connection_state_transition
+steps:
+  - step_id: join-and-observe-connection-state
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l1-state-join
+        timestamp_ms: 1770000002400
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: joinChannel
+            params:
+              channel: real-smoke-state
+              uid: 1001
+              token: "{{AGORA_RTC_TOKEN}}"
+            extra: {}
+    assertions:
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onConnectionStateChanged
+        timeout_ms: 5000
+  - step_id: leave-after-connection-state
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l1-state-leave
+        timestamp_ms: 1770000002450
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: leaveChannel
+            params: {}
+            extra: {}

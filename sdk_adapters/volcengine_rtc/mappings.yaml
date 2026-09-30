@@ -1,0 +1,471 @@
+sdk: volcengine_rtc
+event_routing: {}
+mappings:
+  # interface 名按火山自身对象模型划分：引擎级（ByteRTCEngine）与房间级（ByteRTCRoom），
+  # 不与 Agora 的 interface / capability 命名对齐（通用性指平台可接入不同 SDK，而非命名一致）。
+  - capability: engine_lifecycle
+    calls:
+      - sdk: volcengine_rtc
+        interface: byte_rtc_engine
+        class_name: ByteRTCEngine
+        function: createRTCEngine
+        params_schema:
+          type: object
+          properties:
+            app_id:
+              type: string
+            _extra:
+              type: object
+      - sdk: volcengine_rtc
+        interface: byte_rtc_engine
+        class_name: ByteRTCEngine
+        function: destroyRTCEngine
+        params_schema:
+          type: object
+          properties: {}
+  - capability: room_join
+    calls:
+      - sdk: volcengine_rtc
+        interface: byte_rtc_room
+        class_name: ByteRTCRoom
+        function: joinRoom
+        params_schema:
+          type: object
+          properties:
+            room_id:
+              type: string
+            user_id:
+              type: string
+            token:
+              type: string
+            # 房间媒体开关按用例显式声明：默认值维持 L1 行为（发音频、不发视频），
+            # 画面用例必须显式打开 publish_video / auto_subscribe_video。
+            publish_audio:
+              type: boolean
+              default: true
+            publish_video:
+              type: boolean
+              default: false
+            auto_subscribe_audio:
+              type: boolean
+              default: true
+            auto_subscribe_video:
+              type: boolean
+              default: false
+            _extra:
+              type: object
+          required:
+            - room_id
+            - user_id
+            - token
+    callbacks:
+      - sdk: volcengine_rtc
+        interface: byte_rtc_room
+        class_name: ByteRTCRoomDelegate
+        function: onRoomStateChanged
+        payload_schema:
+          type: object
+          properties:
+            room_id:
+              type: string
+            uid:
+              type: string
+            state:
+              type: integer
+            elapsed_ms:
+              type: integer
+          required:
+            - room_id
+            - uid
+            - state
+        filterable_fields:
+          - room_id
+          - uid
+          - state
+        evidence_summary_fields:
+          - room_id
+          - uid
+          - state
+          - elapsed_ms
+  - capability: room_leave
+    calls:
+      - sdk: volcengine_rtc
+        interface: byte_rtc_room
+        class_name: ByteRTCRoom
+        function: leaveRoom
+        params_schema:
+          type: object
+          properties: {}
+    callbacks:
+      - sdk: volcengine_rtc
+        interface: byte_rtc_room
+        class_name: ByteRTCRoomDelegate
+        function: onLeaveRoom
+        payload_schema:
+          type: object
+          properties:
+            room_id:
+              type: string
+          required:
+            - room_id
+        filterable_fields:
+          - room_id
+        evidence_summary_fields:
+          - room_id
+  - capability: room_joined_state
+    # 火山没有等价于 Agora `isJoined` 的原生查询：本 target 指向真实存在的房间态回调，
+    # 但该能力在火山侧不提供同步查询语义，因此 provider 映射记为 unsupported（见 PRD OD3）。
+    states:
+      - sdk: volcengine_rtc
+        interface: byte_rtc_room
+        class_name: ByteRTCRoom
+        function: onRoomStateChangedWithReason
+        payload_schema:
+          type: object
+          properties:
+            room_id:
+              type: string
+            uid:
+              type: string
+            state:
+              type: integer
+            reason:
+              type: integer
+          required:
+            - room_id
+            - uid
+            - state
+  - capability: engine_connection_state
+    # 引擎级连接态回调真实可用：探针实测创建引擎时即回调 state 2(Connecting) → 3(Connected)。
+    callbacks:
+      - sdk: volcengine_rtc
+        interface: byte_rtc_engine
+        class_name: ByteRTCEngineDelegate
+        function: onConnectionStateChanged
+        payload_schema:
+          type: object
+          properties:
+            state:
+              type: integer
+          required:
+            - state
+        filterable_fields:
+          - state
+        evidence_summary_fields:
+          - state
+  - capability: engine_error_events
+    callbacks:
+      - sdk: volcengine_rtc
+        interface: byte_rtc_engine
+        class_name: ByteRTCEngineDelegate
+        function: onError
+        payload_schema:
+          type: object
+          properties:
+            code:
+              type: integer
+          required:
+            - code
+        filterable_fields:
+          - code
+        evidence_summary_fields:
+          - code
+  # ---- 画面能力面（B-020）----
+  - capability: engine_video_capture
+    calls:
+      - sdk: volcengine_rtc
+        interface: byte_rtc_engine
+        class_name: ByteRTCEngine
+        function: startVideoCapture
+        params_schema:
+          type: object
+          properties:
+            _extra:
+              type: object
+      - sdk: volcengine_rtc
+        interface: byte_rtc_engine
+        class_name: ByteRTCEngine
+        function: stopVideoCapture
+        params_schema:
+          type: object
+          properties: {}
+  - capability: synthetic_video_source
+    calls:
+      - sdk: volcengine_rtc
+        interface: byte_rtc_engine
+        class_name: ByteRTCEngine
+        function: startSyntheticVideo
+        params_schema:
+          type: object
+          properties:
+            width:
+              type: integer
+              default: 320
+            height:
+              type: integer
+              default: 180
+            fps:
+              type: integer
+              default: 15
+            pattern:
+              type: string
+              enum:
+                - animated_clip
+                - bars
+                - moving_stripe
+              default: animated_clip
+            _extra:
+              type: object
+      - sdk: volcengine_rtc
+        interface: byte_rtc_engine
+        class_name: ByteRTCEngine
+        function: stopSyntheticVideo
+        params_schema:
+          type: object
+          properties:
+            _extra:
+              type: object
+  - capability: visual_probe
+    calls:
+      - sdk: volcengine_rtc
+        interface: visual_probe
+        class_name: ByteRTCVisualProbe
+        function: bindLocalVideo
+        params_schema:
+          type: object
+          properties:
+            view_role:
+              type: string
+          required:
+            - view_role
+      - sdk: volcengine_rtc
+        interface: visual_probe
+        class_name: ByteRTCVisualProbe
+        function: bindRemoteVideo
+        params_schema:
+          type: object
+          properties:
+            uid:
+              type: string
+            view_role:
+              type: string
+          required:
+            - uid
+            - view_role
+      - sdk: volcengine_rtc
+        interface: visual_probe
+        class_name: ByteRTCVisualProbe
+        function: captureSnapshot
+        params_schema:
+          type: object
+          properties:
+            view_role:
+              type: string
+          required:
+            - view_role
+      - sdk: volcengine_rtc
+        interface: visual_probe
+        class_name: ByteRTCVisualProbe
+        function: releaseView
+        params_schema:
+          type: object
+          properties:
+            view_role:
+              type: string
+          required:
+            - view_role
+  - capability: remote_video_rendering
+    callbacks:
+      - sdk: volcengine_rtc
+        interface: byte_rtc_engine
+        class_name: ByteRTCEngineDelegate
+        function: onFirstRemoteVideoFrame
+        payload_schema:
+          type: object
+          properties:
+            uid:
+              type: string
+            stream_id:
+              type: string
+            width:
+              type: integer
+            height:
+              type: integer
+            sdk_function:
+              type: string
+          required:
+            - uid
+            - width
+            - height
+        filterable_fields:
+          - uid
+          - stream_id
+        evidence_summary_fields:
+          - uid
+          - width
+          - height
+  - capability: rtc_stats_observability
+    callbacks:
+      - sdk: volcengine_rtc
+        interface: byte_rtc_room
+        class_name: ByteRTCRoomDelegate
+        function: onRtcStats
+        payload_schema:
+          type: object
+          properties:
+            tx_video_kbitrate:
+              type: number
+            rx_video_kbitrate:
+              type: number
+            sdk_function:
+              type: string
+        filterable_fields:
+          - tx_video_kbitrate
+          - rx_video_kbitrate
+        evidence_summary_fields:
+          - tx_video_kbitrate
+          - rx_video_kbitrate
+  - capability: local_video_stats_observability
+    callbacks:
+      - sdk: volcengine_rtc
+        interface: byte_rtc_room
+        class_name: ByteRTCRoomDelegate
+        function: onLocalVideoStats
+        payload_schema:
+          type: object
+          properties:
+            uid:
+              type: string
+            width:
+              type: integer
+            height:
+              type: integer
+            sent_bitrate:
+              type: number
+            sent_frame_rate:
+              type: integer
+            source_type:
+              type: integer
+            stream_id:
+              type: string
+            sdk_function:
+              type: string
+          required:
+            - uid
+        filterable_fields:
+          - uid
+          - source_type
+        evidence_summary_fields:
+          - uid
+          - width
+          - height
+          - sent_bitrate
+          - sent_frame_rate
+          - source_type
+  - capability: remote_video_stats_observability
+    callbacks:
+      - sdk: volcengine_rtc
+        interface: byte_rtc_room
+        class_name: ByteRTCRoomDelegate
+        function: onRemoteVideoStats
+        payload_schema:
+          type: object
+          properties:
+            uid:
+              type: string
+            width:
+              type: integer
+            height:
+              type: integer
+            received_bitrate:
+              type: number
+            decoder_output_frame_rate:
+              type: integer
+            renderer_output_frame_rate:
+              type: integer
+            stream_id:
+              type: string
+            sdk_function:
+              type: string
+          required:
+            - uid
+        filterable_fields:
+          - uid
+          - stream_id
+        evidence_summary_fields:
+          - uid
+          - width
+          - height
+          - received_bitrate
+          - decoder_output_frame_rate
+          - renderer_output_frame_rate
+  - capability: visual_snapshot_observability
+    callbacks:
+      - sdk: volcengine_rtc
+        interface: byte_rtc_engine
+        class_name: ByteRTCEngineDelegate
+        function: onSnapshotRequested
+        payload_schema:
+          type: object
+          properties:
+            uid:
+              type: string
+            view_role:
+              type: string
+            artifact_key:
+              type: string
+            file_path:
+              type: string
+            return_code:
+              type: integer
+            task_id:
+              type: integer
+            stream_id:
+              type: string
+            sdk_function:
+              type: string
+        filterable_fields:
+          - view_role
+          - return_code
+        evidence_summary_fields:
+          - uid
+          - view_role
+          - file_path
+          - return_code
+      - sdk: volcengine_rtc
+        interface: byte_rtc_engine
+        class_name: ByteRTCEngineDelegate
+        function: onSnapshotTaken
+        payload_schema:
+          type: object
+          properties:
+            uid:
+              type: string
+            view_role:
+              type: string
+            artifact_key:
+              type: string
+            file_path:
+              type: string
+            width:
+              type: integer
+            height:
+              type: integer
+            err_code:
+              type: integer
+            task_id:
+              type: integer
+            stream_id:
+              type: string
+            sdk_function:
+              type: string
+        filterable_fields:
+          - view_role
+          - err_code
+        evidence_summary_fields:
+          - uid
+          - view_role
+          - file_path
+          - width
+          - height
+          - err_code

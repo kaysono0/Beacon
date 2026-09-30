@@ -1,0 +1,26 @@
+case_id: TC-MAC-AGORA-REAL-LIFECYCLE
+name: macOS Agora real lifecycle
+platform: mac
+suite: agora_direct_call_core
+scenario_family: direct_call
+implementation_status: runnable
+covered_capabilities:
+  - leave_cleanup
+steps:
+  - step_id: load-sdk
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-real-load-sdk
+        timestamp_ms: 1770000001100
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: SDKLifecycle
+              function: loadSDK
+            params: {}
+            extra: {}

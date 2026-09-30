@@ -1,0 +1,11 @@
+{
+  "common": {
+    "action": "callbackResponse",
+    "op_id": "op-callback-001",
+    "timestamp_ms": 1770000000201
+  },
+  "data": {
+    "code": 0,
+    "message": "installed"
+  }
+}

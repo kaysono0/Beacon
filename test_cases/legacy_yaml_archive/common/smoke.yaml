@@ -1,0 +1,32 @@
+case_id: TC-COMMON-SMOKE
+name: Common protocol smoke
+platform: common
+steps:
+  - step_id: register
+    packet:
+      common:
+        action: registerRequest
+        op_id: op-common-register
+        timestamp_ms: 1770000000000
+      data:
+        node_id: mac-local-001
+        capabilities:
+          - rtc.mock
+  - step_id: invoke
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-common-invoke
+        timestamp_ms: 1770000000100
+      data:
+        node_id: mac-local-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              class_name: AgoraRtcEngineKit
+              function: joinChannel
+            params:
+              channel: smoke
+              uid: 1001
+            extra: {}

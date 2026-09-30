@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "invariants": [
+    {"id": "INV-001", "starts_at": "IR-00", "proof": "source_scan"},
+    {"id": "INV-002", "starts_at": "IR-06", "proof": "source_scan"},
+    {"id": "INV-003", "starts_at": "IR-00", "proof": "stage_source_scan"},
+    {"id": "INV-004", "starts_at": "IR-06", "proof": "stage_source_scan"},
+    {"id": "INV-005", "starts_at": "IR-05", "proof": "source_scan"},
+    {"id": "INV-006", "starts_at": "IR-05", "proof": "contract_test"},
+    {"id": "INV-007", "starts_at": "IR-04", "proof": "contract_test"},
+    {"id": "INV-008", "starts_at": "IR-02", "proof": "contract_test"},
+    {"id": "INV-009", "starts_at": "IR-05", "proof": "counting_fake_contract_test"},
+    {"id": "INV-010", "starts_at": "IR-11", "proof": "source_scan"}
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sdk", "mappings"],
+  "properties": {
+    "sdk": {"type": "string", "minLength": 1},
+    "mappings": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/mapping"}},
+    "event_routing": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {"default_target": {"$ref": "#/$defs/target"}}
+    }
+  },
+  "$defs": {
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sdk", "class_name", "function"],
+      "properties": {
+        "sdk": {"type": "string", "minLength": 1},
+        "interface": {"type": "string", "minLength": 1},
+        "class_name": {"type": "string", "minLength": 1},
+        "function": {"type": "string", "minLength": 1},
+        "overload": {"type": "string", "minLength": 1}
+      }
+    },
+    "call": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sdk", "class_name", "function"],
+      "properties": {
+        "sdk": {"type": "string", "minLength": 1}, "interface": {"type": "string", "minLength": 1},
+        "class_name": {"type": "string", "minLength": 1}, "function": {"type": "string", "minLength": 1},
+        "overload": {"type": "string", "minLength": 1}, "params_schema": {"type": "object"}, "result_schema": {"type": "object"}
+      }
+    },
+    "observed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sdk", "class_name", "function"],
+      "properties": {
+        "sdk": {"type": "string", "minLength": 1}, "interface": {"type": "string", "minLength": 1},
+        "class_name": {"type": "string", "minLength": 1}, "function": {"type": "string", "minLength": 1},
+        "overload": {"type": "string", "minLength": 1}, "payload_schema": {"type": "object"},
+        "filterable_fields": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "evidence_summary_fields": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capability"],
+      "properties": {
+        "capability": {"type": "string", "minLength": 1},
+        "calls": {"type": "array", "items": {"$ref": "#/$defs/call"}},
+        "callbacks": {"type": "array", "items": {"$ref": "#/$defs/observed"}},
+        "metrics": {"type": "array", "items": {"$ref": "#/$defs/observed"}},
+        "artifacts": {"type": "array", "items": {"$ref": "#/$defs/observed"}},
+        "logs": {"type": "array", "items": {"$ref": "#/$defs/observed"}},
+        "states": {"type": "array", "items": {"$ref": "#/$defs/observed"}}
+      },
+      "anyOf": [{"required": ["calls"]}, {"required": ["callbacks"]}, {"required": ["metrics"]}, {"required": ["artifacts"]}, {"required": ["logs"]}, {"required": ["states"]}]
+    }
+  }
+}

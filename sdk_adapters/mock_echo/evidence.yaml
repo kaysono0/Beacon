@@ -1,0 +1,10 @@
+sdk: mock_echo
+evidence:
+  - capability: echo_callback
+    expects:
+      - type: event
+        event_target:
+          sdk: mock_echo
+          interface: echo
+          class_name: EchoDelegate
+          function: onEchoReceived

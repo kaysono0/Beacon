@@ -1,0 +1,29 @@
+sdk: volcengine_rtc
+
+# provider 支持关系：按 interface 声明「哪个平台由哪个 provider 支撑」。
+# 规则按声明顺序匹配，首个命中生效，因此函数级例外必须排在 interface 级规则之前。
+rules:
+  # room_joined_state 的 target 是真实存在的房间态回调，但火山没有同步查询语义：
+  # 该能力显式记为 unsupported（运行时 488，不计 failed），不注册 Mac handler。
+  - interfaces: [byte_rtc_room]
+    functions: [onRoomStateChangedWithReason]
+    mappings:
+      - platform: mac
+        status: unsupported
+        provider: null
+        bridge_boundary: agents/mac
+
+  - interfaces: [byte_rtc_engine, byte_rtc_room]
+    mappings:
+      - platform: mac
+        status: supported
+        provider: RTCInvocationProvider
+        bridge_boundary: agents/mac
+
+  # 视觉探针（bind/capture/release）：与 Agora 同一能力面约定，独立 provider 承载。
+  - interfaces: [visual_probe]
+    mappings:
+      - platform: mac
+        status: supported
+        provider: VolcengineVisualProbeProvider
+        bridge_boundary: agents/mac

@@ -1,0 +1,93 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Mac Real: Join Callback",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build-debug/agents/mac/mac_real_adapter_test",
+      "args": [
+        "IT-AGORA-JOIN-CALLBACK"
+      ],
+      "cwd": "${workspaceFolder}",
+      "terminal": "integrated",
+      "stopOnEntry": true,
+      "envFile": "${workspaceFolder}/local.agora.env",
+      "env": {
+        "DYLD_FRAMEWORK_PATH": "${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraAiEchoCancellationExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraAiNoiseSuppressionExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraAudioBeautyExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraClearVisionExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraContentInspectExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraFaceCaptureExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraFaceDetectionExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraLipSyncExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraRtcKit.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraScreenCaptureExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraSoundTouch.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraSpatialAudioExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraVideoAv1EncoderExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraVideoEncoderExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraVideoQualityAnalyzerExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraVideoSegmentationExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/Agorafdkaac.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/Agoraffmpeg.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/aosl.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/video_dec.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/video_enc.xcframework/macos-arm64_x86_64"
+      },
+      "preLaunchTask": "Build mac_real_adapter_test Debug"
+    },
+    {
+      "name": "Mac Real: Join Channel",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build-debug/agents/mac/mac_real_adapter_test",
+      "args": [
+        "BRIDGE-MAC-REAL-02"
+      ],
+      "cwd": "${workspaceFolder}",
+      "terminal": "integrated",
+      "stopOnEntry": true,
+      "envFile": "${workspaceFolder}/local.agora.env",
+      "env": {
+        "DYLD_FRAMEWORK_PATH": "${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraAiEchoCancellationExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraAiNoiseSuppressionExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraAudioBeautyExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraClearVisionExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraContentInspectExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraFaceCaptureExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraFaceDetectionExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraLipSyncExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraRtcKit.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraScreenCaptureExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraSoundTouch.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraSpatialAudioExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraVideoAv1EncoderExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraVideoEncoderExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraVideoQualityAnalyzerExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraVideoSegmentationExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/Agorafdkaac.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/Agoraffmpeg.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/aosl.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/video_dec.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/video_enc.xcframework/macos-arm64_x86_64"
+      },
+      "preLaunchTask": "Build mac_real_adapter_test Debug"
+    },
+    {
+      "name": "Mac Real: Leave Channel",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build-debug/agents/mac/mac_real_adapter_test",
+      "args": [
+        "IT-AGORA-LEAVE-CHANNEL"
+      ],
+      "cwd": "${workspaceFolder}",
+      "terminal": "integrated",
+      "stopOnEntry": true,
+      "envFile": "${workspaceFolder}/local.agora.env",
+      "env": {
+        "DYLD_FRAMEWORK_PATH": "${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraAiEchoCancellationExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraAiNoiseSuppressionExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraAudioBeautyExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraClearVisionExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraContentInspectExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraFaceCaptureExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraFaceDetectionExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraLipSyncExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraRtcKit.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraScreenCaptureExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraSoundTouch.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraSpatialAudioExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraVideoAv1EncoderExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraVideoEncoderExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraVideoQualityAnalyzerExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraVideoSegmentationExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/Agorafdkaac.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/Agoraffmpeg.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/aosl.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/video_dec.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/video_enc.xcframework/macos-arm64_x86_64"
+      },
+      "preLaunchTask": "Build mac_real_adapter_test Debug"
+    },
+    {
+      "name": "Mac Real: Preview",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build-debug/agents/mac/mac_real_adapter_test",
+      "args": [
+        "IT-AGORA-04"
+      ],
+      "cwd": "${workspaceFolder}",
+      "terminal": "integrated",
+      "stopOnEntry": true,
+      "envFile": "${workspaceFolder}/local.agora.env",
+      "env": {
+        "DYLD_FRAMEWORK_PATH": "${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraAiEchoCancellationExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraAiNoiseSuppressionExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraAudioBeautyExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraClearVisionExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraContentInspectExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraFaceCaptureExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraFaceDetectionExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraLipSyncExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraRtcKit.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraScreenCaptureExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraSoundTouch.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraSpatialAudioExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraVideoAv1EncoderExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraVideoEncoderExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraVideoQualityAnalyzerExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/AgoraVideoSegmentationExtension.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/Agorafdkaac.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/Agoraffmpeg.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/aosl.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/video_dec.xcframework/macos-arm64_x86_64:${workspaceFolder}/third_party/agora/macos/sdk/Shengwang_Native_SDK_for_Mac_FULL/libs/video_enc.xcframework/macos-arm64_x86_64"
+      },
+      "preLaunchTask": "Build mac_real_adapter_test Debug"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:Beacon}/apps/mac_test_console",
+      "name": "Debug BeaconMacTestConsole (apps/mac_test_console)",
+      "target": "BeaconMacTestConsole",
+      "configuration": "debug",
+      "preLaunchTask": "swift: Build Debug BeaconMacTestConsole (apps/mac_test_console)"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:Beacon}/apps/mac_test_console",
+      "name": "Release BeaconMacTestConsole (apps/mac_test_console)",
+      "target": "BeaconMacTestConsole",
+      "configuration": "release",
+      "preLaunchTask": "swift: Build Release BeaconMacTestConsole (apps/mac_test_console)"
+    }
+  ]
+}

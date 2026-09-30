@@ -1,0 +1,55 @@
+case_id: TC-MAC-AGORA-REAL-JOIN-CALLBACK
+name: macOS Agora real join callback
+platform: mac
+suite: agora_direct_call_core
+scenario_family: direct_call
+implementation_status: runnable
+covered_capabilities:
+  - join_success_fact
+  - leave_cleanup
+steps:
+  - step_id: join-real-channel
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-real-join
+        timestamp_ms: 1770000001300
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: joinChannel
+            params:
+              channel: real-smoke
+              uid: 1001
+              token: "{{AGORA_RTC_TOKEN}}"
+            extra: {}
+    assertions:
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onJoinChannelSuccess
+        timeout_ms: 5000
+  - step_id: leave-after-join-callback
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-real-leave-after-join
+        timestamp_ms: 1770000001350
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: leaveChannel
+            params: {}
+            extra: {}

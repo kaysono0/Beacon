@@ -1,0 +1,54 @@
+case_id: TC-MAC-AGORA-INVALID-TOKEN-FAILURE
+name: macOS Agora invalid token failure
+platform: mac
+suite: agora_failure_recovery_resilience
+scenario_family: failure_recovery
+implementation_status: runnable
+covered_capabilities:
+  - invalid_token_failure
+steps:
+  - step_id: load-sdk-before-invalid-token
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-invalid-token-load-sdk
+        timestamp_ms: 1770000002100
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: SDKLifecycle
+              function: loadSDK
+            params: {}
+            extra: {}
+  - step_id: join-channel-with-invalid-token
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-invalid-token-join
+        timestamp_ms: 1770000002200
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: joinChannel
+            params:
+              channel: invalid-token-smoke
+              uid: 1002
+              token: invalid-token
+            extra: {}
+    assertions:
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onError
+        timeout_ms: 5000

@@ -1,0 +1,47 @@
+sdk: mock_complex_sdk
+
+# provider 支持关系：按 interface 声明「哪个平台由哪个 provider 支撑」。
+# 规则按声明顺序匹配，首个命中生效；函数级例外必须声明在同 interface 的
+# interface 级规则之前，否则会被 interface 级规则先命中。
+rules:
+  - interfaces: [metrics, artifacts, diagnostics, control]
+    mappings:
+      - platform: server_focused_fixture
+        status: supported
+        provider: MockComplexProtocolWebSocket
+        bridge_boundary: server/tests
+      - platform: mac_mock_agent
+        status: designed_but_blocked
+        provider: null
+        bridge_boundary: scripts/validation/run_e2e_mock_tests.py
+      - platform: mac
+        status: unsupported
+        provider: null
+        bridge_boundary: agents/mac
+
+  - interfaces: [session]
+    functions: [describeValue, ensureValue, rejectValue, setParameterMatrix, onParameterMatrixSet]
+    mappings:
+      - platform: server_focused_fixture
+        status: supported
+        provider: MockComplexProtocolWebSocket
+        bridge_boundary: server/tests
+      - platform: mac_mock_agent
+        status: designed_but_blocked
+        provider: null
+        bridge_boundary: scripts/validation/run_e2e_mock_tests.py
+      - platform: mac
+        status: unsupported
+        provider: null
+        bridge_boundary: agents/mac
+
+  - interfaces: [session]
+    mappings:
+      - platform: mac_mock_agent
+        status: supported
+        provider: MockAgentHarness
+        bridge_boundary: scripts/validation/run_e2e_mock_tests.py
+      - platform: mac
+        status: unsupported
+        provider: null
+        bridge_boundary: agents/mac

@@ -1,0 +1,12 @@
+{
+  "common": {
+    "action": "reconnectResponse",
+    "op_id": "op-reconnect-001",
+    "timestamp_ms": 1770000000401
+  },
+  "data": {
+    "code": 0,
+    "message": "ok",
+    "state": 1
+  }
+}

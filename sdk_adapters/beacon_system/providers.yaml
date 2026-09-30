@@ -1,0 +1,25 @@
+sdk: beacon_system
+
+# provider 支持关系：按 interface 声明「哪个平台由哪个 provider 支撑」。
+# 规则按声明顺序匹配，首个命中生效。
+rules:
+  - interfaces: [clock]
+    mappings:
+      - platform: mac
+        status: supported
+        provider: RTCInvocationProvider
+        bridge_boundary: agents/mac
+
+  - interfaces: [network_condition]
+    mappings:
+      - platform: mac
+        status: supported
+        provider: NetworkConditionProvider
+        bridge_boundary: agents/mac
+
+  - interfaces: [video_host]
+    mappings:
+      - platform: mac
+        status: supported
+        provider: VideoHostProvider
+        bridge_boundary: agents/mac

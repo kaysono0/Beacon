@@ -1,0 +1,24 @@
+{
+  "common": {
+    "action": "invokeRequest",
+    "op_id": "op-invoke-001",
+    "timestamp_ms": 1770000000100
+  },
+  "data": {
+    "node_id": "mac-local-001",
+    "sync": true,
+    "list": [
+      {
+        "target": {
+          "sdk": "agora_rtc",
+          "interface": "rtc_engine",
+          "class_name": "AgoraRtcEngineKit",
+          "function": "joinChannel"
+        },
+        "resource_ref": "engine_1",
+        "params": "{\"channel\":\"smoke\",\"uid\":1001}",
+        "extra": "{}"
+      }
+    ]
+  }
+}

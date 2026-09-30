@@ -1,0 +1,18 @@
+sdk: mock_complex_sdk
+evidence:
+  - capability: parameter_matrix_set
+    expects:
+      - type: event
+        event_target:
+          sdk: mock_complex_sdk
+          interface: session
+          class_name: MockComplexSessionObserver
+          function: onParameterMatrixSet
+  - capability: value_applied
+    expects:
+      - type: event
+        event_target:
+          sdk: mock_complex_sdk
+          interface: session
+          class_name: MockComplexSessionObserver
+          function: onValueApplied

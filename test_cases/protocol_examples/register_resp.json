@@ -1,0 +1,12 @@
+{
+  "common": {
+    "action": "registerResponse",
+    "op_id": "op-register-001",
+    "timestamp_ms": 1770000000001
+  },
+  "data": {
+    "code": 0,
+    "message": "ok",
+    "lease_id": "lease-local-001"
+  }
+}

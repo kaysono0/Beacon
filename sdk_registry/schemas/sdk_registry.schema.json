@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sdk_registry.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sdk", "version", "capabilities", "interfaces", "evidence", "contract_matrix"],
+  "properties": {
+    "sdk": {"type": "string", "minLength": 1},
+    "version": {"type": "integer", "const": 1},
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "name": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "interfaces": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "capability", "target"],
+        "properties": {
+          "kind": {"enum": ["call", "callback", "state", "metric", "artifact", "log"]},
+          "capability": {"type": "string", "minLength": 1},
+          "target": {"$ref": "#/$defs/target"},
+          "params_schema": {"type": "object"},
+          "result_schema": {"type": "object"},
+          "payload_schema": {"type": "object"},
+          "filterable_fields": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1}
+          },
+          "evidence_summary_fields": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["capability", "expects"],
+        "properties": {
+          "capability": {"type": "string", "minLength": 1},
+          "expects": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["type", "event_target"],
+              "properties": {
+                "type": {"enum": ["event"]},
+                "event_target": {"$ref": "#/$defs/target"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "contract_matrix": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "capability",
+          "kind",
+          "target",
+          "authoring",
+          "server_validation",
+          "provider_mappings",
+          "evidence_projection",
+          "object_lifecycle",
+          "callback_lifecycle",
+          "scheduling"
+        ],
+        "properties": {
+          "capability": {"type": "string", "minLength": 1},
+          "kind": {"enum": ["call", "callback", "state", "metric", "artifact", "log"]},
+          "target": {"$ref": "#/$defs/target"},
+          "authoring": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["dynamic", "typed_facade"],
+            "properties": {
+              "dynamic": {"type": "string", "minLength": 1},
+              "typed_facade": {"type": "string", "minLength": 1}
+            }
+          },
+          "server_validation": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["target_contract", "params_schema", "result_schema", "payload_schema"],
+            "properties": {
+              "target_contract": {"type": "string", "minLength": 1},
+              "params_schema": {"type": "object"},
+              "result_schema": {"type": "object"},
+              "payload_schema": {"type": "object"}
+            }
+          },
+          "provider_mappings": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["platform", "status", "provider", "bridge_boundary"],
+              "properties": {
+                "platform": {"type": "string", "minLength": 1},
+                "status": {"enum": ["supported", "unsupported", "partial", "designed_but_blocked"]},
+                "provider": {"type": ["string", "null"]},
+                "bridge_boundary": {"type": "string", "minLength": 1}
+              }
+            }
+          },
+          "evidence_projection": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["evidence_type", "report_projection", "summary_fields", "evidence_capability"],
+            "properties": {
+              "evidence_type": {"enum": ["sdk_call", "event", "state", "metric", "artifact", "log"]},
+              "report_projection": {"type": "string", "minLength": 1},
+              "summary_fields": {
+                "type": "array",
+                "items": {"type": "string", "minLength": 1}
+              },
+              "evidence_capability": {"type": ["string", "null"]}
+            }
+          },
+          "object_lifecycle": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["handle_kind", "owner", "author_visible"],
+            "properties": {
+              "handle_kind": {"type": "string", "minLength": 1},
+              "owner": {"type": "string", "minLength": 1},
+              "author_visible": {"type": "boolean"}
+            }
+          },
+          "callback_lifecycle": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["handle_kind", "subscribe", "observe", "unsubscribe"],
+            "properties": {
+              "handle_kind": {"type": "string", "minLength": 1},
+              "subscribe": {"type": "boolean"},
+              "observe": {"type": "boolean"},
+              "unsubscribe": {"type": "boolean"},
+              "filterable_fields": {
+                "type": "array",
+                "items": {"type": "string", "minLength": 1}
+              }
+            }
+          },
+          "scheduling": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["mode", "thread"],
+            "properties": {
+              "mode": {"enum": ["sync", "async_callback", "custom", "unsupported"]},
+              "thread": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sdk", "class_name", "function"],
+      "properties": {
+        "sdk": {"type": "string", "minLength": 1},
+        "interface": {"type": "string", "minLength": 1},
+        "class_name": {"type": "string", "minLength": 1},
+        "function": {"type": "string", "minLength": 1},
+        "overload": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

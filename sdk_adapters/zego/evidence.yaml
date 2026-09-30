@@ -1,0 +1,32 @@
+sdk: zego_express
+evidence:
+  - capability: room_login
+    expects:
+      - type: event
+        event_target:
+          sdk: zego_express
+          interface: zego_room
+          class_name: ZegoEventHandler
+          function: onRoomStateUpdate
+  - capability: room_logout
+    expects:
+      - type: event
+        event_target:
+          sdk: zego_express
+          interface: zego_room
+          class_name: ZegoEventHandler
+          function: onRoomStateUpdate
+  - capability: stream_publish
+    expects:
+      - type: event
+        event_target: {sdk: zego_express, interface: zego_publisher, class_name: ZegoEventHandler, function: onPublisherStateUpdate}
+  - capability: stream_play
+    expects:
+      - type: event
+        event_target: {sdk: zego_express, interface: zego_player, class_name: ZegoEventHandler, function: onPlayerRenderVideoFirstFrame}
+      - type: event
+        event_target: {sdk: zego_express, interface: zego_player, class_name: ZegoEventHandler, function: onPlayerStateUpdate}
+  - capability: visual_snapshot_observability
+    expects:
+      - type: event
+        event_target: {sdk: zego_express, interface: zego_visual_probe, class_name: BeaconZegoVisualProbe, function: onRenderedViewSnapshot}

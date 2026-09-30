@@ -1,0 +1,554 @@
+sdk: agora_rtc
+event_routing:
+  default_target:
+    sdk: agora_rtc
+    interface: rtc_engine
+    class_name: AgoraRtcEngineDelegate
+    function: onUnknownCallback
+mappings:
+  - capability: sdk_lifecycle
+    calls:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: SDKLifecycle
+        function: loadSDK
+        params_schema:
+          type: object
+          properties: {}
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: SDKLifecycle
+        function: unloadSDK
+        params_schema:
+          type: object
+          properties: {}
+  - capability: join_channel
+    calls:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineKit
+        function: joinChannel
+        params_schema:
+          type: object
+          properties:
+            channel:
+              type: string
+            uid:
+              type: integer
+            token:
+              type: string
+            auto_subscribe_audio:
+              type: boolean
+            auto_subscribe_video:
+              type: boolean
+            publish_camera:
+              type: boolean
+            publish_microphone:
+              type: boolean
+            publish_synthetic_audio:
+              type: boolean
+            publish_media_player:
+              type: boolean
+            _extra:
+              type: object
+          required:
+            - channel
+            - uid
+    callbacks:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineDelegate
+        function: onJoinChannelSuccess
+        payload_schema:
+          type: object
+          properties:
+            channel:
+              type: string
+            uid:
+              type: integer
+            elapsed_ms:
+              type: integer
+          required:
+            - channel
+            - uid
+        filterable_fields:
+          - channel
+          - uid
+        evidence_summary_fields:
+          - channel
+          - uid
+          - elapsed_ms
+  - capability: leave_channel
+    calls:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineKit
+        function: leaveChannel
+        params_schema:
+          type: object
+          properties: {}
+  - capability: local_audio_control
+    calls:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineKit
+        function: enableLocalAudio
+        params_schema:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+          required:
+            - enabled
+  - capability: token_renewal
+    calls:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineKit
+        function: renewToken
+        params_schema:
+          type: object
+          properties:
+            token:
+              type: string
+            channel:
+              type: string
+            uid:
+              type: integer
+          required:
+            - token
+  - capability: connection_state
+    calls:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineKit
+        function: getConnectionState
+        params_schema:
+          type: object
+          properties:
+            _extra:
+              type: object
+    callbacks:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineDelegate
+        function: onConnectionStateChanged
+        payload_schema:
+          type: object
+          properties:
+            state:
+              type: integer
+            reason:
+              type: integer
+          required:
+            - state
+        filterable_fields:
+          - state
+          - reason
+        evidence_summary_fields:
+          - state
+          - reason
+  - capability: error_event_observability
+    callbacks:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineDelegate
+        function: onError
+        payload_schema:
+          type: object
+          properties:
+            code:
+              type: integer
+          required:
+            - code
+        filterable_fields:
+          - code
+        evidence_summary_fields:
+          - code
+  - capability: remote_video_rendering
+    callbacks:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineDelegate
+        function: onFirstRemoteVideoFrame
+        payload_schema:
+          type: object
+          properties:
+            uid:
+              type: integer
+            width:
+              type: integer
+            height:
+              type: integer
+            elapsed:
+              type: integer
+          required:
+            - uid
+            - width
+            - height
+        filterable_fields:
+          - uid
+        evidence_summary_fields:
+          - uid
+          - width
+          - height
+          - elapsed
+  - capability: synthetic_video_source
+    calls:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineKit
+        function: startSyntheticVideo
+        params_schema:
+          type: object
+          properties:
+            width:
+              type: integer
+              default: 320
+            height:
+              type: integer
+              default: 180
+            fps:
+              type: integer
+              default: 15
+            pattern:
+              type: string
+              enum:
+                - animated_clip
+                - paired_media_clip
+                - bars
+                - moving_stripe
+              default: animated_clip
+            _extra:
+              type: object
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineKit
+        function: stopSyntheticVideo
+        params_schema:
+          type: object
+          properties:
+            _extra:
+              type: object
+  - capability: simulcast_dual_stream
+    calls:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineKit
+        function: setDualStreamMode
+        params_schema:
+          type: object
+          properties:
+            mode:
+              type: string
+              enum: [auto, enabled, disabled]
+            low_width:
+              type: integer
+            low_height:
+              type: integer
+            low_bitrate:
+              type: integer
+            low_fps:
+              type: integer
+          required: [mode]
+  - capability: remote_video_layer_selection
+    calls:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineKit
+        function: setRemoteVideoStream
+        params_schema:
+          type: object
+          properties:
+            uid:
+              type: integer
+            stream_type:
+              type: string
+              enum: [high, low]
+          required: [uid, stream_type]
+  - capability: media_player_source
+    calls:
+      - sdk: agora_rtc
+        interface: media_player
+        class_name: AgoraRtcMediaPlayerProtocol
+        function: openMediaPlayer
+        params_schema:
+          type: object
+          properties:
+            source_path:
+              type: string
+            start_pos_ms:
+              type: integer
+              minimum: 0
+              default: 0
+          required:
+            - source_path
+      - sdk: agora_rtc
+        interface: media_player
+        class_name: AgoraRtcMediaPlayerProtocol
+        function: playMediaPlayer
+        params_schema:
+          type: object
+          properties: {}
+      - sdk: agora_rtc
+        interface: media_player
+        class_name: AgoraRtcMediaPlayerProtocol
+        function: pauseMediaPlayer
+        params_schema:
+          type: object
+          properties: {}
+      - sdk: agora_rtc
+        interface: media_player
+        class_name: AgoraRtcMediaPlayerProtocol
+        function: resumeMediaPlayer
+        params_schema:
+          type: object
+          properties: {}
+      - sdk: agora_rtc
+        interface: media_player
+        class_name: AgoraRtcMediaPlayerProtocol
+        function: stopMediaPlayer
+        params_schema:
+          type: object
+          properties: {}
+  - capability: media_player_state_observability
+    callbacks:
+      - sdk: agora_rtc
+        interface: media_player
+        class_name: AgoraRtcMediaPlayerDelegate
+        function: onMediaPlayerStateChanged
+        payload_schema:
+          type: object
+          properties:
+            player_id:
+              type: integer
+            state:
+              type: integer
+            reason:
+              type: integer
+          required:
+            - player_id
+            - state
+            - reason
+        filterable_fields:
+          - state
+          - reason
+        evidence_summary_fields:
+          - player_id
+          - state
+          - reason
+  - capability: visual_probe
+    calls:
+      - sdk: agora_rtc
+        interface: visual_probe
+        class_name: AgoraVisualProbe
+        function: bindLocalVideo
+        params_schema:
+          type: object
+          properties:
+            view_role:
+              type: string
+          required:
+            - view_role
+      - sdk: agora_rtc
+        interface: visual_probe
+        class_name: AgoraVisualProbe
+        function: bindRemoteVideo
+        params_schema:
+          type: object
+          properties:
+            uid:
+              type: integer
+            view_role:
+              type: string
+          required:
+            - uid
+            - view_role
+      - sdk: agora_rtc
+        interface: visual_probe
+        class_name: AgoraVisualProbe
+        function: captureSnapshot
+        params_schema:
+          type: object
+          properties:
+            view_role:
+              type: string
+          required:
+            - view_role
+      - sdk: agora_rtc
+        interface: visual_probe
+        class_name: AgoraVisualProbe
+        function: releaseView
+        params_schema:
+          type: object
+          properties:
+            view_role:
+              type: string
+          required:
+            - view_role
+  - capability: preview_control
+    calls:
+      - sdk: agora_rtc
+        interface: video_preview
+        class_name: AgoraRtcEngineKit
+        function: startPreview
+        params_schema:
+          type: object
+          properties:
+            _extra:
+              type: object
+      - sdk: agora_rtc
+        interface: video_preview
+        class_name: AgoraRtcEngineKit
+        function: stopPreview
+        params_schema:
+          type: object
+          properties: {}
+  - capability: rtc_stats_observability
+    callbacks:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineDelegate
+        function: onRtcStats
+        payload_schema:
+          type: object
+          properties:
+            duration:
+              type: integer
+            tx_bytes:
+              type: integer
+            rx_bytes:
+              type: integer
+        filterable_fields:
+          - duration
+        evidence_summary_fields:
+          - duration
+          - tx_bytes
+          - rx_bytes
+  - capability: local_video_stats_observability
+    callbacks:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineDelegate
+        function: onLocalVideoStats
+        payload_schema:
+          type: object
+          properties:
+            width:
+              type: integer
+            height:
+              type: integer
+            sent_bitrate:
+              type: integer
+            source_type:
+              type: integer
+        filterable_fields:
+          - width
+          - height
+          - source_type
+        evidence_summary_fields:
+          - width
+          - height
+          - sent_bitrate
+          - source_type
+  - capability: remote_audio_stats_observability
+    callbacks:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineDelegate
+        function: onRemoteAudioStats
+        payload_schema:
+          type: object
+          properties:
+            uid:
+              type: integer
+            received_bitrate:
+              type: integer
+          required:
+            - uid
+        filterable_fields:
+          - uid
+        evidence_summary_fields:
+          - uid
+          - received_bitrate
+  - capability: remote_video_stats_observability
+    callbacks:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineDelegate
+        function: onRemoteVideoStats
+        payload_schema:
+          type: object
+          properties:
+            uid:
+              type: integer
+            width:
+              type: integer
+            height:
+              type: integer
+            received_bitrate:
+              type: integer
+            rx_stream_type:
+              type: integer
+          required:
+            - uid
+        filterable_fields:
+          - uid
+          - rx_stream_type
+        evidence_summary_fields:
+          - uid
+          - width
+          - height
+          - received_bitrate
+          - rx_stream_type
+  - capability: visual_snapshot_observability
+    callbacks:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineDelegate
+        function: onSnapshotRequested
+        payload_schema:
+          type: object
+          properties:
+            view_role:
+              type: string
+        filterable_fields:
+          - view_role
+        evidence_summary_fields:
+          - view_role
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineDelegate
+        function: onSnapshotTaken
+        payload_schema:
+          type: object
+          properties:
+            view_role:
+              type: string
+            file_path:
+              type: string
+            err_code:
+              type: integer
+        filterable_fields:
+          - view_role
+          - err_code
+        evidence_summary_fields:
+          - view_role
+          - file_path
+          - err_code
+  - capability: joined_state
+    states:
+      - sdk: agora_rtc
+        interface: rtc_engine
+        class_name: AgoraRtcEngineKit
+        function: isJoined
+        payload_schema:
+          type: boolean
+  - capability: preview_state
+    states:
+      - sdk: agora_rtc
+        interface: video_preview
+        class_name: AgoraRtcEngineKit
+        function: isPreviewing
+        payload_schema:
+          type: boolean

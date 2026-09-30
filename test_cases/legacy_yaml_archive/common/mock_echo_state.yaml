@@ -1,0 +1,42 @@
+# Generic mock_echo test: call followed by state assertion.
+# Demonstrates state_equals assertion pattern using a non-Agora SDK.
+case_id: TC-COMMON-ECHO-STATE
+name: Common mock_echo state tracking
+platform: common
+suite: mock_echo_l2
+scenario_family: echo_state
+implementation_status: runnable
+covered_capabilities:
+  - echo_basic
+  - echo_state
+steps:
+  - step_id: echo-then-check-state
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-echo-state
+        timestamp_ms: 1770000000000
+      data:
+        node_id: mock-agent-001
+        sync: true
+        list:
+          - target:
+              sdk: mock_echo
+              interface: echo
+              class_name: EchoService
+              function: echo
+            params:
+              message: state-check
+            extra: {}
+    assertions:
+      - type: error_code
+        value: 0
+      - type: state_equals
+        target:
+          sdk: mock_echo
+          interface: echo
+          class_name: EchoService
+          function: getLastEcho
+        value:
+          message: state-check
+        timeout_ms: 2000

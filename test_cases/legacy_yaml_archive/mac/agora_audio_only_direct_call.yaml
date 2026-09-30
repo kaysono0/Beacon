@@ -1,0 +1,48 @@
+case_id: TC-MAC-AGORA-AUDIO-ONLY-DIRECT-CALL
+name: macOS Agora audio-only direct call
+platform: mac
+suite: agora_direct_call_enhanced
+scenario_family: direct_call
+implementation_status: designed_but_blocked
+covered_capabilities:
+  - join_success_fact
+  - leave_cleanup
+steps:
+  - step_id: join-audio-only-channel
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-audio-only-join
+        timestamp_ms: 1770000004900
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: joinChannel
+            params:
+              channel: audio-only-smoke
+              uid: 1201
+              token: "{{AGORA_RTC_TOKEN}}"
+            extra:
+              blocked_reason: requires_audio_profile_modeling
+  - step_id: leave-audio-only-channel
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-audio-only-leave
+        timestamp_ms: 1770000004950
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: leaveChannel
+            params: {}
+            extra: {}

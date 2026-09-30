@@ -1,0 +1,56 @@
+.DS_Store
+
+# Local build outputs
+.build/
+# Compatibility cache retained only while an existing real-server process uses it.
+build/
+*.profraw
+Testing/
+apps/mac_test_console/.build/
+dist/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+.venv/
+.uv-cache/
+.ruff_cache/
+.mypy_cache/
+
+# Local credentials and third-party SDK checkouts (never commit these)
+local.agora.env
+local.volcengine.env
+third_party/ZegoExpressDemo_ios_objc.zip
+third_party/agora/macos/sdk/
+third_party/agora/reference/API-Examples/
+third_party/volcengine/macos/sdk/
+
+# Local media used by the Agora multi-grid recording demo (not distributed)
+test_cases/big_buck_bunny_720p_h264.mov
+test_cases/big_buck_bunny_720p_h264.mov.zip
+
+# Generated reports (regenerate with the owning Makefile target)
+reports/
+
+# Local AI/agent working material: specifications, session logs, scratch plans.
+# These stay on the author's machine; the published repository does not carry them.
+.scratch/
+/.private/
+docs/superpowers/
+docs/ai-experience/
+docs/ai/ai_sessions.md
+loopany/
+omx_wiki/
+MEMORY/
+.codex/
+.omx/
+.qoder/
+.claude/
+.superpowers/
+.codegraph/
+.worktrees/
+.zread/
+docs/achieve/
+docs/archive/imported/
+
+# Local lint tool artifacts (per-machine, not shared)
+.brooks-lint*

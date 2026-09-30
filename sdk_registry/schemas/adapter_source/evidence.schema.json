@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sdk", "evidence"],
+  "properties": {
+    "sdk": {"type": "string", "minLength": 1},
+    "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}}
+  },
+  "$defs": {
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sdk", "class_name", "function"],
+      "properties": {
+        "sdk": {"type": "string", "minLength": 1},
+        "interface": {"type": "string", "minLength": 1},
+        "class_name": {"type": "string", "minLength": 1},
+        "function": {"type": "string", "minLength": 1},
+        "overload": {"type": "string", "minLength": 1}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capability", "expects"],
+      "properties": {
+        "capability": {"type": "string", "minLength": 1},
+        "expects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "event_target"],
+            "properties": {"type": {"const": "event"}, "event_target": {"$ref": "#/$defs/target"}}
+          }
+        }
+      }
+    }
+  }
+}

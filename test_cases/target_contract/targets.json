@@ -1,0 +1,282 @@
+[
+  {
+    "id": "sdk_call_agora_join",
+    "profile": "call",
+    "valid": true,
+    "input": {
+      "sdk": "agora_rtc",
+      "interface": "rtc_engine",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel"
+    },
+    "normalized": {
+      "sdk": "agora_rtc",
+      "interface": "rtc_engine",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel"
+    },
+    "key": "{\"class_name\":\"AgoraRtcEngineKit\",\"function\":\"joinChannel\",\"interface\":\"rtc_engine\",\"sdk\":\"agora_rtc\"}"
+  },
+  {
+    "id": "sdk_callback_agora_on_join",
+    "profile": "callback",
+    "valid": true,
+    "input": {
+      "sdk": "agora_rtc",
+      "interface": "rtc_engine",
+      "class_name": "AgoraRtcEngineDelegate",
+      "function": "onJoinChannelSuccess"
+    },
+    "normalized": {
+      "sdk": "agora_rtc",
+      "interface": "rtc_engine",
+      "class_name": "AgoraRtcEngineDelegate",
+      "function": "onJoinChannelSuccess"
+    },
+    "key": "{\"class_name\":\"AgoraRtcEngineDelegate\",\"function\":\"onJoinChannelSuccess\",\"interface\":\"rtc_engine\",\"sdk\":\"agora_rtc\"}"
+  },
+  {
+    "id": "registry_call_agora_join",
+    "profile": "registry",
+    "valid": true,
+    "input": {
+      "sdk": "agora_rtc",
+      "interface": "rtc_engine",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel"
+    },
+    "normalized": {
+      "sdk": "agora_rtc",
+      "interface": "rtc_engine",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel"
+    },
+    "key": "{\"class_name\":\"AgoraRtcEngineKit\",\"function\":\"joinChannel\",\"interface\":\"rtc_engine\",\"sdk\":\"agora_rtc\"}"
+  },
+  {
+    "id": "system_wait_without_interface",
+    "profile": "system",
+    "valid": true,
+    "input": {
+      "sdk": "beacon_system",
+      "class_name": "SystemClock",
+      "function": "waitInMs"
+    },
+    "normalized": {
+      "sdk": "beacon_system",
+      "class_name": "SystemClock",
+      "function": "waitInMs"
+    },
+    "key": "{\"class_name\":\"SystemClock\",\"function\":\"waitInMs\",\"sdk\":\"beacon_system\"}"
+  },
+  {
+    "id": "wire_compat_without_interface",
+    "profile": "wire_compat",
+    "valid": true,
+    "input": {
+      "sdk": "agora_rtc",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel"
+    },
+    "normalized": {
+      "sdk": "agora_rtc",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel"
+    },
+    "key": "{\"class_name\":\"AgoraRtcEngineKit\",\"function\":\"joinChannel\",\"sdk\":\"agora_rtc\"}"
+  },
+  {
+    "id": "overload_target",
+    "profile": "call",
+    "valid": true,
+    "input": {
+      "sdk": "agora_rtc",
+      "interface": "rtc_engine",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel",
+      "overload": "token_uid"
+    },
+    "normalized": {
+      "sdk": "agora_rtc",
+      "interface": "rtc_engine",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel",
+      "overload": "token_uid"
+    },
+    "key": "{\"class_name\":\"AgoraRtcEngineKit\",\"function\":\"joinChannel\",\"interface\":\"rtc_engine\",\"overload\":\"token_uid\",\"sdk\":\"agora_rtc\"}"
+  },
+  {
+    "id": "missing_sdk",
+    "profile": "call",
+    "valid": false,
+    "input": {
+      "interface": "rtc_engine",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel"
+    },
+    "error": "target.sdk must be a non-empty string"
+  },
+  {
+    "id": "missing_class_name",
+    "profile": "call",
+    "valid": false,
+    "input": {
+      "sdk": "agora_rtc",
+      "interface": "rtc_engine",
+      "function": "joinChannel"
+    },
+    "error": "target.class_name must be a non-empty string"
+  },
+  {
+    "id": "missing_function",
+    "profile": "call",
+    "valid": false,
+    "input": {
+      "sdk": "agora_rtc",
+      "interface": "rtc_engine",
+      "class_name": "AgoraRtcEngineKit"
+    },
+    "error": "target.function must be a non-empty string"
+  },
+  {
+    "id": "empty_interface",
+    "profile": "call",
+    "valid": false,
+    "input": {
+      "sdk": "agora_rtc",
+      "interface": "",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel"
+    },
+    "error": "target.interface must be a non-empty string"
+  },
+  {
+    "id": "sdk_call_missing_interface",
+    "profile": "call",
+    "valid": false,
+    "input": {
+      "sdk": "agora_rtc",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel"
+    },
+    "error": "target.interface is required for SDK call"
+  },
+  {
+    "id": "unknown_extra_field",
+    "profile": "call",
+    "valid": false,
+    "input": {
+      "sdk": "agora_rtc",
+      "interface": "rtc_engine",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel",
+      "params": {}
+    },
+    "error": "target contains unknown field: params"
+  },
+  {
+    "id": "empty_overload",
+    "profile": "call",
+    "valid": false,
+    "input": {
+      "sdk": "agora_rtc",
+      "interface": "rtc_engine",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel",
+      "overload": ""
+    },
+    "error": "target.overload must be a non-empty string"
+  },
+  {
+    "id": "non_string_sdk",
+    "profile": "call",
+    "valid": false,
+    "input": {
+      "sdk": 123,
+      "interface": "rtc_engine",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel"
+    },
+    "error": "target.sdk must be a non-empty string"
+  },
+  {
+    "id": "non_object_target",
+    "profile": "call",
+    "valid": false,
+    "input": "not-an-object",
+    "error": "target must be an object"
+  },
+  {
+    "id": "registry_call_missing_interface",
+    "profile": "registry",
+    "valid": false,
+    "input": {
+      "sdk": "agora_rtc",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel"
+    },
+    "error": "target.interface is required for SDK registry"
+  },
+  {
+    "id": "null_interface",
+    "profile": "wire_compat",
+    "valid": false,
+    "input": {
+      "sdk": "agora_rtc",
+      "interface": null,
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel"
+    },
+    "error": "target.interface must be a non-empty string"
+  },
+  {
+    "id": "null_overload",
+    "profile": "wire_compat",
+    "valid": false,
+    "input": {
+      "sdk": "agora_rtc",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel",
+      "overload": null
+    },
+    "error": "target.overload must be a non-empty string"
+  },
+  {
+    "id": "empty_class_name_before_empty_interface",
+    "profile": "call",
+    "valid": false,
+    "input": {
+      "sdk": "agora_rtc",
+      "interface": "",
+      "class_name": "",
+      "function": "joinChannel"
+    },
+    "error": "target.class_name must be a non-empty string"
+  },
+  {
+    "id": "two_unknown_fields_report_sorted_first",
+    "profile": "call",
+    "valid": false,
+    "input": {
+      "zzz": 1,
+      "sdk": "agora_rtc",
+      "interface": "rtc_engine",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel",
+      "aaa": 2
+    },
+    "error": "target contains unknown field: aaa"
+  },
+  {
+    "id": "unknown_field_wins_over_empty_required",
+    "profile": "call",
+    "valid": false,
+    "input": {
+      "sdk": "",
+      "class_name": "AgoraRtcEngineKit",
+      "function": "joinChannel",
+      "params": {}
+    },
+    "error": "target contains unknown field: params"
+  }
+]

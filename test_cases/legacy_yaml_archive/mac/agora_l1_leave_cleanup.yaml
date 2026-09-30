@@ -1,0 +1,98 @@
+case_id: TC-MAC-AGORA-SUCCESS-THEN-LEAVE-CLEANUP
+name: macOS Agora L1 leave cleanup
+platform: mac
+suite: agora_direct_call_l1
+scenario_family: direct_call
+implementation_status: runnable
+covered_capabilities:
+  - leave_cleanup
+steps:
+  - step_id: join-before-cleanup-check
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l1-cleanup-join
+        timestamp_ms: 1770000002500
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: joinChannel
+            params:
+              channel: real-smoke-cleanup
+              uid: 1001
+              token: "{{AGORA_RTC_TOKEN}}"
+            extra: {}
+  - step_id: leave-before-cleanup-state-queries
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l1-cleanup-leave
+        timestamp_ms: 1770000002550
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: leaveChannel
+            params: {}
+            extra: {}
+  - step_id: assert-not-joined-after-leave
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l1-cleanup-is-joined
+        timestamp_ms: 1770000002600
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: isJoined
+            params: {}
+            extra: {}
+    assertions:
+      - type: state_equals
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineKit
+          function: isJoined
+        value: false
+        timeout_ms: 5000
+  - step_id: assert-not-previewing-after-leave
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l1-cleanup-is-previewing
+        timestamp_ms: 1770000002650
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: isPreviewing
+            params: {}
+            extra: {}
+    assertions:
+      - type: state_equals
+        target:
+          sdk: agora_rtc
+          interface: video_preview
+          class_name: AgoraRtcEngineKit
+          function: isPreviewing
+        value: false
+        timeout_ms: 5000

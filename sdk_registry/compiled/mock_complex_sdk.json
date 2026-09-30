@@ -1,0 +1,1624 @@
+{
+  "capabilities": [
+    {
+      "id": "applied_value_count",
+      "name": "Observe the number of applied reference values"
+    },
+    {
+      "id": "apply_value",
+      "name": "Apply a reference value"
+    },
+    {
+      "id": "configure_value",
+      "name": "Configure a reference value with complex parameters"
+    },
+    {
+      "id": "describe_value",
+      "name": "Describe the current reference value"
+    },
+    {
+      "id": "ensure_value",
+      "name": "Ensure a reference value idempotently"
+    },
+    {
+      "id": "last_applied_value",
+      "name": "Read last applied reference value"
+    },
+    {
+      "id": "parameter_matrix_set",
+      "name": "Reference SDK parameter matrix callback"
+    },
+    {
+      "id": "reject_value",
+      "name": "Reject a reference value deterministically"
+    },
+    {
+      "id": "reset_value",
+      "name": "Reset the shared reference value"
+    },
+    {
+      "id": "set_parameter_matrix",
+      "name": "Set reference SDK parameter matrix"
+    },
+    {
+      "id": "value_applied",
+      "name": "Reference value callback"
+    },
+    {
+      "id": "value_applied_log",
+      "name": "Observe a structured reference value log"
+    },
+    {
+      "id": "value_snapshot",
+      "name": "Observe the latest reference snapshot artifact"
+    }
+  ],
+  "contract_matrix": [
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"mock_complex_sdk\").artifacts.latestSnapshot",
+        "typed_facade": "ctx.device(role).mock_complex_sdk.artifacts.latest_snapshot"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "value_snapshot",
+      "evidence_projection": {
+        "evidence_capability": "value_snapshot",
+        "evidence_type": "artifact",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "artifact_id",
+          "artifact_type",
+          "path"
+        ]
+      },
+      "kind": "artifact",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "server/tests",
+          "platform": "server_focused_fixture",
+          "provider": "MockComplexProtocolWebSocket",
+          "status": "supported"
+        },
+        {
+          "bridge_boundary": "scripts/validation/run_e2e_mock_tests.py",
+          "platform": "mac_mock_agent",
+          "provider": null,
+          "status": "designed_but_blocked"
+        },
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "custom",
+        "thread": "evidence_store"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "artifact_type": {
+              "type": "string"
+            },
+            "metadata": {
+              "type": "object"
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "MockComplexArtifacts",
+        "function": "latestSnapshot",
+        "interface": "artifacts",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"mock_complex_sdk\").session.applyValue",
+        "typed_facade": "ctx.device(role).mock_complex_sdk.session.apply_value"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "apply_value",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "scripts/validation/run_e2e_mock_tests.py",
+          "platform": "mac_mock_agent",
+          "provider": "MockAgentHarness",
+          "status": "supported"
+        },
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "MockComplexSession",
+        "function": "applyValue",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"mock_complex_sdk\").session.configureValue",
+        "typed_facade": "ctx.device(role).mock_complex_sdk.session.configure_value"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "configure_value",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "scripts/validation/run_e2e_mock_tests.py",
+          "platform": "mac_mock_agent",
+          "provider": "MockAgentHarness",
+          "status": "supported"
+        },
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "properties": {
+            "options": {
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                },
+                "metadata": {
+                  "properties": {
+                    "owner": {
+                      "type": "string"
+                    },
+                    "retries": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ratio": {
+                  "type": "number"
+                },
+                "tags": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "enabled",
+                "ratio",
+                "tags",
+                "metadata"
+              ],
+              "type": "object"
+            },
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "options"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "MockComplexSession",
+        "function": "configureValue",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"mock_complex_sdk\").session.describeValue",
+        "typed_facade": "ctx.device(role).mock_complex_sdk.session.describe_value"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "describe_value",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "server/tests",
+          "platform": "server_focused_fixture",
+          "provider": "MockComplexProtocolWebSocket",
+          "status": "supported"
+        },
+        {
+          "bridge_boundary": "scripts/validation/run_e2e_mock_tests.py",
+          "platform": "mac_mock_agent",
+          "provider": null,
+          "status": "designed_but_blocked"
+        },
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {
+          "properties": {
+            "revision": {
+              "type": "integer"
+            },
+            "value": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "value",
+            "revision"
+          ],
+          "type": "object"
+        },
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "MockComplexSession",
+        "function": "describeValue",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"mock_complex_sdk\").session.ensureValue",
+        "typed_facade": "ctx.device(role).mock_complex_sdk.session.ensure_value"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "ensure_value",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "server/tests",
+          "platform": "server_focused_fixture",
+          "provider": "MockComplexProtocolWebSocket",
+          "status": "supported"
+        },
+        {
+          "bridge_boundary": "scripts/validation/run_e2e_mock_tests.py",
+          "platform": "mac_mock_agent",
+          "provider": null,
+          "status": "designed_but_blocked"
+        },
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {
+          "properties": {
+            "applied": {
+              "type": "boolean"
+            },
+            "revision": {
+              "type": "integer"
+            },
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "value",
+            "applied",
+            "revision"
+          ],
+          "type": "object"
+        },
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "MockComplexSession",
+        "function": "ensureValue",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"mock_complex_sdk\").session.rejectValue",
+        "typed_facade": "ctx.device(role).mock_complex_sdk.session.reject_value"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "reject_value",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "server/tests",
+          "platform": "server_focused_fixture",
+          "provider": "MockComplexProtocolWebSocket",
+          "status": "supported"
+        },
+        {
+          "bridge_boundary": "scripts/validation/run_e2e_mock_tests.py",
+          "platform": "mac_mock_agent",
+          "provider": null,
+          "status": "designed_but_blocked"
+        },
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "reason"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {
+          "type": "null"
+        },
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "MockComplexSession",
+        "function": "rejectValue",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"mock_complex_sdk\").control.resetValue",
+        "typed_facade": "ctx.device(role).mock_complex_sdk.control.reset_value"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "reset_value",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "server/tests",
+          "platform": "server_focused_fixture",
+          "provider": "MockComplexProtocolWebSocket",
+          "status": "supported"
+        },
+        {
+          "bridge_boundary": "scripts/validation/run_e2e_mock_tests.py",
+          "platform": "mac_mock_agent",
+          "provider": null,
+          "status": "designed_but_blocked"
+        },
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "additionalProperties": false,
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {
+          "type": "null"
+        },
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "MockComplexControl",
+        "function": "resetValue",
+        "interface": "control",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"mock_complex_sdk\").session.setParameterMatrix",
+        "typed_facade": "ctx.device(role).mock_complex_sdk.session.set_parameter_matrix"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "set_parameter_matrix",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "sdk_call",
+        "report_projection": "step.facts",
+        "summary_fields": []
+      },
+      "kind": "call",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "server/tests",
+          "platform": "server_focused_fixture",
+          "provider": "MockComplexProtocolWebSocket",
+          "status": "supported"
+        },
+        {
+          "bridge_boundary": "scripts/validation/run_e2e_mock_tests.py",
+          "platform": "mac_mock_agent",
+          "provider": null,
+          "status": "designed_but_blocked"
+        },
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {
+          "additionalProperties": false,
+          "properties": {
+            "_extra": {
+              "additionalProperties": false,
+              "properties": {
+                "fixture": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "attempts": {
+              "default": 2,
+              "maximum": 3,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "display_name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "file_ref": {
+              "additionalProperties": false,
+              "properties": {
+                "media_type": {
+                  "type": "string"
+                },
+                "uri": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "uri"
+              ],
+              "type": "object"
+            },
+            "labels": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            "optional_note": {
+              "type": "string"
+            },
+            "profile": {
+              "enum": [
+                "strict",
+                "relaxed"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "profile",
+            "display_name",
+            "labels",
+            "file_ref"
+          ],
+          "type": "object"
+        },
+        "payload_schema": {},
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "MockComplexSession",
+        "function": "setParameterMatrix",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"mock_complex_sdk\").session.onParameterMatrixSet",
+        "typed_facade": "ctx.device(role).mock_complex_sdk.session.on_parameter_matrix_set"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "profile",
+          "display_name"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "parameter_matrix_set",
+      "evidence_projection": {
+        "evidence_capability": "parameter_matrix_set",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "profile",
+          "display_name",
+          "attempts"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "server/tests",
+          "platform": "server_focused_fixture",
+          "provider": "MockComplexProtocolWebSocket",
+          "status": "supported"
+        },
+        {
+          "bridge_boundary": "scripts/validation/run_e2e_mock_tests.py",
+          "platform": "mac_mock_agent",
+          "provider": null,
+          "status": "designed_but_blocked"
+        },
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "attempts": {
+              "type": "integer"
+            },
+            "display_name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "file_ref": {
+              "type": "object"
+            },
+            "labels": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            "optional_note": {
+              "type": "string"
+            },
+            "profile": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "profile",
+            "display_name",
+            "labels",
+            "file_ref",
+            "attempts"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "MockComplexSessionObserver",
+        "function": "onParameterMatrixSet",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"mock_complex_sdk\").session.onValueApplied",
+        "typed_facade": "ctx.device(role).mock_complex_sdk.session.on_value_applied"
+      },
+      "callback_lifecycle": {
+        "filterable_fields": [
+          "value"
+        ],
+        "handle_kind": "callback_subscription",
+        "observe": true,
+        "subscribe": true,
+        "unsubscribe": true
+      },
+      "capability": "value_applied",
+      "evidence_projection": {
+        "evidence_capability": "value_applied",
+        "evidence_type": "event",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "value",
+          "revision"
+        ]
+      },
+      "kind": "callback",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "scripts/validation/run_e2e_mock_tests.py",
+          "platform": "mac_mock_agent",
+          "provider": "MockAgentHarness",
+          "status": "supported"
+        },
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "async_callback",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "revision": {
+              "type": "integer"
+            },
+            "value": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "value",
+            "revision"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "MockComplexSessionObserver",
+        "function": "onValueApplied",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"mock_complex_sdk\").diagnostics.valueApplied",
+        "typed_facade": "ctx.device(role).mock_complex_sdk.diagnostics.value_applied"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "value_applied_log",
+      "evidence_projection": {
+        "evidence_capability": "value_applied_log",
+        "evidence_type": "log",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "level",
+          "module",
+          "event",
+          "message"
+        ]
+      },
+      "kind": "log",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "server/tests",
+          "platform": "server_focused_fixture",
+          "provider": "MockComplexProtocolWebSocket",
+          "status": "supported"
+        },
+        {
+          "bridge_boundary": "scripts/validation/run_e2e_mock_tests.py",
+          "platform": "mac_mock_agent",
+          "provider": null,
+          "status": "designed_but_blocked"
+        },
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "custom",
+        "thread": "evidence_store"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "extra": {
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "MockComplexDiagnostics",
+        "function": "valueApplied",
+        "interface": "diagnostics",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"mock_complex_sdk\").metrics.appliedCount",
+        "typed_facade": "ctx.device(role).mock_complex_sdk.metrics.applied_count"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "applied_value_count",
+      "evidence_projection": {
+        "evidence_capability": "applied_value_count",
+        "evidence_type": "metric",
+        "report_projection": "step.evidence",
+        "summary_fields": [
+          "value"
+        ]
+      },
+      "kind": "metric",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "none",
+        "owner": "not_applicable"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "server/tests",
+          "platform": "server_focused_fixture",
+          "provider": "MockComplexProtocolWebSocket",
+          "status": "supported"
+        },
+        {
+          "bridge_boundary": "scripts/validation/run_e2e_mock_tests.py",
+          "platform": "mac_mock_agent",
+          "provider": null,
+          "status": "designed_but_blocked"
+        },
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "custom",
+        "thread": "evidence_store"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "type": "number"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "MockComplexMetrics",
+        "function": "appliedCount",
+        "interface": "metrics",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "authoring": {
+        "dynamic": "ctx.device(role).sdk(\"mock_complex_sdk\").session.getLastAppliedValue",
+        "typed_facade": "ctx.device(role).mock_complex_sdk.session.get_last_applied_value"
+      },
+      "callback_lifecycle": {
+        "handle_kind": "none",
+        "observe": false,
+        "subscribe": false,
+        "unsubscribe": false
+      },
+      "capability": "last_applied_value",
+      "evidence_projection": {
+        "evidence_capability": null,
+        "evidence_type": "state",
+        "report_projection": "step.evidence",
+        "summary_fields": []
+      },
+      "kind": "state",
+      "object_lifecycle": {
+        "author_visible": false,
+        "handle_kind": "sdk_instance",
+        "owner": "provider_bridge"
+      },
+      "provider_mappings": [
+        {
+          "bridge_boundary": "scripts/validation/run_e2e_mock_tests.py",
+          "platform": "mac_mock_agent",
+          "provider": "MockAgentHarness",
+          "status": "supported"
+        },
+        {
+          "bridge_boundary": "agents/mac",
+          "platform": "mac",
+          "provider": null,
+          "status": "unsupported"
+        }
+      ],
+      "scheduling": {
+        "mode": "sync",
+        "thread": "provider_default"
+      },
+      "server_validation": {
+        "params_schema": {},
+        "payload_schema": {
+          "properties": {
+            "revision": {
+              "type": "integer"
+            },
+            "value": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "value",
+            "revision"
+          ],
+          "type": "object"
+        },
+        "result_schema": {},
+        "target_contract": "sdk_interface_class_function"
+      },
+      "target": {
+        "class_name": "MockComplexSession",
+        "function": "getLastAppliedValue",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "capability": "parameter_matrix_set",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "MockComplexSessionObserver",
+            "function": "onParameterMatrixSet",
+            "interface": "session",
+            "sdk": "mock_complex_sdk"
+          },
+          "type": "event"
+        }
+      ]
+    },
+    {
+      "capability": "value_applied",
+      "expects": [
+        {
+          "event_target": {
+            "class_name": "MockComplexSessionObserver",
+            "function": "onValueApplied",
+            "interface": "session",
+            "sdk": "mock_complex_sdk"
+          },
+          "type": "event"
+        }
+      ]
+    }
+  ],
+  "interfaces": [
+    {
+      "capability": "value_snapshot",
+      "evidence_summary_fields": [
+        "artifact_id",
+        "artifact_type",
+        "path"
+      ],
+      "filterable_fields": [
+        "artifact_type",
+        "metadata.format"
+      ],
+      "kind": "artifact",
+      "payload_schema": {
+        "properties": {
+          "artifact_type": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object"
+          },
+          "path": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "target": {
+        "class_name": "MockComplexArtifacts",
+        "function": "latestSnapshot",
+        "interface": "artifacts",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "capability": "apply_value",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "MockComplexSession",
+        "function": "applyValue",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "capability": "configure_value",
+      "kind": "call",
+      "params_schema": {
+        "properties": {
+          "options": {
+            "properties": {
+              "enabled": {
+                "type": "boolean"
+              },
+              "metadata": {
+                "properties": {
+                  "owner": {
+                    "type": "string"
+                  },
+                  "retries": {
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "ratio": {
+                "type": "number"
+              },
+              "tags": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "enabled",
+              "ratio",
+              "tags",
+              "metadata"
+            ],
+            "type": "object"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "value",
+          "options"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "MockComplexSession",
+        "function": "configureValue",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "capability": "describe_value",
+      "kind": "call",
+      "params_schema": {
+        "additionalProperties": false,
+        "type": "object"
+      },
+      "result_schema": {
+        "properties": {
+          "revision": {
+            "type": "integer"
+          },
+          "value": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "value",
+          "revision"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "MockComplexSession",
+        "function": "describeValue",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "capability": "ensure_value",
+      "kind": "call",
+      "params_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "type": "object"
+      },
+      "result_schema": {
+        "properties": {
+          "applied": {
+            "type": "boolean"
+          },
+          "revision": {
+            "type": "integer"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "value",
+          "applied",
+          "revision"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "MockComplexSession",
+        "function": "ensureValue",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "capability": "reject_value",
+      "kind": "call",
+      "params_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "reason"
+        ],
+        "type": "object"
+      },
+      "result_schema": {
+        "type": "null"
+      },
+      "target": {
+        "class_name": "MockComplexSession",
+        "function": "rejectValue",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "capability": "reset_value",
+      "kind": "call",
+      "params_schema": {
+        "additionalProperties": false,
+        "type": "object"
+      },
+      "result_schema": {
+        "type": "null"
+      },
+      "target": {
+        "class_name": "MockComplexControl",
+        "function": "resetValue",
+        "interface": "control",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "capability": "set_parameter_matrix",
+      "kind": "call",
+      "params_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "_extra": {
+            "additionalProperties": false,
+            "properties": {
+              "fixture": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "attempts": {
+            "default": 2,
+            "maximum": 3,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "display_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "file_ref": {
+            "additionalProperties": false,
+            "properties": {
+              "media_type": {
+                "type": "string"
+              },
+              "uri": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "uri"
+            ],
+            "type": "object"
+          },
+          "labels": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "optional_note": {
+            "type": "string"
+          },
+          "profile": {
+            "enum": [
+              "strict",
+              "relaxed"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "profile",
+          "display_name",
+          "labels",
+          "file_ref"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "MockComplexSession",
+        "function": "setParameterMatrix",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "capability": "parameter_matrix_set",
+      "evidence_summary_fields": [
+        "profile",
+        "display_name",
+        "attempts"
+      ],
+      "filterable_fields": [
+        "profile",
+        "display_name"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "attempts": {
+            "type": "integer"
+          },
+          "display_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "file_ref": {
+            "type": "object"
+          },
+          "labels": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "optional_note": {
+            "type": "string"
+          },
+          "profile": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "profile",
+          "display_name",
+          "labels",
+          "file_ref",
+          "attempts"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "MockComplexSessionObserver",
+        "function": "onParameterMatrixSet",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "capability": "value_applied",
+      "evidence_summary_fields": [
+        "value",
+        "revision"
+      ],
+      "filterable_fields": [
+        "value"
+      ],
+      "kind": "callback",
+      "payload_schema": {
+        "properties": {
+          "revision": {
+            "type": "integer"
+          },
+          "value": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "value",
+          "revision"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "MockComplexSessionObserver",
+        "function": "onValueApplied",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "capability": "value_applied_log",
+      "evidence_summary_fields": [
+        "level",
+        "module",
+        "event",
+        "message"
+      ],
+      "filterable_fields": [
+        "extra.value"
+      ],
+      "kind": "log",
+      "payload_schema": {
+        "properties": {
+          "extra": {
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "target": {
+        "class_name": "MockComplexDiagnostics",
+        "function": "valueApplied",
+        "interface": "diagnostics",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "capability": "applied_value_count",
+      "evidence_summary_fields": [
+        "value"
+      ],
+      "kind": "metric",
+      "payload_schema": {
+        "type": "number"
+      },
+      "target": {
+        "class_name": "MockComplexMetrics",
+        "function": "appliedCount",
+        "interface": "metrics",
+        "sdk": "mock_complex_sdk"
+      }
+    },
+    {
+      "capability": "last_applied_value",
+      "kind": "state",
+      "payload_schema": {
+        "properties": {
+          "revision": {
+            "type": "integer"
+          },
+          "value": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "value",
+          "revision"
+        ],
+        "type": "object"
+      },
+      "target": {
+        "class_name": "MockComplexSession",
+        "function": "getLastAppliedValue",
+        "interface": "session",
+        "sdk": "mock_complex_sdk"
+      }
+    }
+  ],
+  "sdk": "mock_complex_sdk",
+  "version": 1
+}

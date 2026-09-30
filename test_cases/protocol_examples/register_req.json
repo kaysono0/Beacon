@@ -1,0 +1,11 @@
+{
+  "common": {
+    "action": "registerRequest",
+    "op_id": "op-register-001",
+    "timestamp_ms": 1770000000000
+  },
+  "data": {
+    "node_id": "mac-local-001",
+    "capabilities": ["rtc.mock"]
+  }
+}

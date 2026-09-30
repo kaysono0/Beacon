@@ -1,0 +1,16 @@
+schema_version: 1
+plan_revision: 1
+active_package: IR-00
+status: not_started
+baseline_commit: null
+latest_manifest:
+  path: null
+  sha256: null
+completed_packages: []
+production_runtime: recorder_thin_executor
+target_endpoint_enabled: false
+production_cutover_completed: false
+blocker:
+  kind: null
+  description: null
+updated_at: fixture

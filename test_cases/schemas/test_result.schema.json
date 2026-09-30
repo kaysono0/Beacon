@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BeaconTestResult",
+  "type": "object",
+  "required": ["case_id", "status", "steps"],
+  "additionalProperties": false,
+  "properties": {
+    "case_id": { "type": "string", "minLength": 1 },
+    "status": { "type": "string", "enum": ["passed", "failed", "skipped", "unsupported"] },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step_id", "status", "error", "message", "artifacts"],
+        "additionalProperties": false,
+        "properties": {
+          "step_id": { "type": "string" },
+          "status": { "type": "string", "enum": ["passed", "failed", "skipped", "unsupported"] },
+          "error": { "type": "integer" },
+          "message": { "type": "string" },
+          "artifacts": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

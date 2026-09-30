@@ -1,0 +1,140 @@
+case_id: TC-MAC-AGORA-PREVIEW-LIFECYCLE-AROUND-JOIN
+name: macOS Agora L2 preview lifecycle around join
+platform: mac
+suite: agora_direct_call_l2
+scenario_family: direct_call
+implementation_status: runnable
+covered_capabilities:
+  - preview_control
+steps:
+  - step_id: join-before-preview-lifecycle
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-preview-lifecycle-join
+        timestamp_ms: 1770000003200
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: joinChannel
+            params:
+              channel: real-smoke-preview-lifecycle
+              uid: 1001
+              token: "{{AGORA_RTC_TOKEN}}"
+            extra: {}
+    assertions:
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onJoinChannelSuccess
+        timeout_ms: 5000
+  - step_id: start-preview-after-join
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-preview-lifecycle-start
+        timestamp_ms: 1770000003250
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: startPreview
+            params: {}
+            extra: {}
+  - step_id: assert-previewing-after-start
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-preview-lifecycle-is-previewing-after-start
+        timestamp_ms: 1770000003300
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: isPreviewing
+            params: {}
+            extra: {}
+    assertions:
+      - type: state_equals
+        target:
+          sdk: agora_rtc
+          interface: video_preview
+          class_name: AgoraRtcEngineKit
+          function: isPreviewing
+        value: true
+        timeout_ms: 5000
+  - step_id: stop-preview-before-leave
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-preview-lifecycle-stop
+        timestamp_ms: 1770000003350
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: stopPreview
+            params: {}
+            extra: {}
+  - step_id: assert-not-previewing-after-stop
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-preview-lifecycle-is-previewing-after-stop
+        timestamp_ms: 1770000003400
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: isPreviewing
+            params: {}
+            extra: {}
+    assertions:
+      - type: state_equals
+        target:
+          sdk: agora_rtc
+          interface: video_preview
+          class_name: AgoraRtcEngineKit
+          function: isPreviewing
+        value: false
+        timeout_ms: 5000
+  - step_id: leave-after-preview-lifecycle
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-preview-lifecycle-leave
+        timestamp_ms: 1770000003450
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: leaveChannel
+            params: {}
+            extra: {}

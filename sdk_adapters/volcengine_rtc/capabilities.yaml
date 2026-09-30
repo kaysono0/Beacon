@@ -1,0 +1,32 @@
+sdk: volcengine_rtc
+capabilities:
+  - id: engine_lifecycle
+    name: 引擎生命周期
+  - id: engine_connection_state
+    name: 引擎连接状态可观测性
+  - id: engine_error_events
+    name: 引擎错误事件可观测性
+  - id: room_join
+    name: 加入房间
+  - id: room_leave
+    name: 离开房间
+  - id: room_joined_state
+    name: 查询是否已加入房间
+  # 画面能力面（B-020）：按「能力面」对齐而非照搬 Agora 命名；op 名保留火山原生调用
+  # （startVideoCapture / take*SnapshotToFile 等），证据词汇沿用标准模块的公开事件名。
+  - id: engine_video_capture
+    name: 本地视频采集开关
+  - id: visual_probe
+    name: 视觉探针
+  - id: synthetic_video_source
+    name: 合成视频源
+  - id: remote_video_rendering
+    name: 远端视频渲染
+  - id: rtc_stats_observability
+    name: RTC 统计可观测性
+  - id: local_video_stats_observability
+    name: 本地视频统计可观测性
+  - id: remote_video_stats_observability
+    name: 远端视频统计可观测性
+  - id: visual_snapshot_observability
+    name: 视觉快照可观测性

@@ -1,0 +1,28 @@
+sdk: mock_complex_sdk
+capabilities:
+  - id: apply_value
+    name: Apply a reference value
+  - id: configure_value
+    name: Configure a reference value with complex parameters
+  - id: describe_value
+    name: Describe the current reference value
+  - id: ensure_value
+    name: Ensure a reference value idempotently
+  - id: reject_value
+    name: Reject a reference value deterministically
+  - id: reset_value
+    name: Reset the shared reference value
+  - id: set_parameter_matrix
+    name: Set reference SDK parameter matrix
+  - id: parameter_matrix_set
+    name: Reference SDK parameter matrix callback
+  - id: value_applied
+    name: Reference value callback
+  - id: last_applied_value
+    name: Read last applied reference value
+  - id: applied_value_count
+    name: Observe the number of applied reference values
+  - id: value_snapshot
+    name: Observe the latest reference snapshot artifact
+  - id: value_applied_log
+    name: Observe a structured reference value log

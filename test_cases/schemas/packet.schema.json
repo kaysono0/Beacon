@@ -1,0 +1,485 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "packet.schema.json",
+  "title": "BeaconPacket",
+  "type": "object",
+  "required": ["common", "data"],
+  "additionalProperties": false,
+  "properties": {
+    "common": {
+      "type": "object",
+      "required": ["action", "op_id", "timestamp_ms"],
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": [
+            "registerRequest",
+            "registerResponse",
+            "invokeRequest",
+            "invokeResponse",
+            "callbackRequest",
+            "callbackResponse",
+            "callbackEventRequest",
+            "callbackEventResponse",
+            "reconnectRequest",
+            "reconnectResponse",
+            "unregisterRequest",
+            "unregisterResponse",
+            "logReportRequest",
+            "logReportResponse",
+            "artifactUploadReq",
+            "artifactUploadResp"
+          ]
+        },
+        "op_id": { "type": "string", "minLength": 1 },
+        "timestamp_ms": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "data": {
+      "type": "object"
+    }
+  },
+  "$defs": {
+    "data_common": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "node_id": { "type": "string", "minLength": 1 },
+        "device_role": { "type": "string", "minLength": 1 },
+        "capabilities": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "code": { "type": "integer" },
+        "message": { "type": "string" },
+        "lease_id": { "type": "string", "minLength": 1 },
+        "sync": { "type": "boolean" },
+        "params": { "type": "string" },
+        "extra": { "type": "string" },
+        "result": { "type": "string" },
+        "repeat": { "type": "integer" },
+        "payload": { "type": "object" },
+        "event_id": { "type": "string", "minLength": 1 },
+        "resource_ref": { "type": "string", "minLength": 1 },
+        "store_as": { "type": "string", "minLength": 1 },
+        "state": { "type": "integer", "enum": [0, 1] },
+        "defer_matched": { "type": "boolean" },
+        "defer_executed": { "type": "boolean" },
+        "target": { "$ref": "#/$defs/target" },
+        "event_target": { "$ref": "#/$defs/target" },
+        "list": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "target": { "$ref": "#/$defs/target" },
+              "resource_ref": { "type": "string", "minLength": 1 },
+              "store_as": { "type": "string", "minLength": 1 },
+              "params": { "type": "string" },
+              "extra": { "type": "string" },
+              "event_target": { "$ref": "#/$defs/target" },
+              "repeat": { "type": "integer" },
+              "call_elements": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["target", "params"],
+                  "properties": {
+                    "target": { "$ref": "#/$defs/target" },
+                    "resource_ref": { "type": "string", "minLength": 1 },
+                    "store_as": { "type": "string", "minLength": 1 },
+                    "params": { "type": "string" },
+                    "extra": { "type": "string" }
+                  }
+                }
+              },
+              "code": { "type": "integer" },
+              "message": { "type": "string" },
+              "result": { "type": "string" }
+            }
+          }
+        },
+        "call_results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["target", "error", "message", "return_value"],
+            "properties": {
+              "target": { "$ref": "#/$defs/target" },
+              "resource_ref": { "type": "string", "minLength": 1 },
+              "error": { "type": "integer" },
+              "message": { "type": "string" },
+              "return_value": { "type": "string" }
+            }
+          }
+        },
+        "callback_execution": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["defer_matched", "defer_executed", "call_results"],
+          "properties": {
+            "defer_matched": { "type": "boolean" },
+            "defer_executed": { "type": "boolean" },
+            "call_results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["target", "error", "message", "return_value"],
+                "properties": {
+                  "target": { "$ref": "#/$defs/target" },
+                  "resource_ref": { "type": "string", "minLength": 1 },
+                  "error": { "type": "integer" },
+                  "message": { "type": "string" },
+                  "return_value": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "receipt": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["received", "recorded", "duplicate"],
+          "properties": {
+            "received": { "type": "boolean" },
+            "recorded": { "type": "boolean" },
+            "duplicate": { "type": "boolean" },
+            "evidence_id": { "type": "string" }
+          }
+        }
+      }
+    },
+    "data_callback_event_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "node_id": { "type": "string", "minLength": 1 },
+        "capabilities": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "code": { "type": "integer" },
+        "message": { "type": "string" },
+        "lease_id": { "type": "string", "minLength": 1 },
+        "sync": { "type": "boolean" },
+        "params": { "type": "string" },
+        "extra": { "type": "string" },
+        "result": { "type": "string" },
+        "repeat": { "type": "integer" },
+        "payload": { "type": "object" },
+        "callback_context": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["resource_ref", "instance_id", "sequence"],
+          "properties": {
+            "provider": { "type": "string", "minLength": 1 },
+            "originating_op_id": { "type": "string", "minLength": 1 },
+            "resource_ref": { "type": "string", "minLength": 1 },
+            "instance_id": { "type": "string", "minLength": 1 },
+            "subscription_id": { "type": "string", "minLength": 1 },
+            "rule_id": { "type": "string", "minLength": 1 },
+            "sequence": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "event_id": { "type": "string", "minLength": 1 },
+        "resource_ref": { "type": "string", "minLength": 1 },
+        "store_as": { "type": "string", "minLength": 1 },
+        "state": { "type": "integer", "enum": [0, 1] },
+        "defer_matched": { "type": "boolean" },
+        "defer_executed": { "type": "boolean" },
+        "target": { "$ref": "#/$defs/target" },
+        "event_target": { "$ref": "#/$defs/target" },
+        "list": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "target": { "$ref": "#/$defs/target" },
+              "resource_ref": { "type": "string", "minLength": 1 },
+              "store_as": { "type": "string", "minLength": 1 },
+              "params": { "type": "string" },
+              "extra": { "type": "string" },
+              "event_target": { "$ref": "#/$defs/target" },
+              "repeat": { "type": "integer" },
+              "call_elements": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["target", "params"],
+                  "properties": {
+                    "target": { "$ref": "#/$defs/target" },
+                    "resource_ref": { "type": "string", "minLength": 1 },
+                    "store_as": { "type": "string", "minLength": 1 },
+                    "params": { "type": "string" },
+                    "extra": { "type": "string" }
+                  }
+                }
+              },
+              "code": { "type": "integer" },
+              "message": { "type": "string" },
+              "result": { "type": "string" }
+            }
+          }
+        },
+        "call_results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["target", "error", "message", "return_value"],
+            "properties": {
+              "target": { "$ref": "#/$defs/target" },
+              "resource_ref": { "type": "string", "minLength": 1 },
+              "error": { "type": "integer" },
+              "message": { "type": "string" },
+              "return_value": { "type": "string" }
+            }
+          }
+        },
+        "callback_execution": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["defer_matched", "defer_executed", "call_results"],
+          "properties": {
+            "defer_matched": { "type": "boolean" },
+            "defer_executed": { "type": "boolean" },
+            "call_results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["target", "error", "message", "return_value"],
+                "properties": {
+                  "target": { "$ref": "#/$defs/target" },
+                  "resource_ref": { "type": "string", "minLength": 1 },
+                  "error": { "type": "integer" },
+                  "message": { "type": "string" },
+                  "return_value": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "receipt": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["received", "recorded", "duplicate"],
+          "properties": {
+            "received": { "type": "boolean" },
+            "recorded": { "type": "boolean" },
+            "duplicate": { "type": "boolean" },
+            "evidence_id": { "type": "string" }
+          }
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sdk", "class_name", "function"],
+      "properties": {
+        "sdk": { "type": "string", "minLength": 1 },
+        "interface": { "type": "string", "minLength": 1 },
+        "class_name": { "type": "string", "minLength": 1 },
+        "function": { "type": "string", "minLength": 1 },
+        "overload": { "type": "string", "minLength": 1 }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "common": {
+            "required": ["action"],
+            "properties": {
+              "action": {
+                "const": "callbackEventRequest"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "$ref": "#/$defs/data_callback_event_request"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "data": {
+            "$ref": "#/$defs/data_common"
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "common": { "required": ["action"], "properties": { "action": { "const": "registerRequest" } } } } },
+      "then": {
+        "properties": {
+          "data": {
+            "required": ["node_id", "capabilities"]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "common": { "required": ["action"], "properties": { "action": { "const": "registerResponse" } } } } },
+      "then": {
+        "properties": {
+          "data": {
+            "required": ["code", "message", "lease_id"]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "common": { "required": ["action"], "properties": { "action": { "const": "invokeRequest" } } } } },
+      "then": {
+        "properties": {
+          "data": {
+            "required": ["sync", "list"],
+            "anyOf": [
+              { "required": ["node_id"] },
+              { "required": ["device_role"] }
+            ],
+            "properties": {
+              "sync": { "const": true },
+              "list": {
+                "items": {
+                  "required": ["target", "params"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "common": { "required": ["action"], "properties": { "action": { "const": "invokeResponse" } } } } },
+      "then": {
+        "properties": {
+          "data": {
+            "required": ["code", "message", "result"]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "common": { "required": ["action"], "properties": { "action": { "const": "callbackRequest" } } } } },
+      "then": {
+        "properties": {
+          "data": {
+            "required": ["sync", "list"],
+            "anyOf": [
+              { "required": ["node_id"] },
+              { "required": ["device_role"] }
+            ],
+            "properties": {
+              "sync": { "const": true },
+              "list": {
+                "items": {
+                  "required": ["event_target", "repeat", "call_elements"],
+                  "properties": {
+                    "repeat": {
+                      "oneOf": [
+                        { "const": -1 },
+                        { "type": "integer", "minimum": 1 }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "common": { "required": ["action"], "properties": { "action": { "const": "callbackResponse" } } } } },
+      "then": {
+        "properties": {
+          "data": {
+            "required": ["code", "message"]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "common": { "required": ["action"], "properties": { "action": { "const": "callbackEventRequest" } } } } },
+      "then": {
+        "properties": {
+          "data": {
+            "required": ["node_id", "event_id", "event_target", "payload", "callback_execution"]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "common": {
+            "required": ["action"],
+            "properties": {
+              "action": {
+                "not": { "const": "callbackEventRequest" }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "not": {
+              "required": ["callback_context"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "common": { "required": ["action"], "properties": { "action": { "const": "callbackEventResponse" } } } } },
+      "then": {
+        "properties": {
+          "data": {
+            "required": ["code", "message", "event_id", "receipt"]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "common": { "required": ["action"], "properties": { "action": { "const": "reconnectRequest" } } } } },
+      "then": {
+        "properties": {
+          "data": {
+            "required": ["node_id", "lease_id"]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "common": { "required": ["action"], "properties": { "action": { "const": "reconnectResponse" } } } } },
+      "then": {
+        "properties": {
+          "data": {
+            "required": ["code", "message", "state"]
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+case_id: TC-MAC-AGORA-LOCAL-VIDEO-STATS-OBSERVABLE
+name: macOS Agora L2 local video stats observable
+platform: mac
+suite: agora_direct_call_l2
+scenario_family: direct_call
+implementation_status: runnable
+covered_capabilities:
+  - media_stats_observability
+steps:
+  - step_id: join-before-local-video-stats-observation
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-local-video-stats-join
+        timestamp_ms: 1770000003650
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: joinChannel
+            params:
+              channel: real-smoke-local-video-stats
+              uid: 1001
+              token: "{{AGORA_RTC_TOKEN}}"
+              publish_camera: true
+            extra: {}
+    assertions:
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onJoinChannelSuccess
+        timeout_ms: 5000
+  - step_id: setup-local-video-before-local-video-stats-observation
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-local-video-stats-setup-local-video
+        timestamp_ms: 1770000003675
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: setupLocalVideo
+            params:
+              view_id: local_preview
+            extra: {}
+  - step_id: start-preview-before-local-video-stats-observation
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-local-video-stats-start-preview
+        timestamp_ms: 1770000003685
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: startPreview
+            params: {}
+            extra: {}
+  - step_id: observe-local-video-stats
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-local-video-stats-query-connection-state
+        timestamp_ms: 1770000003710
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: getConnectionState
+            params: {}
+            extra: {}
+    assertions:
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onLocalVideoStats
+        timeout_ms: 5000
+  - step_id: stop-preview-after-local-video-stats-observation
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-local-video-stats-stop-preview
+        timestamp_ms: 1770000003735
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: stopPreview
+            params: {}
+            extra: {}
+  - step_id: leave-after-local-video-stats-observation
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-local-video-stats-leave
+        timestamp_ms: 1770000003760
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: leaveChannel
+            params: {}
+            extra: {}

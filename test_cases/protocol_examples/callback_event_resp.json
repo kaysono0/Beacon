@@ -1,0 +1,18 @@
+{
+  "common": {
+    "action": "callbackEventResponse",
+    "op_id": "op-callback-event-001",
+    "timestamp_ms": 1770000000301
+  },
+  "data": {
+    "code": 0,
+    "message": "ok",
+    "event_id": "evt-mac-local-001-1770000000300-001",
+    "receipt": {
+      "received": true,
+      "recorded": true,
+      "duplicate": false,
+      "evidence_id": "ev-callback-event-001"
+    }
+  }
+}

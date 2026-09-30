@@ -1,0 +1,12 @@
+{
+  "common": {
+    "action": "invokeResponse",
+    "op_id": "op-invoke-001",
+    "timestamp_ms": 1770000000101
+  },
+  "data": {
+    "code": 0,
+    "message": "ok",
+    "result": "{\"joined\":true}"
+  }
+}

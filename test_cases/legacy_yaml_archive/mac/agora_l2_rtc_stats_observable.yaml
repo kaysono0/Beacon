@@ -1,0 +1,79 @@
+case_id: TC-MAC-AGORA-RTC-STATS-OBSERVABLE
+name: macOS Agora L2 rtc stats observable
+platform: mac
+suite: agora_direct_call_l2
+scenario_family: direct_call
+implementation_status: runnable
+covered_capabilities:
+  - rtc_stats_observability
+steps:
+  - step_id: join-before-rtc-stats-observation
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-rtc-stats-join
+        timestamp_ms: 1770000003500
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: joinChannel
+            params:
+              channel: real-smoke-rtc-stats
+              uid: 1001
+              token: "{{AGORA_RTC_TOKEN}}"
+            extra: {}
+    assertions:
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onJoinChannelSuccess
+        timeout_ms: 5000
+  - step_id: observe-rtc-stats
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-rtc-stats-query-connection-state
+        timestamp_ms: 1770000003550
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: getConnectionState
+            params: {}
+            extra: {}
+    assertions:
+      - type: event_exists
+        target:
+          sdk: agora_rtc
+          interface: rtc_engine
+          class_name: AgoraRtcEngineDelegate
+          function: onRtcStats
+        timeout_ms: 5000
+  - step_id: leave-after-rtc-stats-observation
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-rtc-stats-leave
+        timestamp_ms: 1770000003600
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: rtc_engine
+              class_name: AgoraRtcEngineKit
+              function: leaveChannel
+            params: {}
+            extra: {}

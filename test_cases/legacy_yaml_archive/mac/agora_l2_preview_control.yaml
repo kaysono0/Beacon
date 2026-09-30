@@ -1,0 +1,95 @@
+case_id: TC-MAC-AGORA-PREVIEW-CONTROL
+name: macOS Agora L2 preview control
+platform: mac
+suite: agora_direct_call_l2
+scenario_family: direct_call
+implementation_status: runnable
+covered_capabilities:
+  - preview_control
+steps:
+  - step_id: start-preview
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-preview-start
+        timestamp_ms: 1770000003000
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: startPreview
+            params: {}
+            extra: {}
+  - step_id: assert-previewing-after-start
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-preview-is-previewing-after-start
+        timestamp_ms: 1770000003050
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: isPreviewing
+            params: {}
+            extra: {}
+    assertions:
+      - type: state_equals
+        target:
+          sdk: agora_rtc
+          interface: video_preview
+          class_name: AgoraRtcEngineKit
+          function: isPreviewing
+        value: true
+        timeout_ms: 5000
+  - step_id: stop-preview
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-preview-stop
+        timestamp_ms: 1770000003100
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: stopPreview
+            params: {}
+            extra: {}
+  - step_id: assert-not-previewing-after-stop
+    packet:
+      common:
+        action: invokeRequest
+        op_id: op-agora-l2-preview-is-previewing-after-stop
+        timestamp_ms: 1770000003150
+      data:
+        node_id: mac-real-e2e-001
+        sync: true
+        list:
+          - target:
+              sdk: agora_rtc
+              interface: video_preview
+              class_name: AgoraRtcEngineKit
+              function: isPreviewing
+            params: {}
+            extra: {}
+    assertions:
+      - type: state_equals
+        target:
+          sdk: agora_rtc
+          interface: video_preview
+          class_name: AgoraRtcEngineKit
+          function: isPreviewing
+        value: false
+        timeout_ms: 5000

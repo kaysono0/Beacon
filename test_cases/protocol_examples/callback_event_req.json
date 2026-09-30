@@ -1,0 +1,47 @@
+{
+  "common": {
+    "action": "callbackEventRequest",
+    "op_id": "op-callback-event-001",
+    "timestamp_ms": 1770000000300
+  },
+  "data": {
+    "node_id": "mac-local-001",
+    "event_id": "evt-mac-local-001-1770000000300-001",
+    "event_target": {
+      "sdk": "agora_rtc",
+      "interface": "rtc_engine",
+      "class_name": "AgoraRtcEngineDelegate",
+      "function": "onJoinChannelSuccess"
+    },
+    "resource_ref": "engine_1",
+    "payload": {
+      "channel": "smoke",
+      "uid": 1001
+    },
+    "callback_context": {
+      "provider": "agora_rtc/rtc_engine",
+      "originating_op_id": "op-mac-join-001",
+      "resource_ref": "engine_1",
+      "instance_id": "engine_1",
+      "sequence": 7
+    },
+    "callback_execution": {
+      "defer_matched": true,
+      "defer_executed": true,
+      "call_results": [
+        {
+          "target": {
+            "sdk": "agora_rtc",
+            "interface": "rtc_engine",
+            "class_name": "AgoraRtcEngineKit",
+            "function": "enableLocalVideo"
+          },
+          "resource_ref": "engine_1",
+          "error": 0,
+          "message": "ok",
+          "return_value": "{}"
+        }
+      ]
+    }
+  }
+}
