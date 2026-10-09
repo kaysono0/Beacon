@@ -34,6 +34,21 @@ export AGORA_MAC_SDK_ROOT="$PWD/third_party/agora/macos/sdk/Shengwang_Native_SDK
 
 `AGORA_MAC_SDK_ROOT` and the `AGORA_APP_ID` / `AGORA_APP_CERT` credentials belong to your own Agora project. Credentials stay local in `local.agora.env` (git-ignored, template in `local.agora.env.example`) and must never be committed.
 
+## Setup entry
+
+Run `bash scripts/dev/setup_macos.sh --with-agora` to prepare the toolchain and
+locked Python environment, then reuse your local SDK. Lookup order is the exported
+`AGORA_MAC_SDK_ROOT`, the path in `local.agora.env`, this directory's `macos/sdk/`,
+and previous `.build/vendor-sdks/agora-*` downloads. The script writes the discovered
+framework parent into `local.agora.env` without replacing credentials.
+
+If no local SDK is found, provide an official macOS RTC full SDK HTTPS ZIP URL from
+[Agora's SDK download page](https://docs.agora.io/en/api-reference/sdks), either at
+the prompt or through `BEACON_AGORA_MAC_SDK_URL`. Confirm the vendor terms to download;
+a blank URL skips the SDK and prepares only the development environment. SDK binaries
+stay in ignored directories. Fill in your credentials before running
+`make test-mac-agora-real`.
+
 ## When the SDK is absent
 
 The mock backends, the protocol/Server test suites, and every coverage gate that does not need a real SDK keep working. Real-device gates report `skipped` and exit successfully when the SDK or credentials are missing:

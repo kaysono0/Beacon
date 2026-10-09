@@ -55,7 +55,7 @@ def test_quickstart_agora_join_callback(session: BeaconSession) -> None:
 
 ## 3. 启动真实环境并运行 Demo
 
-真实路径需要 macOS 13+、Xcode/Swift、CMake，以及 Agora、火山和 ZEGO 的 macOS SDK 与本机凭证。统一真实 Server 会启动三家 SDK 的 Agent，因此三家的配置都要齐全。可运行 `bash scripts/dev/setup_macos.sh --with-sdks` 准备开发工具并按提示下载 Agora 和火山 SDK；ZEGO SDK、凭证文件和完整字段要求见 [Mac Console 环境设置](mac-console.md)。本地配置写入 Git 忽略的 `local.agora.env` 和 `local.volcengine.env`，两份文件使用相同的 `BEACON_AUTH_TOKEN`。
+真实路径需要 macOS 13+、Xcode/Swift、CMake，以及 Agora、火山和 ZEGO 的 macOS SDK 与本机凭证。统一真实 Server 会启动三家 SDK 的 Agent，因此三家的配置都要齐全。仅准备 Agora 并运行 `make test-mac-agora-real` 可使用 `bash scripts/dev/setup_macos.sh --with-agora`（优先复用本地 SDK）；统一 Console 需要三家配置齐全。可运行 `bash scripts/dev/setup_macos.sh --with-sdks` 准备开发工具并按提示下载 Agora 和火山 SDK；ZEGO SDK、凭证文件和完整字段要求见 [Mac Console 环境设置](mac-console.md)。本地配置写入 Git 忽略的 `local.agora.env` 和 `local.volcengine.env`，两份文件使用相同的 `BEACON_AUTH_TOKEN`。
 
 先保存 Demo 文件，再分别在两个终端启动 Server 和 Mac Test Console。Server 启动时发现用例；之后新增或修改用例时，重启 Server 以刷新 catalog。
 

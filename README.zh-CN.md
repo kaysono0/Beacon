@@ -59,13 +59,63 @@ Agora、火山引擎和 ZEGO Express 已接入同一框架与 Console，各自�
 
 ## Quick Start
 
-先体验 Mock 链路，无需安装厂商 SDK 或配置凭证；再按需运行真实 SDK。
+真实设备 Agent 和可视化 Console 当前运行于 **macOS 13+**，iOS / Android Agent 尚未实现。Mock 链路无需厂商 SDK 或项目凭证。
 
-1. **准备 Mac 开发环境**：运行 `bash scripts/dev/setup_macos.sh`；安装真实 SDK 时追加 `--with-sdks` 并提供厂商下载链接。然后按[快速入门](docs/quickstart.md)运行 Mock 用例并查看报告。
-2. **体验真实 SDK 与 Console**：按 [Mac Console 操作指南](docs/mac-console.md)配置 SDK、凭证与权限，启动服务和 App。
-3. **编写自己的用例**：从 [Python 用例编写指南](docs/python-test-authoring-guide.md)了解 SDK 调用、回调等待和资源清理。
+### 1. 下载项目并运行 Mock
 
-组件职责与执行链路见[架构总览](docs/architecture.md)。
+先安装 Git 和 Xcode 命令行工具（`xcode-select --install`）。setup 会复用已有 CMake、uv，缺失时通过 Homebrew 安装；如果尚无这些工具，先安装 [Homebrew](https://brew.sh/)。首次准备需要联网获取 Python 和依赖。
+
+```bash
+git clone https://github.com/kaysono0/Beacon.git
+cd Beacon
+bash scripts/dev/setup_macos.sh
+make test-e2e-mock
+```
+
+后续命令都在仓库根目录执行。Mock 自动启动测试环境，结果写入 `reports/latest/report.json`；该命令不会打开可视化 Console。
+
+### 2. 准备 Agora，并填写自己的项目凭证
+
+```bash
+bash scripts/dev/setup_macos.sh --with-agora
+```
+
+setup 优先复用已有本地 SDK；找不到时，请提供官方 macOS RTC 完整 SDK 包的 HTTPS ZIP 链接，并确认厂商条款。下载链接留空会跳过 SDK 安装。仓库不内置 SDK，setup **不会创建 Agora 项目，也不会生成用户的 App ID 或 App Certificate**。
+
+若 setup 尚未生成 `local.agora.env`，将 [local.agora.env.example](local.agora.env.example) 复制为该文件。已有文件不要覆盖，保留 setup 写入的 SDK 路径。运行真实测试前，自行编辑以下字段：
+
+| `local.agora.env` 字段 | 用户需要填写的内容 |
+|---|---|
+| `AGORA_MAC_SDK_ROOT` | 包含 `AgoraRtcKit.framework` 或 `.xcframework` 的 SDK 目录；setup 找到或下载 SDK 后会填写 |
+| `AGORA_APP_ID` | 从厂商控制台取得的 Agora 项目 App ID |
+| `AGORA_APP_CERT` | 同一个 Agora 项目的 App Certificate，用于签发 RTC token |
+| `BEACON_AUTH_TOKEN` | Server、Agent 和 Console 共用的本地认证值 |
+
+将模板占位值替换为自己的配置，证书和 token 只放在 Git 忽略的本地 env 文件中。然后运行 `make test-mac-agora-real`，该命令会自动加载 `local.agora.env`。检查实际报告状态：**`skipped` 表示缺少运行环境，即使命令退出成功，也不是测试通过**。
+
+### 3. 启动可视化 Console
+
+当前统一启动器要求 **Agora、火山引擎和 ZEGO 三家的 SDK 与凭证全部齐备**。只准备 Agora 可以运行上面的 Agora 验证命令，但还不能启动统一环境。`--with-sdks` 准备 Agora 和火山 SDK；ZEGO 需自行准备。启动前填写 [Mac Console 指南中的必填配置表](docs/mac-console.md#必填配置)。
+
+安装完整 Xcode 到 `/Applications/Xcode.app`，并完成首次启动初始化；统一 Server 命令显式使用该路径，仅安装 Command Line Tools 不满足此启动器要求。Swift 工具链需兼容系统 SDK（Console 的 Swift tools 最低为 5.9），媒体用例还需授权启动终端使用摄像头和麦克风。
+
+打开两个终端，都进入仓库根目录：
+
+```bash
+# 终端一：Server 与真实 Agent
+make run-mac-console-real-server
+```
+
+```bash
+# 终端二：Console App
+make run-mac-console-app
+```
+
+在 App 中选择厂商和用例，运行后检查结果。默认 Server 端口为 8000，请确保未被占用。关闭 App 不会停止 Server；结束后在终端一按 `Ctrl-C`，回收 Server 和它启动的 Agent。权限、端口配置与排障见 [Mac Console 操作指南](docs/mac-console.md)。
+
+默认片源已纳入 Git，包括 `test_cases/media/grid_segments.mp4`、海洋视频及其音频文件，clone 时会一并下载，无需另取片源；setup 会检查默认片源是否存在。
+
+编写自己的用例时，参考[快速入门示例](docs/quickstart.md)和 [Python 用例编写指南](docs/python-test-authoring-guide.md)。组件职责与执行链路见[架构总览](docs/architecture.md)。
 
 ## 代码地图
 

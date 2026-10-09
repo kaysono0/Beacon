@@ -4,7 +4,7 @@
 
 ## 开发环境与目录
 
-- 新 macOS 开发者可运行 `bash scripts/dev/setup_macos.sh` 安装 CMake、uv，并准备锁定的 Python 3.11 环境；真实厂商 SDK 的下载地址和凭证仍需开发者自行提供，见 [Mac Console 环境设置](mac-console.md)。
+- 新 macOS 开发者可运行 `bash scripts/dev/setup_macos.sh` 安装 CMake、uv，并准备锁定的 Python 3.11 环境；追加 `--with-agora` 或 `--with-sdks` 可复用本地 SDK，缺失时再提供厂商下载地址；凭证仍需开发者自行填写，见 [Mac Console 环境设置](mac-console.md)。
 - Python 3.11+、uv；原生 macOS 开发另需 macOS 13+、CMake 和兼容系统 SDK 的 Xcode/Swift 工具链。
 - `server/tests/`、`python_sdk/tests/`、`tests/tooling/`、`tests/integration/` 保存回归测试；正式 SDK 用例位于 `test_cases/python/`。
 - `test_cases/protocol_examples/` 是协议验证输入；`scripts/contracts/` 保存工具读取的 invariant catalog 与 manifest schema。进度测试使用 `tests/fixtures/` 中的固定夹具。

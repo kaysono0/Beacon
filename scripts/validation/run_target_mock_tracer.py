@@ -59,7 +59,6 @@ MIGRATION_CASES = (
     "TC-MAC-AGORA-SUCCESS-THEN-LEAVE-CLEANUP",
     "TC-MAC-AGORA-RUNTIME-CLEANUP-BASELINE",
     "TC-MAC-AGORA-REAL-JOIN-CALLBACK",
-    "TC-MAC-AGORA-REAL-JOIN-LEAVE-STATE",
     "TC-MAC-AGORA-REAL-LIFECYCLE",
     "TC-MAC-AGORA-INVALID-TOKEN-FAILURE",
     "TC-MAC-AGORA-INVALID-TOKEN-ONERROR-DIAGNOSTIC",
@@ -71,6 +70,7 @@ MIGRATION_CASES = (
     "TC-MAC-AGORA-LOCAL-VIDEO-STATS-OBSERVABLE",
 )
 MULTI_DEVICE_CASES = (
+    "TC-MAC-AGORA-REAL-JOIN-LEAVE-STATE",
     "TC-PY-ZEGO-L1-1V1-ROOM-CONNECTED",
     "TC-PY-AGORA-1V1-REMOTE-VIDEO",
     "TC-MAC-AGORA-REMOTE-AUDIO-STATS-OBSERVABLE",
@@ -95,7 +95,8 @@ GRID9_ROLES = ("primary", "segment_1", "segment_2", "segment_3", "segment_4", "s
 async def _finished(client: httpx.AsyncClient, base_url: str, run_id: str) -> dict:
     """从正式读取端点等待 Server 终态，不直接改运行态。"""
 
-    for _ in range(200):
+    # 媒体用例包含每阶段 10 秒展示等待，终态轮询须覆盖完整用例。
+    for _ in range(1200):
         response = await client.get(f"{base_url}/api/v1/console/test-runs/{run_id}", headers=mock.AUTH)
         assert response.status_code == 200, response.text
         run = response.json()["run"]

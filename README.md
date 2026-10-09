@@ -58,13 +58,63 @@ The shared Agent Core owns platform-independent protocols, invocation, and callb
 
 ## Quick start
 
-Start with Mock execution, which needs no vendor SDK or credentials, then move to real SDKs as needed.
+The real device Agents and visual Console currently run on **macOS 13+**. iOS and Android Agents are not implemented. Mock execution needs no vendor SDK or project credentials.
 
-1. **Prepare a Mac development environment**: run `bash scripts/dev/setup_macos.sh`; to install real SDKs, add `--with-sdks` and provide vendor download links. Then follow the [quickstart](docs/quickstart.md) to run Mock cases and inspect the report.
-2. **Try real SDKs and the Console**: follow the [Mac Console guide](docs/mac-console.md) to configure SDKs, credentials, and permissions, then start the services and App.
-3. **Write your own case**: use the [Python test authoring guide](docs/python-test-authoring-guide.md) for SDK calls, callback waits, and resource cleanup.
+### 1. Clone and run Mock
 
-For component responsibilities and the execution path, see the [architecture overview](docs/architecture.md).
+Install Git and Xcode Command Line Tools (`xcode-select --install`). Setup uses existing CMake and uv commands, or installs missing ones through Homebrew; if those tools are missing, install [Homebrew](https://brew.sh/) first. Internet access is needed to fetch Python and dependencies.
+
+```bash
+git clone https://github.com/kaysono0/Beacon.git
+cd Beacon
+bash scripts/dev/setup_macos.sh
+make test-e2e-mock
+```
+
+Run commands from the repository root. Mock starts its own test environment and writes the result to `reports/latest/report.json`; it does not open the visual Console.
+
+### 2. Prepare Agora and fill in your project credentials
+
+```bash
+bash scripts/dev/setup_macos.sh --with-agora
+```
+
+Setup reuses an existing local SDK, or asks for an official macOS RTC full SDK HTTPS ZIP URL and confirmation of the vendor terms. A blank URL skips SDK installation. SDK binaries are not bundled, and setup **does not create an Agora project or generate your credentials**.
+
+If setup has not created `local.agora.env`, copy [local.agora.env.example](local.agora.env.example) to that filename. Preserve an existing file and the SDK path written by setup. Edit it before running real tests:
+
+| Field in `local.agora.env` | What you must provide |
+|---|---|
+| `AGORA_MAC_SDK_ROOT` | SDK directory containing `AgoraRtcKit.framework` or `.xcframework`; setup fills this when it finds or downloads the SDK |
+| `AGORA_APP_ID` | Your Agora project's App ID from the vendor console |
+| `AGORA_APP_CERT` | The App Certificate from the same Agora project; used to sign RTC tokens |
+| `BEACON_AUTH_TOKEN` | A local authentication value shared by the Server, Agents, and Console |
+
+Replace template placeholders with your own values. Keep certificates and tokens in the ignored local env files. Then run `make test-mac-agora-real`; this target loads `local.agora.env` automatically. Check the reported status: **`skipped` means the required environment was missing, even if the command exits successfully**.
+
+### 3. Run the visual Console
+
+The current unified launcher requires **Agora, Volcengine, and ZEGO SDKs and credentials together**. Preparing Agora alone is sufficient for the Agora verification command above, but does not satisfy the unified launcher. `--with-sdks` prepares Agora and Volcengine; ZEGO must be supplied separately. Complete the [required credential table in the Mac Console guide](docs/mac-console.md#必填配置) before starting.
+
+Install full Xcode at `/Applications/Xcode.app` and complete its first-launch setup; the unified Server command selects this path explicitly. Command Line Tools alone do not satisfy that launcher. Use a compatible Swift toolchain (the Console package requires Swift tools 5.9+), and grant the launching terminal camera and microphone access for media cases.
+
+In two terminals, both at the repository root:
+
+```bash
+# Terminal 1: Server and real Agents
+make run-mac-console-real-server
+```
+
+```bash
+# Terminal 2: Console App
+make run-mac-console-app
+```
+
+Select a vendor and case in the App, then run it and inspect the result. The default Server port is 8000; keep it available. Closing the App leaves the Server running—press `Ctrl-C` in terminal 1 to stop it and reclaim its Agents. See the [Mac Console guide](docs/mac-console.md) for permissions, port configuration, and troubleshooting.
+
+The default playback media is tracked in Git, including `test_cases/media/grid_segments.mp4`, the ocean video, and its audio file. Clone downloads these fixtures; no separate media download is required, and setup checks their presence.
+
+To write your own case, follow the [quickstart example](docs/quickstart.md) and [Python test authoring guide](docs/python-test-authoring-guide.md). Component responsibilities and the execution path are explained in the [architecture overview](docs/architecture.md).
 
 ## Code map
 
